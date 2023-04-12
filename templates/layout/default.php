@@ -28,10 +28,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
 
     <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
-
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -43,15 +45,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             we must use $this->html->image instead of <img src=""> in this case for it to work -->
 
             <!-- <?php /*= "$this->Url->build('/')" */?> <- this line of code is for redirection, "/" is the root path-->
-            <a href="<?= $this->Url->build('/') ?>"> <?= $this->Html->image('cake.icon.png', ['alt' => 'H healing logo']); ?>
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
+            <a href="<?= $this->Url->build('/') ?>"> <?= $this->Html->image('holistichealinglogo.png', ['alt' => 'Holistic healing logo']); ?>
+            <a href="<?= $this->Url->build('/') ?>"><span>Holistic</span> Healings</a>
         </div>
         <div class="top-nav-links">
             <!--  target acts as where I want to display the href, _self is the default so it will update itself
              If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
              to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
 
-            <a target="_self" href="<?= $this->Url->build('/booking') ?>">Booking</a>
+            <a target="_self" href="<?= $this->Url->build('/booking') ?>">Make a Booking</a>
             <a target="_self" href="<?= $this->Url->build('/customer') ?>">Customer</a>
             <a target="_self" href="<?= $this->Url->build('/expertise') ?>">Expertise</a>
             <a target="_self" href="<?= $this->Url->build('/payment') ?>">Payment</a>
