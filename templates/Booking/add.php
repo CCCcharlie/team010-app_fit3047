@@ -23,6 +23,11 @@
                     echo $this->Form->control('booking_date');
                     echo $this->Form->control('booking_time');
                     echo $this->Form->control('cust_id', ['options' => $customer]);
+                    echo  $this->Form->control('customer_phone');
+                    echo $this->Form->control('customer_first_name');
+                    echo $this->Form->control('customer_last_name');
+                    echo $this->Form->control('customer_email');
+                    echo $this->Form->control('customer_password');
                     echo $this->Form->control('staff_id', ['options' => $staff]);
                     echo $this->Form->control('service_id', ['options' => $services]);
                 ?>
