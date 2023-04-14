@@ -59,10 +59,38 @@ class BookingController extends AppController
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
-        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
-        $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
-        $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
-        $this->set(compact('booking', 'customer', 'staff', 'services'));
+        $staff = $this->Booking->Staff->find('list', [
+            'keyField' => 'staff_id',
+            'valueField' => function ($staff) {
+                return $staff->staff_fname . ' ' . $staff->staff_lname;
+            }
+        ]);
+
+        if ($this->request->is('post')) {
+            $booking = $this->Bookings->patchEntity($booking, $this->request->getData());
+            $customer = $this->Bookings->Customers->find()
+                ->where(['cust_phone' => $this->request->getData('customer_phone')])
+                ->first();
+            if ($customer) {
+                $booking->customer = $customer;
+                $this->request = $this->request->withData('customer_first_name', $customer->cust_fname);
+                $this->request = $this->request->withData('customer_last_name', $customer->cust_lname);
+                $this->request = $this->request->withData('customer_email', $customer->cust_email);
+            } else {
+                $newCustomer = $this->Bookings->Customers->newEntity([
+                    'cust_fname' => $this->request->getData('customer_first_name'),
+                    'cust_lname' => $this->request->getData('customer_last_name'),
+                    'cust_phone' => $this->request->getData('customer_phone'),
+                    'cust_email' => $this->request->getData('customer_email'),
+                    'cust_password' => $this->request->getData('customer_password')
+                ]);
+                $booking->customer = $newCustomer;
+            }
+
+
+            $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
+            $this->set(compact('booking', 'customer', 'staff', 'services'));
+        }
     }
 
     /**
