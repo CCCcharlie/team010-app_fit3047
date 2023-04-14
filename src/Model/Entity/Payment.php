@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property int $payment_no
  * @property int $booking_id
- * @property float|null $payment_amount
+ * @property float $payment_amount
  * @property \Cake\I18n\FrozenDate $payment_date
  *
  * @property \App\Model\Entity\Booking $booking

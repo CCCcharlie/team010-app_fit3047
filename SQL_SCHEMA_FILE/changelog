@@ -1,0 +1,19 @@
+Schema ver 2.4
+    payment table:
+
+    - changed payment_amount to be NOT NULL
+
+    Service table:
+
+    - change service_duration type to time
+    - added image_name attribute to service table
+    - changed service_desc to be NOT NULL
+    - changed service_price to be NOT NULL
+
+    Staff_expertise:
+
+    - added AUTOINCREMENT to staff_exp_id.
+
+Schema ver 2.5:
+
+...
