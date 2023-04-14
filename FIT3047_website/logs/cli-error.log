@@ -1,0 +1,37 @@
+2023-04-12 04:27:09 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [1045] Access denied for user 'my_app'@'localhost' (using password: YES) in C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Driver.php on line 133
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [1045] Access denied for user \'my_app\'@\'localhost\' (using password: YES)',
+)
+Stack Trace:
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php:164
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Schema\SchemaDialect.php:51
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php:216
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:53
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Connection.php:418
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\bake\src\Utility\TableScanner.php:65
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\bake\src\Utility\TableScanner.php:82
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\bake\src\Command\AllCommand.php:88
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Console\BaseCommand.php:189
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Console\CommandRunner.php:334
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\bin\cake.php:12
+
+Caused by: [PDOException] SQLSTATE[HY000] [1045] Access denied for user 'my_app'@'localhost' (using password: YES) in C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Driver.php on line 125
+Stack Trace:
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Driver.php:125
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Core\Retry\CommandRetry.php:70
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Driver.php:131
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php:164
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Schema\SchemaDialect.php:51
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php:216
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:53
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Database\Connection.php:418
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\bake\src\Utility\TableScanner.php:65
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\bake\src\Utility\TableScanner.php:82
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\bake\src\Command\AllCommand.php:88
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Console\BaseCommand.php:189
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Console\CommandRunner.php:334
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- C:\xampp\htdocs\3047 project\team010-app_fit3047\FIT3047_website\bin\cake.php:12
+
