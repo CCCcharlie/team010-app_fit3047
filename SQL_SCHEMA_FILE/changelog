@@ -16,4 +16,6 @@ Schema ver 2.4
 
 Schema ver 2.5:
 
-...
+    Service table
+
+    - Changed from time to int (to represent minutes)

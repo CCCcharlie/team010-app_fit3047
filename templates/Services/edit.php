@@ -18,7 +18,8 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="services form content">
-            <?= $this->Form->create($service) ?>
+            <!-- Refer to add.php for services for more info -->
+            <?= $this->Form->create($service, ['type'=>'file']) ?>
             <fieldset>
                 <legend><?= __('Edit Service') ?></legend>
                 <?php
@@ -26,7 +27,8 @@
                     echo $this->Form->control('service_duration');
                     echo $this->Form->control('service_desc');
                     echo $this->Form->control('service_price');
-                    echo $this->Form->control('image_name');
+                    // stores the name of the file type in variable change_image
+                    echo $this->Form->control('change_image',['type'=>'file']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

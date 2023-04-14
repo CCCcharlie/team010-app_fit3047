@@ -13,7 +13,13 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="services form content">
-            <?= $this->Form->create($service) ?>
+
+            <!-- Form->create($service) just means that create a form with data type $service
+             Since we want an image file as well, we must specify during the form create
+             that there is also a file type as well-->
+
+            <!-- Note: add this and the Form->control(image_file... as well to edit.php -->
+            <?= $this->Form->create($service, ['type'=>'file']) ?>
             <fieldset>
                 <legend><?= __('Add Service') ?></legend>
                 <?php
@@ -21,7 +27,8 @@
                     echo $this->Form->control('service_duration');
                     echo $this->Form->control('service_desc');
                     echo $this->Form->control('service_price');
-                    echo $this->Form->control('image_name');
+                    //We must specify the type of data for image which is a "file"
+                    echo $this->Form->control('image_file',['type'=>'file']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

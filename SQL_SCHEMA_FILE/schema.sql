@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2023 at 06:51 AM
+-- Generation Time: Apr 14, 2023 at 09:39 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `holistic`
--- VER 2.4
+--
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,7 @@ CREATE TABLE `payment` (
 CREATE TABLE `services` (
                             `service_id` int(11) NOT NULL,
                             `service_name` varchar(64) NOT NULL,
-                            `service_duration` time NOT NULL,
+                            `service_duration` int(3) NOT NULL,
                             `service_desc` varchar(500) NOT NULL,
                             `service_price` decimal(10,2) NOT NULL,
                             `image_name` varchar(255) NOT NULL
@@ -197,7 +197,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-    MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `staff`
