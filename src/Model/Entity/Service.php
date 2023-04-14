@@ -10,9 +10,10 @@ use Cake\ORM\Entity;
  *
  * @property int $service_id
  * @property string $service_name
- * @property \Cake\I18n\FrozenDate $service_duration
- * @property string|null $service_desc
- * @property string|null $service_price
+ * @property \Cake\I18n\Time $service_duration
+ * @property string $service_desc
+ * @property string $service_price
+ * @property string $image_name
  */
 class Service extends Entity
 {
@@ -30,5 +31,6 @@ class Service extends Entity
         'service_duration' => true,
         'service_desc' => true,
         'service_price' => true,
+        'image_name' => true,
     ];
 }

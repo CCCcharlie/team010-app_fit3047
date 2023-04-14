@@ -14,8 +14,6 @@ use Cake\ORM\Entity;
  * @property string $staff_position
  * @property string $staff_email
  * @property string $staff_password
- *
- * @property \App\Model\Entity\Expertise[] $expertise
  */
 class Staff extends Entity
 {
@@ -34,6 +32,5 @@ class Staff extends Entity
         'staff_position' => true,
         'staff_email' => true,
         'staff_password' => true,
-        'expertise' => true,
     ];
 }

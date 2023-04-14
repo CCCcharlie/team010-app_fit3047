@@ -63,7 +63,8 @@ class PaymentTable extends Table
 
         $validator
             ->numeric('payment_amount')
-            ->allowEmptyString('payment_amount');
+            ->requirePresence('payment_amount', 'create')
+            ->notEmptyString('payment_amount');
 
         $validator
             ->date('payment_date')

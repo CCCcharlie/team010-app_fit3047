@@ -6,7 +6,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Staffexpertise Entity
+ * StaffExpertise Entity
  *
  * @property int $staff_exp_id
  * @property int $staff_id
@@ -15,7 +15,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Staff $staff
  */
-class Staffexpertise extends Entity
+class StaffExpertise extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

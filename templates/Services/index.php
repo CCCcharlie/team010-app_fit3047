@@ -16,6 +16,7 @@
                     <th><?= $this->Paginator->sort('service_duration') ?></th>
                     <th><?= $this->Paginator->sort('service_desc') ?></th>
                     <th><?= $this->Paginator->sort('service_price') ?></th>
+                    <th><?= $this->Paginator->sort('image_name') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -26,7 +27,8 @@
                     <td><?= h($service->service_name) ?></td>
                     <td><?= h($service->service_duration) ?></td>
                     <td><?= h($service->service_desc) ?></td>
-                    <td><?= $service->service_price === null ? '' : $this->Number->format($service->service_price) ?></td>
+                    <td><?= $this->Number->format($service->service_price) ?></td>
+                    <td><?= h($service->image_name) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $service->service_id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $service->service_id]) ?>

@@ -25,7 +25,6 @@ class StaffTableTest extends TestCase
      */
     protected $fixtures = [
         'app.Staff',
-        'app.Expertise',
     ];
 
     /**

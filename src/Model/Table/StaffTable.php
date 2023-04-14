@@ -11,8 +11,6 @@ use Cake\Validation\Validator;
 /**
  * Staff Model
  *
- * @property \App\Model\Table\ExpertiseTable&\Cake\ORM\Association\BelongsToMany $Expertise
- *
  * @method \App\Model\Entity\Staff newEmptyEntity()
  * @method \App\Model\Entity\Staff newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Staff[] newEntities(array $data, array $options = [])

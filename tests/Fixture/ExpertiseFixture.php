@@ -25,7 +25,7 @@ class ExpertiseFixture extends TestFixture
     {
         $this->records = [
             [
-                'expertise_title' => 'c3050df9-d763-47fd-83e1-d3ed71c7ca5d',
+                'expertise_title' => 'a16abd05-ab73-4c92-8e69-8fc8790a7641',
                 'expertise_desc' => 'Lorem ipsum dolor sit amet',
             ],
         ];

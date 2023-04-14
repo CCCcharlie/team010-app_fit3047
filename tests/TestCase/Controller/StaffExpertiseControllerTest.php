@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\StaffexpertiseController;
+use App\Controller\StaffExpertiseController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\StaffexpertiseController Test Case
+ * App\Controller\StaffExpertiseController Test Case
  *
- * @uses \App\Controller\StaffexpertiseController
+ * @uses \App\Controller\StaffExpertiseController
  */
-class StaffexpertiseControllerTest extends TestCase
+class StaffExpertiseControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -22,7 +22,7 @@ class StaffexpertiseControllerTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.Staffexpertise',
+        'app.StaffExpertise',
         'app.Staff',
     ];
 
@@ -30,7 +30,7 @@ class StaffexpertiseControllerTest extends TestCase
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\StaffexpertiseController::index()
+     * @uses \App\Controller\StaffExpertiseController::index()
      */
     public function testIndex(): void
     {
@@ -41,7 +41,7 @@ class StaffexpertiseControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\StaffexpertiseController::view()
+     * @uses \App\Controller\StaffExpertiseController::view()
      */
     public function testView(): void
     {
@@ -52,7 +52,7 @@ class StaffexpertiseControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\StaffexpertiseController::add()
+     * @uses \App\Controller\StaffExpertiseController::add()
      */
     public function testAdd(): void
     {
@@ -63,7 +63,7 @@ class StaffexpertiseControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\StaffexpertiseController::edit()
+     * @uses \App\Controller\StaffExpertiseController::edit()
      */
     public function testEdit(): void
     {
@@ -74,7 +74,7 @@ class StaffexpertiseControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\StaffexpertiseController::delete()
+     * @uses \App\Controller\StaffExpertiseController::delete()
      */
     public function testDelete(): void
     {

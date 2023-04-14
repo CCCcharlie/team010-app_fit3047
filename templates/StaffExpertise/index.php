@@ -1,12 +1,12 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var iterable<\App\Model\Entity\Staffexpertise> $staffexpertise
+ * @var iterable<\App\Model\Entity\StaffExpertise> $staffExpertise
  */
 ?>
-<div class="staffexpertise index content">
-    <?= $this->Html->link(__('New Staffexpertise'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Staffexpertise') ?></h3>
+<div class="staffExpertise index content">
+    <?= $this->Html->link(__('New Staff Expertise'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <h3><?= __('Staff Expertise') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
@@ -19,16 +19,16 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($staffexpertise as $staffexpertise): ?>
+                <?php foreach ($staffExpertise as $staffExpertise): ?>
                 <tr>
-                    <td><?= $this->Number->format($staffexpertise->staff_exp_id) ?></td>
-                    <td><?= $staffexpertise->has('staff') ? $this->Html->link($staffexpertise->staff->staff_id, ['controller' => 'Staff', 'action' => 'view', $staffexpertise->staff->staff_id]) : '' ?></td>
-                    <td><?= h($staffexpertise->expertise_title) ?></td>
-                    <td><?= h($staffexpertise->staffexpert_date_completed) ?></td>
+                    <td><?= $this->Number->format($staffExpertise->staff_exp_id) ?></td>
+                    <td><?= $staffExpertise->has('staff') ? $this->Html->link($staffExpertise->staff->staff_id, ['controller' => 'Staff', 'action' => 'view', $staffExpertise->staff->staff_id]) : '' ?></td>
+                    <td><?= h($staffExpertise->expertise_title) ?></td>
+                    <td><?= h($staffExpertise->staffexpert_date_completed) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $staffexpertise->staff_exp_id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $staffexpertise->staff_exp_id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $staffexpertise->staff_exp_id], ['confirm' => __('Are you sure you want to delete # {0}?', $staffexpertise->staff_exp_id)]) ?>
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $staffExpertise->staff_exp_id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $staffExpertise->staff_exp_id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $staffExpertise->staff_exp_id], ['confirm' => __('Are you sure you want to delete # {0}?', $staffExpertise->staff_exp_id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

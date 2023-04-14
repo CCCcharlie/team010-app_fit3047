@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Payment Amount') ?></th>
-                    <td><?= $payment->payment_amount === null ? '' : $this->Number->format($payment->payment_amount) ?></td>
+                    <td><?= $this->Number->format($payment->payment_amount) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Payment Date') ?></th>
