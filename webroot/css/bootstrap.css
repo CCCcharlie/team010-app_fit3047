@@ -4173,7 +4173,7 @@ textarea.form-control-lg {
   --bs-card-cap-padding-x: 1rem;
   --bs-card-cap-bg: rgba(0, 0, 0, 0.03);
   --bs-card-cap-color: ;
-  --bs-card-height: ;
+  --bs-card-height: 350px;
   --bs-card-color: ;
   --bs-card-bg: #fff;
   --bs-card-img-overlay-padding: 1rem;
@@ -4181,14 +4181,20 @@ textarea.form-control-lg {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 0;
-  height: var(--bs-card-height);
+  min-width: 400px;
   word-wrap: break-word;
   background-color: var(--bs-card-bg);
   background-clip: border-box;
-  border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+    border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
+    margin-bottom: 20px;
 }
+
+.card-content {
+    padding:15px;
+    text-align:left;
+}
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -4282,13 +4288,15 @@ textarea.form-control-lg {
   border-radius: var(--bs-card-inner-border-radius);
 }
 
+
 .card-img,
 .card-img-top,
 .card-img-bottom {
-  width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* Maintain aspect ratio, fit the image within the container */
 }
 
-.card-img,
 .card-img-top {
   border-top-left-radius: var(--bs-card-inner-border-radius);
   border-top-right-radius: var(--bs-card-inner-border-radius);
