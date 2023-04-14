@@ -21,7 +21,7 @@ class ServicesFixture extends TestFixture
             [
                 'service_id' => 1,
                 'service_name' => 'Lorem ipsum dolor sit amet',
-                'service_duration' => '2023-04-11',
+                'service_duration' => '2023-04-14',
                 'service_desc' => 'Lorem ipsum dolor sit amet',
                 'service_price' => 1.5,
             ],

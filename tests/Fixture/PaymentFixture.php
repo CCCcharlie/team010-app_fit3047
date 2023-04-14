@@ -28,7 +28,7 @@ class PaymentFixture extends TestFixture
                 'payment_no' => 1,
                 'booking_id' => 1,
                 'payment_amount' => 1,
-                'payment_date' => '2023-04-12',
+                'payment_date' => '2023-04-14',
             ],
         ];
         parent::init();

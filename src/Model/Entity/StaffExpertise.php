@@ -6,16 +6,16 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Staff Entity
+ * StaffExpertise Entity
  *
+ * @property int $staff_exp_id
  * @property int $staff_id
- * @property string $staff_fname
- * @property string $staff_lname
- * @property string $staff_position
- * @property string $staff_email
- * @property string $staff_password
+ * @property string $expertise_title
+ * @property \Cake\I18n\FrozenDate $staffexpert_date_completed
+ *
+ * @property \App\Model\Entity\Staff $staff
  */
-class Staff extends Entity
+class StaffExpertise extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -27,10 +27,9 @@ class Staff extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'staff_fname' => true,
-        'staff_lname' => true,
-        'staff_position' => true,
-        'staff_email' => true,
-        'staff_password' => true,
+        'staff_id' => true,
+        'expertise_title' => true,
+        'staffexpert_date_completed' => true,
+        'staff' => true,
     ];
 }
