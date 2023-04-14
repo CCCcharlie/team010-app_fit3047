@@ -57,9 +57,12 @@ class ServicesTable extends Table
             ->notEmptyString('service_name');
 
         $validator
-            ->time('service_duration')
+            ->integer('service_duration')
             ->requirePresence('service_duration', 'create')
-            ->notEmptyTime('service_duration');
+            ->notEmptyString('service_duration')
+            //Assume that the highest possible duration for service is 999 minutes, use range to validate
+            ->range('service_duration',  [0, 999],
+                'Please enter a value between 0 and 999');
 
         $validator
             ->scalar('service_desc')
@@ -70,13 +73,32 @@ class ServicesTable extends Table
         $validator
             ->decimal('service_price')
             ->requirePresence('service_price', 'create')
-            ->notEmptyString('service_price');
+            ->notEmptyString('service_price')
+            //Assume that the highest possible cost is 99999$, use range to validate
+            ->range('service_price',  [0, 99999],
+            'Please enter a value between 0 and 99999');
 
         $validator
-            ->scalar('image_name')
-            ->maxLength('image_name', 255)
-            ->requirePresence('image_name', 'create')
-            ->notEmptyFile('image_name');
+            //Validation for adding images in services
+            //Add validation; image cannot be empty, and the file can only be jpg, png, jpeg.
+            ->notEmptyFile('image_file')
+            ->add( 'image_file', [
+                'mimeType' => [
+                    'rule' => [ 'mimeType', [ 'image/jpg', 'image/png', 'image/jpeg' ] ],
+                    'message' => 'Please upload only jpg and png.',
+                ],
+            ] );
+
+        $validator
+            //Validation for editing image in services
+            //Add validation; image cannot be empty, and the file can only be jpg, png, jpeg.
+            ->notEmptyFile('change_image')
+            ->add( 'change_image', [
+                'mimeType' => [
+                    'rule' => [ 'mimeType', [ 'image/jpg', 'image/png', 'image/jpeg' ] ],
+                    'message' => 'Please upload only jpg and png.',
+                ],
+            ] );
 
         return $validator;
     }
