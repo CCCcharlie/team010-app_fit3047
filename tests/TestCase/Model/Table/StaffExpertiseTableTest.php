@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\StaffexpertiseTable;
+use App\Model\Table\StaffExpertiseTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\StaffexpertiseTable Test Case
+ * App\Model\Table\StaffExpertiseTable Test Case
  */
-class StaffexpertiseTableTest extends TestCase
+class StaffExpertiseTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\StaffexpertiseTable
+     * @var \App\Model\Table\StaffExpertiseTable
      */
-    protected $Staffexpertise;
+    protected $StaffExpertise;
 
     /**
      * Fixtures
@@ -24,7 +24,7 @@ class StaffexpertiseTableTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.Staffexpertise',
+        'app.StaffExpertise',
         'app.Staff',
     ];
 
@@ -36,8 +36,8 @@ class StaffexpertiseTableTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Staffexpertise') ? [] : ['className' => StaffexpertiseTable::class];
-        $this->Staffexpertise = $this->getTableLocator()->get('Staffexpertise', $config);
+        $config = $this->getTableLocator()->exists('StaffExpertise') ? [] : ['className' => StaffExpertiseTable::class];
+        $this->StaffExpertise = $this->getTableLocator()->get('StaffExpertise', $config);
     }
 
     /**
@@ -47,8 +47,30 @@ class StaffexpertiseTableTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->Staffexpertise);
+        unset($this->StaffExpertise);
 
         parent::tearDown();
+    }
+
+    /**
+     * Test validationDefault method
+     *
+     * @return void
+     * @uses \App\Model\Table\StaffExpertiseTable::validationDefault()
+     */
+    public function testValidationDefault(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     * @uses \App\Model\Table\StaffExpertiseTable::buildRules()
+     */
+    public function testBuildRules(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
     }
 }

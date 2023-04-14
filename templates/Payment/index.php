@@ -23,7 +23,7 @@
                 <tr>
                     <td><?= $this->Number->format($payment->payment_no) ?></td>
                     <td><?= $payment->has('booking') ? $this->Html->link($payment->booking->booking_id, ['controller' => 'Booking', 'action' => 'view', $payment->booking->booking_id]) : '' ?></td>
-                    <td><?= $payment->payment_amount === null ? '' : $this->Number->format($payment->payment_amount) ?></td>
+                    <td><?= $this->Number->format($payment->payment_amount) ?></td>
                     <td><?= h($payment->payment_date) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $payment->payment_no]) ?>

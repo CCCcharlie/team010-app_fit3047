@@ -21,6 +21,7 @@
                     echo $this->Form->control('service_duration');
                     echo $this->Form->control('service_desc');
                     echo $this->Form->control('service_price');
+                    echo $this->Form->control('image_name');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

@@ -2,7 +2,6 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Staff $staff
- * @var string[]|\Cake\Collection\CollectionInterface $expertise
  */
 ?>
 <div class="row">
@@ -28,7 +27,6 @@
                     echo $this->Form->control('staff_position');
                     echo $this->Form->control('staff_email');
                     echo $this->Form->control('staff_password');
-                    echo $this->Form->control('expertise._ids', ['options' => $expertise]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

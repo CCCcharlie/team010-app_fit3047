@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace App\Controller;
 
 /**
- * Staffexpertise Controller
+ * StaffExpertise Controller
  *
- * @property \App\Model\Table\StaffexpertiseTable $Staffexpertise
- * @method \App\Model\Entity\Staffexpertise[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @property \App\Model\Table\StaffExpertiseTable $StaffExpertise
+ * @method \App\Model\Entity\StaffExpertise[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class StaffexpertiseController extends AppController
+class StaffExpertiseController extends AppController
 {
     /**
      * Index method
@@ -21,25 +21,25 @@ class StaffexpertiseController extends AppController
         $this->paginate = [
             'contain' => ['Staff'],
         ];
-        $staffexpertise = $this->paginate($this->Staffexpertise);
+        $staffExpertise = $this->paginate($this->StaffExpertise);
 
-        $this->set(compact('staffexpertise'));
+        $this->set(compact('staffExpertise'));
     }
 
     /**
      * View method
      *
-     * @param string|null $id Staffexpertise id.
+     * @param string|null $id Staff Expertise id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $staffexpertise = $this->Staffexpertise->get($id, [
+        $staffExpertise = $this->StaffExpertise->get($id, [
             'contain' => ['Staff'],
         ]);
 
-        $this->set(compact('staffexpertise'));
+        $this->set(compact('staffExpertise'));
     }
 
     /**
@@ -49,60 +49,60 @@ class StaffexpertiseController extends AppController
      */
     public function add()
     {
-        $staffexpertise = $this->Staffexpertise->newEmptyEntity();
+        $staffExpertise = $this->StaffExpertise->newEmptyEntity();
         if ($this->request->is('post')) {
-            $staffexpertise = $this->Staffexpertise->patchEntity($staffexpertise, $this->request->getData());
-            if ($this->Staffexpertise->save($staffexpertise)) {
-                $this->Flash->success(__('The staffexpertise has been saved.'));
+            $staffExpertise = $this->StaffExpertise->patchEntity($staffExpertise, $this->request->getData());
+            if ($this->StaffExpertise->save($staffExpertise)) {
+                $this->Flash->success(__('The staff expertise has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The staffexpertise could not be saved. Please, try again.'));
+            $this->Flash->error(__('The staff expertise could not be saved. Please, try again.'));
         }
-        $staff = $this->Staffexpertise->Staff->find('list', ['limit' => 200])->all();
-        $this->set(compact('staffexpertise', 'staff'));
+        $staff = $this->StaffExpertise->Staff->find('list', ['limit' => 200])->all();
+        $this->set(compact('staffExpertise', 'staff'));
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Staffexpertise id.
+     * @param string|null $id Staff Expertise id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $staffexpertise = $this->Staffexpertise->get($id, [
+        $staffExpertise = $this->StaffExpertise->get($id, [
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $staffexpertise = $this->Staffexpertise->patchEntity($staffexpertise, $this->request->getData());
-            if ($this->Staffexpertise->save($staffexpertise)) {
-                $this->Flash->success(__('The staffexpertise has been saved.'));
+            $staffExpertise = $this->StaffExpertise->patchEntity($staffExpertise, $this->request->getData());
+            if ($this->StaffExpertise->save($staffExpertise)) {
+                $this->Flash->success(__('The staff expertise has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The staffexpertise could not be saved. Please, try again.'));
+            $this->Flash->error(__('The staff expertise could not be saved. Please, try again.'));
         }
-        $staff = $this->Staffexpertise->Staff->find('list', ['limit' => 200])->all();
-        $this->set(compact('staffexpertise', 'staff'));
+        $staff = $this->StaffExpertise->Staff->find('list', ['limit' => 200])->all();
+        $this->set(compact('staffExpertise', 'staff'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Staffexpertise id.
+     * @param string|null $id Staff Expertise id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $staffexpertise = $this->Staffexpertise->get($id);
-        if ($this->Staffexpertise->delete($staffexpertise)) {
-            $this->Flash->success(__('The staffexpertise has been deleted.'));
+        $staffExpertise = $this->StaffExpertise->get($id);
+        if ($this->StaffExpertise->delete($staffExpertise)) {
+            $this->Flash->success(__('The staff expertise has been deleted.'));
         } else {
-            $this->Flash->error(__('The staffexpertise could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The staff expertise could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

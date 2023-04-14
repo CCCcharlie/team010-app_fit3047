@@ -57,18 +57,26 @@ class ServicesTable extends Table
             ->notEmptyString('service_name');
 
         $validator
-            ->date('service_duration')
+            ->time('service_duration')
             ->requirePresence('service_duration', 'create')
-            ->notEmptyDate('service_duration');
+            ->notEmptyTime('service_duration');
 
         $validator
             ->scalar('service_desc')
             ->maxLength('service_desc', 500)
-            ->allowEmptyString('service_desc');
+            ->requirePresence('service_desc', 'create')
+            ->notEmptyString('service_desc');
 
         $validator
             ->decimal('service_price')
-            ->allowEmptyString('service_price');
+            ->requirePresence('service_price', 'create')
+            ->notEmptyString('service_price');
+
+        $validator
+            ->scalar('image_name')
+            ->maxLength('image_name', 255)
+            ->requirePresence('image_name', 'create')
+            ->notEmptyFile('image_name');
 
         return $validator;
     }

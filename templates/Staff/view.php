@@ -43,31 +43,6 @@
                     <td><?= $this->Number->format($staff->staff_id) ?></td>
                 </tr>
             </table>
-            <div class="related">
-                <h4><?= __('Related Expertise') ?></h4>
-                <?php if (!empty($staff->expertise)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Expertise Title') ?></th>
-                            <th><?= __('Expertise Desc') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($staff->expertise as $expertise) : ?>
-                        <tr>
-                            <td><?= h($expertise->expertise_title) ?></td>
-                            <td><?= h($expertise->expertise_desc) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Expertise', 'action' => 'view', $expertise->expertise_title]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Expertise', 'action' => 'edit', $expertise->expertise_title]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Expertise', 'action' => 'delete', $expertise->expertise_title], ['confirm' => __('Are you sure you want to delete # {0}?', $expertise->expertise_title)]) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-                <?php endif; ?>
-            </div>
         </div>
     </div>
 </div>

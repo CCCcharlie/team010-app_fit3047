@@ -27,12 +27,16 @@
                     <td><?= h($service->service_desc) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Image Name') ?></th>
+                    <td><?= h($service->image_name) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Service Id') ?></th>
                     <td><?= $this->Number->format($service->service_id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Service Price') ?></th>
-                    <td><?= $service->service_price === null ? '' : $this->Number->format($service->service_price) ?></td>
+                    <td><?= $this->Number->format($service->service_price) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Service Duration') ?></th>

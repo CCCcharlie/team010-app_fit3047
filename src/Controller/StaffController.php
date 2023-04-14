@@ -33,7 +33,7 @@ class StaffController extends AppController
     public function view($id = null)
     {
         $staff = $this->Staff->get($id, [
-            'contain' => ['Expertise'],
+            'contain' => [],
         ]);
 
         $this->set(compact('staff'));
@@ -56,8 +56,7 @@ class StaffController extends AppController
             }
             $this->Flash->error(__('The staff could not be saved. Please, try again.'));
         }
-        $expertise = $this->Staff->Expertise->find('list', ['limit' => 200])->all();
-        $this->set(compact('staff', 'expertise'));
+        $this->set(compact('staff'));
     }
 
     /**
@@ -70,7 +69,7 @@ class StaffController extends AppController
     public function edit($id = null)
     {
         $staff = $this->Staff->get($id, [
-            'contain' => ['Expertise'],
+            'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $staff = $this->Staff->patchEntity($staff, $this->request->getData());
@@ -81,8 +80,7 @@ class StaffController extends AppController
             }
             $this->Flash->error(__('The staff could not be saved. Please, try again.'));
         }
-        $expertise = $this->Staff->Expertise->find('list', ['limit' => 200])->all();
-        $this->set(compact('staff', 'expertise'));
+        $this->set(compact('staff'));
     }
 
     /**

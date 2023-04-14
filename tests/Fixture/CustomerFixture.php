@@ -29,7 +29,7 @@ class CustomerFixture extends TestFixture
                 'cust_fname' => 'Lorem ipsum dolor sit amet',
                 'cust_lname' => 'Lorem ipsum dolor sit amet',
                 'cust_phone' => 1,
-                'cust_startdate' => '2023-04-11',
+                'cust_startdate' => '2023-04-14',
                 'cust_email' => 'Lorem ipsum dolor sit amet',
                 'cust_password' => 'Lorem ipsum dolor sit amet',
             ],

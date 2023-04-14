@@ -9,25 +9,25 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Staffexpertise Model
+ * StaffExpertise Model
  *
  * @property \App\Model\Table\StaffTable&\Cake\ORM\Association\BelongsTo $Staff
  *
- * @method \App\Model\Entity\Staffexpertise newEmptyEntity()
- * @method \App\Model\Entity\Staffexpertise newEntity(array $data, array $options = [])
- * @method \App\Model\Entity\Staffexpertise[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Staffexpertise get($primaryKey, $options = [])
- * @method \App\Model\Entity\Staffexpertise findOrCreate($search, ?callable $callback = null, $options = [])
- * @method \App\Model\Entity\Staffexpertise patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Staffexpertise[] patchEntities(iterable $entities, array $data, array $options = [])
- * @method \App\Model\Entity\Staffexpertise|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Staffexpertise saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Staffexpertise[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Staffexpertise[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\Staffexpertise[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Staffexpertise[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\StaffExpertise newEmptyEntity()
+ * @method \App\Model\Entity\StaffExpertise newEntity(array $data, array $options = [])
+ * @method \App\Model\Entity\StaffExpertise[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\StaffExpertise get($primaryKey, $options = [])
+ * @method \App\Model\Entity\StaffExpertise findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\StaffExpertise patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\StaffExpertise[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \App\Model\Entity\StaffExpertise|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\StaffExpertise saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\StaffExpertise[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\StaffExpertise[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\StaffExpertise[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\StaffExpertise[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
-class StaffexpertiseTable extends Table
+class StaffExpertiseTable extends Table
 {
     /**
      * Initialize method
@@ -39,7 +39,7 @@ class StaffexpertiseTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('staffexpertise');
+        $this->setTable('staff_expertise');
         $this->setDisplayField('staff_exp_id');
         $this->setPrimaryKey('staff_exp_id');
 
