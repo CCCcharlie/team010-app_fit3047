@@ -29,7 +29,7 @@ $this->disableAutoLayout();
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        Holistic Healings
+        Holistic Healing
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
