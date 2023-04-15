@@ -41,7 +41,7 @@ $this->disableAutoLayout();
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
+    <?= $this->fetch('script.js') ?>
 </head>
 <body>
 <body id="page-top">

@@ -15,6 +15,9 @@
 <!-- Essentially tells index.php to use bootstrap.css -->
 <?= $this->Html->css('bootstrap.css')?>
 
+    <?= $this->Html->script('windowresizer.js') ?>
+
+
 
 <div class="content">
     <div class="container">

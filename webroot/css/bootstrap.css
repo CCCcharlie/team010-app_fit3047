@@ -4177,7 +4177,7 @@ textarea.form-control-lg {
     --bs-card-cap-padding-x: 1rem;
     --bs-card-cap-bg: rgba(0, 0, 0, 0.03);
     --bs-card-cap-color: ;
-    --bs-card-height: calc(20vw); /* Change me if you want to change the maximum card height @Bryan */
+    --bs-card-height: 400px;
     --bs-card-color: ;
     --bs-card-bg: #fff;
     --bs-card-img-overlay-padding: 1rem;
@@ -4185,7 +4185,8 @@ textarea.form-control-lg {
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 400px;
+    width: 400px;
+    margin-bottom: 20px;
     word-wrap: break-word;
     background-color: var(--bs-card-bg);
     background-clip: border-box;
@@ -4193,12 +4194,35 @@ textarea.form-control-lg {
     border-radius: var(--bs-card-border-radius);
     margin-bottom: 2vh;
     height: var(--bs-card-height);
+    z-index: 0;
 }
 
-.card-img,
+@media (max-width: 768px) {
+    .card {
+        --bs-card-height: calc(30vw);
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        --bs-card-height: calc(50vw);
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        --bs-card-height: calc(80vw);
+        min-width: 120px;
+    }
+}
+.card-img{
+    height: 250px;
+    z-index: 25;
+}
 .card-img-top,
 .card-img-bottom {
-    height: 100%;
     object-fit: cover;
     border-top-left-radius: var(--bs-card-inner-border-radius);
     border-top-right-radius: var(--bs-card-inner-border-radius);
@@ -10910,7 +10934,7 @@ p {
   font-weight: 700;
 }
 #mainNav .navbar-brand {
-  color: #ffc800;
+  color: #e1ad01;
   font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   letter-spacing: 0.0625em;
@@ -10922,7 +10946,7 @@ p {
 #mainNav .navbar-nav .nav-item .nav-link {
   font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1.5rem;
-  color: #0b6125;
+  color: #C99B04;
   letter-spacing: 0.0625em;
 }
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
@@ -10934,7 +10958,7 @@ p {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     border: none;
-    background-color: #fff3cd;
+    background-color: #2D593D;
     transition: padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
   }
   #mainNav .navbar-brand {
