@@ -11288,8 +11288,9 @@ section#contact .section-heading {
   color: #2D593D;
     font-size: 64px; /* set the font size to 36 pixels */
     font-style: normal; /* set the font style to normal (non-italicized) */
+    font-family: Quicksand;
 }
-}
+
 section#contact form#contactForm .form-group {
   margin-bottom: 1.5rem;
 }
