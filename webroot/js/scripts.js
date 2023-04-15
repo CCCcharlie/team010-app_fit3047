@@ -63,15 +63,16 @@ $("[id^=carousel]").carousel({
 
 
 // Moves the bottom carosouel alongside the top images.)
-$("#carousel").on("slide.bs.carousel", function (e) {
-    var id = parseInt($(e.relatedTarget).attr("data-slide-number"));
-    var thumbNum = parseInt(
-        $("[id=carousel-selector-" + id + "]")
-            .parent()
-            .parent()
-            .attr("data-slide-number")
-    );
-    $("[id^=carousel-selector-]").removeClass("selected");
-    $("[id=carousel-selector-" + id + "]").addClass("selected");
-    $("#carousel-thumbs").carousel(thumbNum);
-});
+// Commented Out, bottom carousel removed as issues exceed iteration 1 capacities.
+// $("#carousel").on("slide.bs.carousel", function (e) {
+//     var id = parseInt($(e.relatedTarget).attr("data-slide-number"));
+//     var thumbNum = parseInt(
+//         $("[id=carousel-selector-" + id + "]")
+//             .parent()
+//             .parent()
+//             .attr("data-slide-number")
+//     );
+//     $("[id^=carousel-selector-]").removeClass("selected");
+//     $("[id=carousel-selector-" + id + "]").addClass("selected");
+//     $("#carousel-thumbs").carousel(thumbNum);
+// });

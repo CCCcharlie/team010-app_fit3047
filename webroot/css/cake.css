@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6 {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     color: #8BB616;
-    
+
 }
 
 a {
@@ -268,21 +268,25 @@ th {
         max-width:230px;
         max-height:95px;
         width: auto;
-        height: auto;
+        height: calc(40vw);
     }
-    .carousel-item-active img {
-             object-fit:scale-down;
-             height: 1rem;
-             display: block;
-             max-width:230px;
-             max-height:95px;
-             width: auto;
-             height: auto;
-         }
+    .thumb-img-container {
+        flex-grow: 1;
+    }
+    #carousel-thumbs .thumb-img-container {
+        height: 200px; /* set a fixed height for all thumbnail containers */
+        display: flex;
+        align-items: center;
+    }
+
+    #carousel-thumbs .thumb-img-container img {
+        height: 100%; /* make sure the image height fills its container */
+        width: auto; /* make sure the image width adjusts to maintain aspect ratio */
+    }
 
     #carousel-thumbs {
         background: #f0f0f0;
-        padding: 0 50px;
+        padding: 0px;
     }
     #carousel-thumbs img:hover {
         opacity: 100%;
@@ -290,8 +294,9 @@ th {
 
     #carousel-thumbs img {
         opacity: 80%;
-        border: 3px solid transparent;
+        border: 1px solid transparent;
         cursor: pointer;
+        flex-grow: 1;
     }
     #carousel-thumbs .selected img {
         opacity: 100%;
