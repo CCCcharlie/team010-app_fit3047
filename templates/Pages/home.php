@@ -78,50 +78,47 @@ $this->disableAutoLayout();
 
 <!--End about Page-->
 <!--Section for the Gallery-->
-<section class="page-section bg-light" id="Gallery">
+<section class="page-section bg-gradient" id="Gallery">
     <div id="wrap" class="container my-5">
         <div class="text-center"><h2 class="section-heading text-uppercase">Gallery</h2></div>
         <div class="row">
             <div class="col-12">
 
-                <!-- Carousel -->
+                <!-- Upper Carousel -->
                 <div id="carousel" class="carousel slide gallery" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" data-slide-number="0" data-toggle="lightbox" data-gallery="gallery">
-                            <img src="img\holistichealinglogofull.png" class="mx-auto d-block" alt="...">
+                            <img src="img\gallery\LIFEBECOMINGAMOUNTAINPROMO.png" class="mx-auto d-block " style="max-height: 35vw;"  alt="Promotional Poster Showcasing Holistic Healing">
+
+                            <div class="caption"><p>Life Feel Like a Mountain? Holistic Healing is here to help. Come in store for a new promotion.</p></div>
                         </div>
-                        <div class="carousel-item" data-slide-number="1" data-toggle="lightbox" data-gallery="gallery" data-remote="https://source.unsplash.com/DEhwkPYevhE/1600x900.jpg">
-                            <img src="https://source.unsplash.com/DEhwkPYevhE/1600x900.jpg" class="mx-auto d-block" alt="...">
+                        <div class="carousel-item" data-slide-number="1" data-toggle="lightbox" data-gallery="gallery">
+                            <img src="img\gallery\BECOMEGLOWINGPROMO.png" class="mx-auto d-block" style="max-height: 35vw;" alt="A showcase poster for Holistic Healing">
+                            <div class="caption"><p>GLOW UP, WITH OUR GLOWING PROMO. TRY THE NEW "GLOW" HOLISTIC SESSION!</p> </div>
                         </div>
-                        <div class="carousel-item" data-slide-number="2" data-toggle="lightbox" data-gallery="gallery" data-remote="https://source.unsplash.com/-RV5PjUDq9U/1600x900.jpg">
-                            <img src="https://source.unsplash.com/-RV5PjUDq9U/1600x900.jpg" class="mx-auto d-block" alt="...">
+                        <div class="carousel-item" data-slide-number="2" data-toggle="lightbox" data-gallery="gallery" >
+                            <img src="img\gallery\GENERICPOSTER2.png" class="mx-auto d-block" style="max-height: 35vw;" alt="Generic Dummy Holistic Healing POster">
+                            <div class="caption"><p></p> </div>
                         </div>
-                        <div class="carousel-item" data-slide-number="3" data-toggle="lightbox" data-gallery="gallery" data-remote="https://source.unsplash.com/sd0rPap7Uus/1600x900.jpg">
-                            <img src="https://source.unsplash.com/sd0rPap7Uus/1600x900.jpg" class="mx-auto d-block" alt="...">
+                        <div class="carousel-item" data-slide-number="3" data-toggle="lightbox" data-gallery="gallery">
+                            <img src="img\gallery\HolisticHealingsStorefront.jpg" class="mx-auto d-block" style="max-height: 35vw;" alt="AI Image of a storefront">
+                            <div class="caption"><p></p> </div>
                         </div>
-                        <div class="carousel-item" data-slide-number="4" data-toggle="lightbox" data-gallery="gallery" data-remote="https://source.unsplash.com/kmRZFcZEMY8/1600x900.jpg">
-                            <img src="https://source.unsplash.com/kmRZFcZEMY8/1600x900.jpg" class="mx-auto d-block" alt="...">
+                        <div class="carousel-item" data-slide-number="4" data-toggle="lightbox" data-gallery="gallery">
+                            <img src="img\gallery\GENERICPOSTER.png" class="mx-auto d-block" style="max-height: 35vw;" alt="Generic Dummy Holistic Healing Poster">
+                            <div class="caption"><p></p> </div>
                         </div>
-                        <div class="carousel-item" data-slide-number="5" data-toggle="lightbox" data-gallery="gallery" data-remote="https://source.unsplash.com/HJDdrWtlkIY/1600x900.jpg">
-                            <img src="https://source.unsplash.com/HJDdrWtlkIY/1600x900.jpg" class="mx-auto d-block" alt="...">
+                        <div class="carousel-item" data-slide-number="5" data-toggle="lightbox" data-gallery="gallery">
+                            <img src="img\gallery\MEETOURNEWTEAMMEMBER.png" class="mx-auto d-block" style="max-height: 35vw;" alt="Team Member showcase doc">
+                            <div class="caption"><p></p> </div>
                         </div>
-                        <div class="carousel-item" data-slide-number="6" data-toggle="lightbox" data-gallery="gallery" data-remote="https://source.unsplash.com/VfuJpt81JZo/1600x900.jpg">
-                            <img src="https://source.unsplash.com/VfuJpt81JZo/1600x900.jpg" class="mx-auto d-block" alt="...">
+                        <div class="carousel-item" data-slide-number="6" data-toggle="lightbox" data-gallery="gallery">
+                            <img src="img\gallery\Showcasephoto1.jpg" class="mx-auto d-block" style="max-height: 35vw;" alt="Red Leaves on tree. ">
+                            <div class="caption"><p></p> </div>
                         </div>
-                        <div class="carousel-item" data-slide-number="7" data-toggle="lightbox" data-gallery="gallery" data-remote="https://source.unsplash.com/NLkXZQ7kHzI/1600x900.jpg">
-                            <img src="https://source.unsplash.com/NLkXZQ7kHzI/1600x900.jpg" class="mx-auto d-block" alt="...">
-                        </div>
-                        <div class="carousel-item" data-slide-number="8" data-toggle="lightbox" data-gallery="gallery" data-remote="https://source.unsplash.com/bl4WNYGe2KE/1600x900.jpg">
-                            <img src="https://source.unsplash.com/bl4WNYGe2KE/1600x900.jpg" class="mx-auto d-block" alt="...">
-                        </div>
-                        <div class="carousel-item" data-slide-number="9" data-toggle="lightbox" data-gallery="gallery" data-remote="https://source.unsplash.com/_8zfgT9kS2g/1600x900.jpg">
-                            <img src="https://source.unsplash.com/_8zfgT9kS2g/1600x900.jpg" class="mx-auto d-block" alt="...">
-                        </div>
-                        <div class="carousel-item" data-slide-number="10" data-toggle="lightbox" data-gallery="gallery" data-remote="https://source.unsplash.com/enuCEimS1p4/1600x900.jpg">
-                            <img src="https://source.unsplash.com/enuCEimS1p4/1600x900.jpg" class="mx-auto d-block" alt="...">
-                        </div>
-                        <div class="carousel-item" data-slide-number="11" data-toggle="lightbox" data-gallery="gallery" data-remote="https://source.unsplash.com/hZDtZkdXtek/1600x900.jpg">
-                            <img src="https://source.unsplash.com/hZDtZkdXtek/1600x900.jpg" class="mx-auto d-block" alt="...">
+                        <div class="carousel-item" data-slide-number="7" data-toggle="lightbox" data-gallery="gallery">
+                            <img src="img\gallery\Showcasephoto2.jpg" class="mx-auto d-block" style="max-height: 35vw;" alt="Image of green leaves">
+                            <div class="caption"><p></p> </div>
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
@@ -137,55 +134,6 @@ $this->disableAutoLayout();
                 <!-- Carousel Navigation-->
                 <div id="carousel-thumbs" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active" data-slide-number="0">
-                            <div class="row mx-0">
-                                <div id="carousel-selector-0" class="thumb col-3 px-1 py-2 selected thumb-img-container" data-target="#carousel" data-slide-to="0">
-                                    <img src="img\holistichealinglogofull.png" alt="..." height = "200">
-                                </div>
-                                <div id="carousel-selector-1" class="thumb col-3 px-1 py-2  h-100 thumb-img-container" data-target="#carousel" data-slide-to="1">
-                                    <img src="https://source.unsplash.com/DEhwkPYevhE/1600x900.jpg" alt="..." height = "200">
-                                </div>
-                                <div id="carousel-selector-2" class="thumb col-3 px-1 py-2  thumb-img-container" data-target="#carousel" data-slide-to="2">
-                                    <img src="https://source.unsplash.com/-RV5PjUDq9U/1600x900.jpg"  alt="..." height = "200">
-                                </div>
-                                <div id="carousel-selector-3" class="thumb col-3 px-1 py-2" data-target="#carousel" data-slide-to="3">
-                                    <img src="https://source.unsplash.com/sd0rPap7Uus/1600x900.jpg"  alt="..." height = "200">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item " data-slide-number="1">
-                            <div class="row mx-0">
-                                <div id="carousel-selector-4" class="thumb col-3 px-1 py-2" data-target="#carousel" data-slide-to="4">
-                                    <img src="https://source.unsplash.com/kmRZFcZEMY8/1600x900.jpg" class="img-fluid" alt="...">
-                                </div>
-                                <div id="carousel-selector-5" class="thumb col-3 px-1 py-2" data-target="#carousel" data-slide-to="5">
-                                    <img src="https://source.unsplash.com/HJDdrWtlkIY/1600x900.jpg" class="img-fluid" alt="...">
-                                </div>
-                                <div id="carousel-selector-6" class="thumb col-3 px-1 py-2" data-target="#carousel" data-slide-to="6">
-                                    <img src="https://source.unsplash.com/VfuJpt81JZo/1600x900.jpg" class="img-fluid" alt="...">
-                                </div>
-                                <div id="carousel-selector-7" class="thumb col-3 px-1 py-2" data-target="#carousel" data-slide-to="7">
-                                    <img src="https://source.unsplash.com/NLkXZQ7kHzI/1600x900.jpg" class="img-fluid" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item" data-slide-number="2">
-                            <div class="row mx-0">
-                                <div id="carousel-selector-8" class="thumb col-3 px-1 py-2" data-target="#carousel" data-slide-to="8">
-                                    <img src="https://source.unsplash.com/bl4WNYGe2KE/1600x900.jpg" class="img-fluid" alt="...">
-                                </div>
-                                <div id="carousel-selector-9" class="thumb col-3 px-1 py-2" data-target="#carousel" data-slide-to="9">
-                                    <img src="https://source.unsplash.com/_8zfgT9kS2g/1600x900.jpg" class="img-fluid" alt="...">
-                                </div>
-                                <div id="carousel-selector-10" class="thumb col-3 px-1 py-2" data-target="#carousel" data-slide-to="10">
-                                    <img src="https://source.unsplash.com/enuCEimS1p4/1600x900.jpg" class="img-fluid" alt="...">
-                                </div>
-                                <div id="carousel-selector-11" class="thumb col-3 px-1 py-2" data-target="#carousel" data-slide-to="11">
-                                    <img src="https://source.unsplash.com/hZDtZkdXtek/1600x900.jpg" class="img-fluid" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
