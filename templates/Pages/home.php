@@ -48,7 +48,7 @@ $this->disableAutoLayout();
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="#page-top"><img src="img\holistichealinglogofull.png" alt="Holistic Healing" /> Holistic Healing</a>
+        <a class="navbar-brand" href="#page-top"><img src="img\holistichealinglogofull.png" alt="Holistic Healing" /> Holistic Healing </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars ms-1"></i>
@@ -66,10 +66,11 @@ $this->disableAutoLayout();
 <!--Welcome Page Goes Here-->
 <header class="masthead">
     <div class="container">
-        <div class="masthead-subheading">Welcome To Our Studio!</div>
-        <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+        <div class="masthead-heading">Welcome to Holistic Healing</div>
+        <div class="masthead-heading text-uppercase">Journey to discover your inner self</div>
+        <a class="btn btn-primary btn-l text-uppercase" href="#services">Book now</a>
     </div>
+
 </header>
 <!--End Welcome Page-->
 

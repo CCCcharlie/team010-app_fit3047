@@ -46,7 +46,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
             <!-- <?php /*= "$this->Url->build('/')" */?> <- this line of code is for redirection, "/" is the root path-->
             <a href="<?= $this->Url->build('/') ?>"> <?= $this->Html->image('holistichealinglogo.png', ['alt' => 'Holistic healing logo']); ?>
-            <a href="<?= $this->Url->build('/') ?>"><span>Holistic</span> Healings</a>
+            <a href="<?= $this->Url->build('/') ?>"><span> Healings</a>
         </div>
         <div class="top-nav-links">
             <!--  target acts as where I want to display the href, _self is the default so it will update itself
