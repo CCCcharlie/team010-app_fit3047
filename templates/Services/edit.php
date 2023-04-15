@@ -23,9 +23,9 @@
             <fieldset>
                 <legend><?= __('Edit Service') ?></legend>
                 <?php
-                    echo $this->Form->control('service_name');
+                    echo $this->Form->control('service_name');  echo ("[In minutes]");
                     echo $this->Form->control('service_duration');
-                    echo $this->Form->control('service_desc');
+                    echo $this->Form->control('service_desc',['type'=>'textarea', 'style' => 'height: 15rem;']);  echo ("[In dollars $]");
                     echo $this->Form->control('service_price');
                     // stores the name of the file type in variable change_image
                     echo $this->Form->control('change_image',['type'=>'file']);

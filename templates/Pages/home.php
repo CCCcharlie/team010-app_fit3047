@@ -55,9 +55,9 @@ $this->disableAutoLayout();
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#services">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#Gallery">Gallery</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="services">Services</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -68,7 +68,7 @@ $this->disableAutoLayout();
     <div class="container">
         <div class="masthead-heading">Welcome to Holistic Healing</div>
         <div class="masthead-heading text-uppercase">Journey to discover your inner self</div>
-        <a class="btn btn-primary btn-l text-uppercase" href="#services">Book now</a>
+        <a class="btn btn-primary btn-l text-uppercase" href="services">Book now</a>
     </div>
 
 </header>

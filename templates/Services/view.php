@@ -24,23 +24,19 @@
                 </tr>
                 <tr>
                     <th><?= __('Service Desc') ?></th>
-                    <td><?= h($service->service_desc) ?></td>
+                    <td style="word-break: break-all"><?= h($service->service_desc) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Image Name') ?></th>
-                    <td><?= h($service->image_name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Service Id') ?></th>
-                    <td><?= $this->Number->format($service->service_id) ?></td>
+                    <th><?= __('Image: ') ?></th>
+                    <td><?= @$this->Html->image($service->image_name) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Service Price') ?></th>
-                    <td><?= $this->Number->format($service->service_price) ?></td>
+                    <td><?= $this->Number->format($service->service_price)." $" ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Service Duration') ?></th>
-                    <td><?= h($service->service_duration) ?></td>
+                    <td><?= h($service->service_duration). " Minutes" ?></td>
                 </tr>
             </table>
         </div>
