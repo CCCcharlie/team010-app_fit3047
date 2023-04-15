@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Service $service
  */
 ?>
+
 <div class="row">
     <aside class="column">
         <div class="side-nav">
@@ -23,9 +24,9 @@
             <fieldset>
                 <legend><?= __('Add Service') ?></legend>
                 <?php
-                    echo $this->Form->control('service_name');
+                    echo $this->Form->control('service_name'); echo ("[In minutes]");
                     echo $this->Form->control('service_duration');
-                    echo $this->Form->control('service_desc');
+                    echo $this->Form->control('service_desc', ['type'=>'textarea', 'style' => 'height: 15rem;']);  echo ("[In dollars $]");
                     echo $this->Form->control('service_price');
                     //We must specify the type of data for image which is a "file"
                     echo $this->Form->control('image_file',['type'=>'file']);

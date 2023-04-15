@@ -4216,11 +4216,13 @@ textarea.form-control-lg {
 
 .card-title {
     margin-bottom: var(--bs-card-title-spacer-y);
+    font-size: 1.5vw;
 }
 
 .card-subtitle {
     margin-top: calc(-0.5 * var(--bs-card-title-spacer-y));
     margin-bottom: 0;
+    font-size: 0.7vw;
 }
 
 .card-text:last-child {
@@ -4292,7 +4294,13 @@ textarea.form-control-lg {
   border-top-right-radius: var(--bs-card-inner-border-radius);
 }
 
-.card-img{overflow:hidden}
+.card-img{
+    overflow:hidden;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
 .card-img-bottom {
   border-bottom-right-radius: var(--bs-card-inner-border-radius);
   border-bottom-left-radius: var(--bs-card-inner-border-radius);
@@ -11326,4 +11334,8 @@ section#contact form#contactForm :-ms-input-placeholder {
   text-align: center;
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+td {
+    word-break: break-all;
 }
