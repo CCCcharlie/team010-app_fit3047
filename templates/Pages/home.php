@@ -67,7 +67,7 @@ $this->disableAutoLayout();
 <header class="masthead">
     <div class="container">
         <div class="masthead-heading">Welcome to Holistic Healing</div>
-        <div class="masthead-heading text-uppercase">Journey to discover your inner self</div>
+        <div class="masthead-heading text-uppercase"> A Journey to discover your inner self</div>
         <a class="btn btn-primary btn-l text-uppercase" href="services">Book now</a>
     </div>
 
