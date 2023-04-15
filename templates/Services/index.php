@@ -22,7 +22,7 @@
             <!-- align items stretch aligns the item to "--bs-card-height: 350px;"-->
             <!-- LOOP HERE -->
             <?php foreach ($services as $service): ?>
-            <div class="col-xs-12 col-sm-4 d-flex align-items-stretch">
+            <div class="col-xs-3 col-sm-4 d-flex align-items-stretch">
                 <div class="card">
                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                     when clicked-->
