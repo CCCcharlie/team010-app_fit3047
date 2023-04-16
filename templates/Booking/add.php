@@ -6,6 +6,9 @@
  * @var \Cake\Collection\CollectionInterface|string[] $staff
  * @var \Cake\Collection\CollectionInterface|string[] $services
  */
+use Cake\I18n\Functions\__;
+
+
 ?>
 <div class="row">
     <aside class="column">

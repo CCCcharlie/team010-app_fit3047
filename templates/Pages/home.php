@@ -75,7 +75,7 @@ $this->disableAutoLayout();
 <!--End Welcome Page-->
 
 <!--ABout Page Goes Here-->
-<section class="page-section about-heading bg-gradient">
+<section class="page-section about-heading bg-gradient" id="about">
     <div class="container">
         <img class="img-fluid about-heading-img mb-3 mb-lg-0" url=".../img/aboutbg.jpg" />
         <div class="about-heading-content">
@@ -97,6 +97,28 @@ $this->disableAutoLayout();
 </section>
 
 <!--End about Page-->
+
+<!--Section for the services-->
+<section class="page-section about-heading bg-gradient" id="services">
+    <div class="container">
+        <div class="gallery">
+            <div class="text-center"><h2 class="section-heading text-uppercase">Services</h2></div>
+
+            <a href="img1.jpg">
+                <img src="img1-thumb.jpg" alt="Image 1">
+            </a>
+            <a href="img2.jpg">
+                <img src="img2-thumb.jpg" alt="Image 2">
+            </a>
+            <a href="img3.jpg">
+                <img src="img3-thumb.jpg" alt="Image 3">
+            </a>
+            <!-- 这里可以添加更多图片 -->
+        </div>
+    </div>
+</section>
+<!--End about Page-->
+
 <!--Section for the Gallery-->
 <section class="page-section bg-gradient" id="Gallery">
     <div id="wrap" class="container my-5">
@@ -167,6 +189,7 @@ $this->disableAutoLayout();
         </div>
     </div>
 </section>
+
 <!-- Contact-->
 <section class="page-section" id="contact">
     <div class="container">
