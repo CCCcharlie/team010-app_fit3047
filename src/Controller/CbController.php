@@ -11,6 +11,16 @@ namespace App\Controller;
  */
 class CbController extends AppController
 {
+    //initialise so content_types can be accessed by index, edit, add.
+    public function initialize(): void {
+        parent::initialize();
+        // Define types of contents in view
+        $this->set('content_types', [
+            'text' => 'text',
+            'image' => 'Image',
+        ]);
+    }
+
     /**
      * Index method
      *

@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cb $cb
+ * @var string[] $content_types
  */
 ?>
 <div class="row">
@@ -23,7 +24,11 @@
                 <legend><?= __('Edit Cb') ?></legend>
                 <?php
                     echo $this->Form->control('hint');
-                    echo $this->Form->control('content_type');
+                    echo $this->Form->control('content_type', [
+                        'type' => 'select',
+                        'options' => $content_types,
+                        'empty' => '-- Select a content type --'
+                    ]);
                     echo $this->Form->control('content_value');
                     echo $this->Form->control('previous_value');
                 ?>
