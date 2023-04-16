@@ -38,6 +38,10 @@ class ServicesController extends AppController
 
         $this->set(compact('service'));
     }
+    public function NavBarHider() {
+        $this->set('hideNavBar', true);
+    }
+
 
     /**
      * Add method
