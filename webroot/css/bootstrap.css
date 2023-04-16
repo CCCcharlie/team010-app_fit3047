@@ -11420,3 +11420,17 @@ img, svg{vertical-align: central;}
     max-width: 95%;
     height: 60%;
 }
+
+.text-muted {
+    --bs-text-opacity: 0;
+    color: #2D593D !important;
+}
+.page-section h3.section-subheading{
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-style: normal;
+    font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+    line-height: 30px;
+}
