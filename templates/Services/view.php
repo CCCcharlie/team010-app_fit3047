@@ -57,7 +57,7 @@ $cakeDescription = 'Holistic Healing - Service Showcase View';
     </aside>
     <div class="column-responsive column-80">
         <div class="services view content">
-            <a class="btn float-right" href="Services">Return to Home.</a>
+            <a class="btn float-right" href="<?= $this->Url->build('/services') ?>">Return to services</a>
             <h3><?= h($service->service_id) ?></h3>
             <table>
                 <tr>
