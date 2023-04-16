@@ -33,9 +33,23 @@ class PagesController extends AppController
 {
 
     public function home() {
-        $services = $this->fetchTable('Services')->find()->all();
+        $contentBlocks = $this->fetchTable('ContentBlocks');
 
-        $this->set(compact('services'));
+        // Key-value pairs are much easier to use when retrieving content blocks
+        // See https://book.cakephp.org/4/en/orm/retrieving-data-and-resultsets.html#finding-key-value-pairs
+        $homePageContentBlocks = $contentBlocks
+            ->find('list', [
+                'keyField' => 'hint',
+                'valueField' => 'content_value'
+            ])
+            ->toArray();
+
+        $this->set(compact('homePageContentBlocks'));
+
+
+//        $services = $this->fetchTable('Services')->find()->all();
+//
+//        $this->set(compact('services'));
     }
 
     /**
