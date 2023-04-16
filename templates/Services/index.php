@@ -49,6 +49,7 @@ $cakeDescription = 'Holistic Healing - All Services';
     </div>
 
 <div class="services index content">
+    <a class="btn float-right" href="/team010-app_fit3047/">Return to Home.</a>
     <div>
     <h1><?= __(' All Services') ?></h1>
     </div>

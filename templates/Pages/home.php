@@ -72,7 +72,7 @@ $this->disableAutoLayout();
     <div class="container">
         <div class="masthead-heading"><?= $homePageContentBlocks['welcome_header'] ?></div>
         <div class="masthead-heading text-uppercase"> <?= $homePageContentBlocks['welcome_description'] ?></div>
-        <a class="btn btn-primary btn-l text-uppercase" href="services">Book now</a>
+        <a class="btn btn-primary btn-l text-uppercase" href="#contact">Book now</a>
     </div>
 
 </header>
@@ -133,19 +133,18 @@ $this->disableAutoLayout();
                                             </a>
                                         </h4>
                                         <!-- Description section -->
-                                        <p class="card-subtitle">
-                                            <?= h($service->service_desc) ?>
-                                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $service->service_id], ['confirm' => __('Are you sure you want to delete service: {0}?', $service->service_name)]) ?>
-                                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $service->service_id]) ?>
+                                        <p class="card-subtitle"><?= h($service->service_desc) ?> <br>
+                                            Duration:  <?= h($service->service_duration) ?> Minutes |
+                                            Cost: $<?= h($service->service_price) ?> |
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
+                    <a class="btn btn-primary btn-l text-uppercase" href="services">See All Services</a>
                 </div>
             </div>
-            <!-- 这里可以添加更多图片 -->
 <!--            --><?php /*debug($homePageContentBlocks)*/?>
         </div>
     </div>
