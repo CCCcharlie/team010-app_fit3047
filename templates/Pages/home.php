@@ -77,7 +77,7 @@ $this->disableAutoLayout();
 <!--ABout Page Goes Here-->
 <section class="page-section about-heading bg-gradient">
     <div class="container">
-        <!--img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="assets/img/about.jpg" alt="..." / find new pics-->
+        <img class="img-fluid about-heading-img mb-3 mb-lg-0" url=".../img/aboutbg.jpg" />
         <div class="about-heading-content">
             <div class="row">
                 <div class="col-xl-9 col-lg-10 mx-auto">
