@@ -198,14 +198,19 @@ $this->disableAutoLayout();
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Contact Us</h2>
+            <h3 class="section-subheading text-muted"> We can be contacted through our social media, phone number and email.
+
+            <br>
+                Else you can send us the enquiry ,and we will get back to you as soon as possible.
+            <br>Email: test@gmail.com
+            <br> Tel: 012345678
+            <br> IG: /testAccount </h3>
         </div>
-        <!-- * * * * * * * * * * * * * * *-->
+
         <!-- * * SB Forms Contact Form * *-->
-        <!-- * * * * * * * * * * * * * * *-->
+
         <!-- This form is pre-integrated with SB Forms.-->
-        <!-- To make this form functional, sign up at-->
-        <!-- https://startbootstrap.com/solution/contact-forms-->
-        <!-- to get an API token!-->
+
         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
             <div class="row align-items-stretch mb-5">
                 <div class="col-md-6">
@@ -243,7 +248,7 @@ $this->disableAutoLayout();
                     <div class="fw-bolder">Form submission successful!</div>
                     To activate this form, sign up at
                     <br />
-                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+
                 </div>
             </div>
             <!-- Submit error message-->
