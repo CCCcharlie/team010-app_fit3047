@@ -86,7 +86,7 @@ $this->disableAutoLayout();
                         <h2 class="section-heading mb-4">
                             <span class="section-heading-upper">About us</span>
                         </h2>
-                        <span class="aboutbody" >At Holistic Healing, we aim to provide our belovedcustomers a personal space in Melbourne and online for
+                        <span class="aboutbody" >At Holistic Healing, we aim to provide our beloved customers a personal space in Melbourne and online for
                             Spiral practices and facilitating life transformation by removing blocks and limiting beliefs.
                              Through life improvement sessions, customers can learn, process and transmute stagnant energy into art
                     </span>
@@ -173,7 +173,6 @@ $this->disableAutoLayout();
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Contact Us</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
         </div>
         <!-- * * * * * * * * * * * * * * *-->
         <!-- * * SB Forms Contact Form * *-->
