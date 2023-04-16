@@ -48,7 +48,7 @@ class EnquiryController extends AppController
     {
         $Enquiry = $this->Enquiry->newEmptyEntity();
         if ($this->request->is('post')) {
-            $contact = $this->Enquiry->patchEntity($Enquiry, $this->request->getData());
+            $Enquiry = $this->Enquiry->patchEntity($Enquiry, $this->request->getData());
             if ($this->Enquiry->save($Enquiry)) {
                 $this->Flash->success(__('The contact has been saved.'));
 
