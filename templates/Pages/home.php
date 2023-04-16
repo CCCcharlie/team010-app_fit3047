@@ -102,10 +102,10 @@ $this->disableAutoLayout();
 <!--End about Page-->
 
 <!--Section for the services-->
-<section class="page-section about-heading bg-gradient" id="services">
+<section class="page-section about-heading bg-gradient-reverse" id="services">
     <div class="container">
         <div class="gallery">
-            <div class="text-center"><h2 class="section-heading text-uppercase">Services</h2></div>
+            <div class="text-center"><h3 class="section-heading2 text-uppercase">Services</h3></div>
 
             <a href="img1.jpg">
                 <img src="img1-thumb.jpg" alt="Image 1">
@@ -125,7 +125,7 @@ $this->disableAutoLayout();
 <!--Section for the Gallery-->
 <section class="page-section bg-gradient" id="Gallery">
     <div id="wrap" class="container my-5">
-        <div class="text-center"><h2 class="section-heading text-uppercase">Gallery</h2></div>
+        <div class="text-center"><h3 class="section-heading2 text-uppercase" >Gallery</h3></div>
         <div class="row">
             <div class="col-12">
 
