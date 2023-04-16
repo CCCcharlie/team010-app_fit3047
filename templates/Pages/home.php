@@ -164,7 +164,7 @@ $this->disableAutoLayout();
                     <div class="carousel-inner">
 
                         <div class="carousel-item active" data-slide-number="0" data-toggle="lightbox" data-gallery="gallery">
-                            <img <?= $this->Html->image($homePageContentBlocks['gallery_image_1'], ['alt' => 'Gallery 1']); ?> class="mx-auto d-block " style="max-height: 10vw;" >
+                            <img class="carousel-image" <?= $this->Html->image($homePageContentBlocks['gallery_image_1'], ['alt' => 'Gallery 1']); ?>
                             <div class="caption"><p>Life Feel Like a Mountain? Holistic Healing is here to help. Come in store for a new promotion.</p></div>
                         </div>
                         <div class="carousel-item" data-slide-number="1" data-toggle="lightbox" data-gallery="gallery">

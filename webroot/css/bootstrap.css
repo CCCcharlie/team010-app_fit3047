@@ -329,11 +329,12 @@ table {
 
 
 div.caption{
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     color: ghostwhite;
     text-align: center;
     text-decoration-style: wavy;
+    display:block;
 }
 
 
@@ -5865,7 +5866,14 @@ textarea.form-control-lg {
   }
 }
 
-.carousel-item.active,
+.carousel-item.active{
+  display:block;
+  /*max-height: 35vw !important;*/
+    }
+
+.carousel-image{
+    max-height: 35vw !important;
+}
 .carousel-item-next,
 .carousel-item-prev {
   display: block;
@@ -7051,9 +7059,9 @@ textarea.form-control-lg {
 }
 
 .d-block {
-  display: block !important;
+    max-height: 35vw !important;
+    display: block;
 }
-
 .d-grid {
   display: grid !important;
 }
