@@ -77,7 +77,7 @@ $this->disableAutoLayout();
 <!--ABout Page Goes Here-->
 <section class="page-section about-heading bg-gradient">
     <div class="container">
-        <img class="img-fluid about-heading-img mb-3 mb-lg-0" src="" />
+        <img class="img-fluid about-heading-img mb-3 mb-lg-0" src=".../webroot/img/aboutbg.jpg" />
         <div class="about-heading-content">
             <div class="row">
                 <div class="col-xl-9 col-lg-10 mx-auto">
@@ -85,7 +85,7 @@ $this->disableAutoLayout();
                         <h2 class="section-heading mb-4">
                             <span class="section-heading-upper">About us</span>
                         </h2>
-                        <span class="aboutbody" >At Holistic Healing, we aim to provide our belovedcustomers a personal space in Melbourne and online for
+                        <span class="aboutbody" >At Holistic Healing, we aim to provide our beloved customers a personal space in Melbourne and online for
                             Spiral practices and facilitating life transformation by removing blocks and limiting beliefs.
                              Through life improvement sessions, customers can learn, process and transmute stagnant energy into art
                     </span>
