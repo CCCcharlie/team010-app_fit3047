@@ -77,7 +77,8 @@ $this->disableAutoLayout();
 <!--ABout Page Goes Here-->
 <section class="page-section about-heading bg-gradient">
     <div class="container">
-        <img class="img-fluid about-heading-img mb-3 mb-lg-0" src="" />
+        <!-- For cakephp, need to use $this->html->image instead of src to display the image-->
+        <img class="img-fluid about-heading-img mb-3 mb-lg-0" <?= $this->Html->image('aboutbg.jpg', ['alt' => 'About Background']); ?> />
         <div class="about-heading-content">
             <div class="row">
                 <div class="col-xl-9 col-lg-10 mx-auto">
