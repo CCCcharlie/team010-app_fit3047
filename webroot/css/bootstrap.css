@@ -318,7 +318,7 @@ figure {
 
 img,
 svg {
-  vertical-align: middle;
+    vertical-align: text-after-edge;
 }
 
 table {
@@ -614,8 +614,8 @@ progress {
 }
 
 .img-fluid {
-  max-width: 100%;
-  height: auto;
+  max-width: initial;
+  height: initial;
 }
 
 .img-thumbnail {
@@ -11371,27 +11371,24 @@ td {
     word-break: break-all;
 }
 <!---->
-.mb-3{margin-bottom:1rem !important;}
+.mb-3{margin-bottom:10rem !important;}
 .img-fluid{max-width: 100%;
-    height: auto;
+    height: 70%;
 }
-img, svg{vertical-align: middle;}
+img, svg{vertical-align: central;}
 
 *, *::before, *:after{
     box-sizing: border-box;
 }
 
-@media (min-width: 992px) {
-    .about-heading .about-heading-img {
-        position: relative;
-        z-index: 0;
+
+
+   .about-heading-content {
+
+        position: absolute;
+        bottom: 40%;
     }
-    .about-heading .about-heading-content {
-        margin-top: -5rem;
-        position: relative;
-        z-index: 1;
-    }
-}
+
 .bg-faded {
     background-color: #f6e1c5;
     opacity: 90%;
@@ -11408,4 +11405,18 @@ img, svg{vertical-align: middle;}
 
 .aboutbody{
     font-size: 1.5rem;
+}
+.row1  {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * 10);
+    padding-left: calc(var(--bs-gutter-x) * 10);
+    padding-top: initial;
+    margin-top: var(--bs-gutter-y);
+}
+
+.img-fluid1 {
+    max-width: 95%;
+    height: 60%;
 }
