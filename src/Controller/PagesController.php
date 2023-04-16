@@ -32,8 +32,12 @@ use Cake\View\Exception\MissingTemplateException;
 class PagesController extends AppController
 {
 
+    //IMPORTANT, for home() to work here you MUST alter the route.php
+    //$builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);     This
+    //$builder->connect('/', ['controller' => 'Pages', 'action' => 'home']);                To this
+
     public function home() {
-        $contentBlocks = $this->fetchTable('ContentBlocks');
+        $contentBlocks = $this->fetchTable('Cb');
 
         // Key-value pairs are much easier to use when retrieving content blocks
         // See https://book.cakephp.org/4/en/orm/retrieving-data-and-resultsets.html#finding-key-value-pairs
@@ -44,7 +48,11 @@ class PagesController extends AppController
             ])
             ->toArray();
 
-        $this->set(compact('homePageContentBlocks'));
+        $services = $this->fetchTable('Services')->find()->all();
+
+
+        $this->set(compact('homePageContentBlocks', 'services'));
+
 
 
 //        $services = $this->fetchTable('Services')->find()->all();
