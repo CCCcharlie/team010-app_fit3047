@@ -31,6 +31,13 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class PagesController extends AppController
 {
+
+    public function home() {
+        $services = $this->fetchTable('Services')->find()->all();
+
+        $this->set(compact('services'));
+    }
+
     /**
      * Displays a view
      *
