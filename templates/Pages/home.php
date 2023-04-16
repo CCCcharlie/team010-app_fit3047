@@ -172,27 +172,27 @@ $this->disableAutoLayout();
                         </div>
                         <div class="carousel-item" data-slide-number="2" data-toggle="lightbox" data-gallery="gallery" >
                             <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_3']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="Generic Dummy Holistic Healing POster">
-                            <div class="caption"><p></p> </div>
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_3'] ?></p> </div>
                         </div>
                         <div class="carousel-item" data-slide-number="3" data-toggle="lightbox" data-gallery="gallery">
                             <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_4']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="AI Image of a storefront">
-                            <div class="caption"><p></p> </div>
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_4'] ?></p> </div>
                         </div>
                         <div class="carousel-item" data-slide-number="4" data-toggle="lightbox" data-gallery="gallery">
                             <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_5']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="Generic Dummy Holistic Healing Poster">
-                            <div class="caption"><p></p> </div>
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_5'] ?></p> </div>
                         </div>
                         <div class="carousel-item" data-slide-number="5" data-toggle="lightbox" data-gallery="gallery">
                             <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_6']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="Team Member showcase doc">
-                            <div class="caption"><p></p> </div>
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_6'] ?></p> </div>
                         </div>
                         <div class="carousel-item" data-slide-number="6" data-toggle="lightbox" data-gallery="gallery">
                             <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_7']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="Red Leaves on tree. ">
-                            <div class="caption"><p></p> </div>
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_7'] ?></p> </div>
                         </div>
                         <div class="carousel-item" data-slide-number="7" data-toggle="lightbox" data-gallery="gallery">
                             <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_8']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="Image of green leaves">
-                            <div class="caption"><p></p> </div>
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_8'] ?></p> </div>
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
