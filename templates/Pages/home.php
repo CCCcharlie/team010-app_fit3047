@@ -248,6 +248,7 @@ $this->disableAutoLayout();
             </div>
             <!-- Submit error message-->
             <!---->
+
             <!-- This is what your users will see when there is-->
             <!-- an error submitting the form-->
             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
