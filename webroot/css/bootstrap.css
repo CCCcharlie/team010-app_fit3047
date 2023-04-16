@@ -11315,6 +11315,7 @@ section#contact .section-heading {
     font-family: Quicksand;
 }
 
+
 section#contact form#contactForm .form-group {
   margin-bottom: 1.5rem;
 }
@@ -11390,4 +11391,21 @@ img, svg{vertical-align: middle;}
         position: relative;
         z-index: 1;
     }
+}
+.bg-faded {
+    background-color: #f6e1c5;
+    opacity: 90%;
+}
+
+.section-heading {
+    text-transform: inherit;
+}
+.section-heading .section-heading-upper {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.aboutbody{
+    font-size: 1.5rem;
 }
