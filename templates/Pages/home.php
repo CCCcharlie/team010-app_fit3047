@@ -75,20 +75,23 @@ $this->disableAutoLayout();
 <!--End Welcome Page-->
 
 <!--ABout Page Goes Here-->
-<section class="page-section about-heading bg-gradient" id="about">
+
+<section class="page-section1 about-heading bg-gradient" id="about">
+
     <div class="container">
-        <img class="img-fluid about-heading-img mb-3 mb-lg-0" url=".../img/aboutbg.jpg" />
+        <!-- For cakephp, need to use $this->html->image instead of src to display the image-->
+        <img class="img-fluid1 about-heading-img mb-3 mb-lg-0" <?= $this->Html->image('aboutbg.jpg', ['alt' => 'About Background']); ?> />
         <div class="about-heading-content">
-            <div class="row">
+            <div class="row1">
                 <div class="col-xl-9 col-lg-10 mx-auto">
                     <div class="bg-faded rounded p-5"> <!--find p-5,mb-4-->
                         <h2 class="section-heading mb-4">
                             <span class="section-heading-upper">About us</span>
                         </h2>
-                        <p>At Holistic Healing, we aim to provide our <i>beloved</i> customers a personal space in Melbourne and online for
+                        <span class="aboutbody" >At Holistic Healing, we aim to provide our beloved customers a personal space in Melbourne and online for
                             Spiral practices and facilitating life transformation by removing blocks and limiting beliefs.
                              Through life improvement sessions, customers can learn, process and transmute stagnant energy into art
-                        </p>
+                    </span>
                     </div>
                 </div>
             </div>
@@ -195,7 +198,6 @@ $this->disableAutoLayout();
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Contact Us</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
         </div>
         <!-- * * * * * * * * * * * * * * *-->
         <!-- * * SB Forms Contact Form * *-->
