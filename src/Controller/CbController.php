@@ -83,6 +83,34 @@ class CbController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cb = $this->Cb->patchEntity($cb, $this->request->getData());
+
+            //First check if theres errors or not
+            if (!$cb->getErrors()) {
+                //Gets from field name of edit.php of services
+                $image = $this->request->getData('content_image');
+
+//                debug($image);
+//                exit();
+
+                //get image name
+                $image_name = $image->getClientFilename();
+                //if it exists, do all of this
+                if ($image_name) {
+                    //if a directory was not made already, create one
+                    if (!is_dir(WWW_ROOT . 'img' . DS . 'Gallery')) {
+                        mkdir(WWW_ROOT . 'img' . DS . 'Gallery');
+                    }
+                    //Set target path to webroot/img/user-img/name_of_image
+                    $targetPath = WWW_ROOT . 'img' . DS . 'Gallery' . DS . $image_name;
+
+                    //Move the image obtained from the form, to the path defined above
+                    $image->moveTo($targetPath);
+
+                    //Similary to the add function here, store it in database the folder and the name of the image
+                    $cb->content_value =  $image_name;
+                }
+            }
+
             if ($this->Cb->save($cb)) {
                 $this->Flash->success(__('The cb has been saved.'));
 

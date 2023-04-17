@@ -19,7 +19,7 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="cb form content">
-            <?= $this->Form->create($cb) ?>
+            <?= $this->Form->create($cb, ['type'=>'file']) ?>
             <fieldset>
                 <legend><?= __('Edit Cb') ?></legend>
                 <?php
@@ -29,8 +29,14 @@
                         'options' => $content_types,
                         'empty' => '-- Select a content type --'
                     ]);
-                    echo $this->Form->control('content_value');
-                    echo $this->Form->control('previous_value');
+
+//                    debug($content_types === "text");
+
+                    if ($cb->content_type == "text") {
+                        echo $this->Form->control('content_text');
+                    }else {
+                        echo $this->Form->control('content_image',['type'=>'file']);
+                    }
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
