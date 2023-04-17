@@ -19,8 +19,8 @@
                 <?php
                     echo $this->Form->control('hint');
                     echo $this->Form->control('content_type');
-                    echo $this->Form->control('content_value');
-                    echo $this->Form->control('previous_value');
+                    echo $this->Form->control('content_text');
+
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
