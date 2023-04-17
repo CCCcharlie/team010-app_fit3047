@@ -84,8 +84,9 @@ class CbController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cb = $this->Cb->patchEntity($cb, $this->request->getData());
 
-            //First check if theres errors or not
-            if (!$cb->getErrors()) {
+/*            debug($cb);*/
+            //First check if theres errors or not and if image, we dont want to do stuff if its text lmao
+            if (!$cb->getErrors() && $cb->content_type == "image") {
                 //Gets from field name of edit.php of services
                 $image = $this->request->getData('content_image');
 

@@ -19,7 +19,8 @@
                 <?php
                     echo $this->Form->control('hint');
                     echo $this->Form->control('content_type');
-                    echo $this->Form->control('content_text');
+                    //changed content_value to content_value so that it fits with the name in CbTables.php
+                    echo $this->Form->control('content_value');
 
                 ?>
             </fieldset>

@@ -63,9 +63,9 @@ class CbTable extends Table
             ->notEmptyString('content_type');
 
         $validator
-            ->scalar('content_text')
-            ->requirePresence('content_text', 'create')
-            ->notEmptyString('content_text');
+            ->scalar('content_value')
+            ->requirePresence('content_value', 'create')
+            ->notEmptyString('content_value');
 
         $validator
             //Validation for adding images in content blocks
