@@ -32,11 +32,15 @@
 
 //                    debug($content_types === "text");
 
+//  content_text and content_image is simply the name of the field, not content_value in database
+//  therefore I can add another validator rule for name content_text for texts and content_image for images
                     if ($cb->content_type == "text") {
                         echo $this->Form->control('content_text');
                     }else {
                         echo $this->Form->control('content_image',['type'=>'file']);
                     }
+                    //Validation for field names content_text and content_image is in CbTable.php
+                    //(This is to ensure that content_text = string and content_image = file)
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
