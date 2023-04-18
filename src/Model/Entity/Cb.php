@@ -13,6 +13,7 @@ use Cake\ORM\Entity;
  * @property string $content_type
  * @property string $content_value
  * @property string|null $previous_value
+ * @property string|null $content_description
  */
 class Cb extends Entity
 {
@@ -30,5 +31,6 @@ class Cb extends Entity
         'content_type' => true,
         'content_value' => true,
         'previous_value' => true,
+        'content_description' => true,
     ];
 }
