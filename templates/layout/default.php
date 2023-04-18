@@ -55,7 +55,7 @@ $cakeDescription = 'Holistic Healing';
 
             <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
             <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">See all Enquiries</a>
-            <a target="_self" href="<?= $this->Url->build('/') ?>">Return to Customer Page</a>
+            <a target="_self" href="<?= $this->Url->build('../Customer/index') ?>">Return to Customer Page</a>
             <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
         </div>
     </nav>
