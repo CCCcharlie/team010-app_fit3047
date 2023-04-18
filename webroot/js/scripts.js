@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', event => {
 })
     //  Activate Bootstrap scrollspy on the main nav element
 
-    // Gallery JS -  Copyright (c) 2023 Jaden C Bathon (https://codepen.io/InfernoHoundDEV/pen/KKaeQpX). Free for commercial use under the MIT License.
+    // gallery JS -  Copyright (c) 2023 Jaden C Bathon (https://codepen.io/InfernoHoundDEV/pen/KKaeQpX). Free for commercial use under the MIT License.
 $("[id^=carousel-thumbs]").carousel({
     interval: false
 });

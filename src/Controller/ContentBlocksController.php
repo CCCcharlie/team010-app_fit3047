@@ -16,19 +16,8 @@ class ContentBlocksController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-
-    public function initialize(): void {
-
-        // Define types of contents in view
-        $this->set('content_types', [
-            'text' => 'Plaintext',
-            'html' => 'HTML',
-            'image' => 'Image',
-        ]);
-    }
-
-    public function index() {
-
+    public function index()
+    {
         $contentBlocks = $this->paginate($this->ContentBlocks);
 
         $this->set(compact('contentBlocks'));

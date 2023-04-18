@@ -68,6 +68,18 @@ class CbTable extends Table
             ->notEmptyString('content_value');
 
         $validator
+            //Validation for adding images in content blocks
+            //Add validation; image cannot be empty, and the file can only be jpg, png, jpeg.
+            ->notEmptyFile('content_image')
+            ->add( 'content_image', [
+                'mimeType' => [
+                    'rule' => [ 'mimeType', [ 'image/jpg', 'image/png', 'image/jpeg' ] ],
+                    'message' => 'Please upload only jpg and png.',
+                ],
+            ] );
+
+
+        $validator
             ->scalar('previous_value')
             ->allowEmptyString('previous_value');
 

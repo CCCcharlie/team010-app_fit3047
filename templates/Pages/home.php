@@ -55,7 +55,7 @@ $this->disableAutoLayout();
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="#page-top"><img <?= $this->Html->image($homePageContentBlocks['nav_logo'], ['alt' => 'Holistic Healing']); ?> /> <?= $homePageContentBlocks['nav_heading'] ?> </a>
+        <a class="navbar-brand" href="#page-top"><img src="img\gallery\<?=$homePageContentBlocks['nav_logo']?>" alt="Holistic Healing Logo"/> <?= $homePageContentBlocks['nav_heading'] ?> </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars ms-1"></i>
@@ -64,18 +64,18 @@ $this->disableAutoLayout();
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#Gallery">Gallery</a></li>
-                <li class="nav-item"><a class="nav-link" href="services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
     </div>
 </nav>
 <!--Welcome Page Goes Here-->
-<header class="masthead">
+<header class="masthead" style="background-image: url(<?= $this->Html->image('gallery/'.$homePageContentBlocks['welcome_image']) ?>">
     <div class="container">
         <div class="masthead-heading"><?= $homePageContentBlocks['welcome_header'] ?></div>
         <div class="masthead-heading text-uppercase"> <?= $homePageContentBlocks['welcome_description'] ?></div>
-        <a class="btn btn-primary btn-l text-uppercase" href="#contact">Book Now</a>
+        <a class="btn btn-primary btn-l text-uppercase" href="#contact">Book now</a>
     </div>
 
 </header>
@@ -87,7 +87,7 @@ $this->disableAutoLayout();
 
     <div class="container">
         <!-- For cakephp, need to use $this->html->image instead of src to display the image-->
-        <img class="img-fluid1 about-heading-img mb-3 mb-lg-0" <?= $this->Html->image($homePageContentBlocks['about_image'], ['alt' => 'About Background']); ?> />
+        <img class="img-fluid1 about-heading-img mb-3 mb-lg-0" src="img\gallery\<?=$homePageContentBlocks['about_image']?>" alt="About Background Image" />
         <div class="about-heading-content">
             <div class="row1">
                 <div class="col-xl-9 col-lg-10 mx-auto">
@@ -136,22 +136,18 @@ $this->disableAutoLayout();
                                             </a>
                                         </h4>
                                         <!-- Description section -->
-                                        <p class="card-subtitle">
-                                            What we offer: <?= h($service->service_desc) ?> <br>
-
-                                           Duration:  <?= h($service->service_duration) ?> Minutes |
+                                        <p class="card-subtitle"><?= h($service->service_desc) ?> <br>
+                                            Duration:  <?= h($service->service_duration) ?> Minutes |
                                             Cost: $<?= h($service->service_price) ?> |
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
-
                     </div>
-                    <a class="btn btn-primary btn-l text-uppercase" href="Services">See Our Full Range</a>
+                    <a class="btn btn-primary btn-l text-uppercase" href="services">See All Services</a>
                 </div>
             </div>
-
 <!--            --><?php /*debug($homePageContentBlocks)*/?>
         </div>
     </div>
@@ -170,36 +166,36 @@ $this->disableAutoLayout();
                     <div class="carousel-inner">
 
                         <div class="carousel-item active" data-slide-number="0" data-toggle="lightbox" data-gallery="gallery">
-                            <img class="carousel-image" <?= $this->Html->image($homePageContentBlocks['gallery_image_1'], ['alt' => 'Gallery 1']); ?>
-                            <div class="caption"><p>Life Feel Like a Mountain? Holistic Healing is here to help. Come in store for a new promotion.</p></div>
+                            <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_1']?>" class="mx-auto d-block " style="max-height: 35vw;" >
+                                <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_1'] ?></p></div>
                         </div>
                         <div class="carousel-item" data-slide-number="1" data-toggle="lightbox" data-gallery="gallery">
-                            <img src="img\gallery\BECOMEGLOWINGPROMO.png" class="mx-auto d-block" style="max-height: 35vw;" alt="A showcase poster for Holistic Healing">
-                            <div class="caption"><p>GLOW UP, WITH OUR GLOWING PROMO. TRY THE NEW "GLOW" HOLISTIC SESSION!</p> </div>
+                            <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_2']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="A showcase poster for Holistic Healing">
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_2'] ?></p> </div>
                         </div>
                         <div class="carousel-item" data-slide-number="2" data-toggle="lightbox" data-gallery="gallery" >
-                            <img src="img\gallery\GENERICPOSTER2.png" class="mx-auto d-block" style="max-height: 35vw;" alt="Generic Dummy Holistic Healing POster">
-                            <div class="caption"><p></p> </div>
+                            <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_3']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="Generic Dummy Holistic Healing POster">
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_3'] ?></p> </div>
                         </div>
                         <div class="carousel-item" data-slide-number="3" data-toggle="lightbox" data-gallery="gallery">
-                            <img src="img\gallery\HolisticHealingsStorefront.jpg" class="mx-auto d-block" style="max-height: 35vw;" alt="AI Image of a storefront">
-                            <div class="caption"><p></p> </div>
+                            <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_4']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="AI Image of a storefront">
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_4'] ?></p> </div>
                         </div>
                         <div class="carousel-item" data-slide-number="4" data-toggle="lightbox" data-gallery="gallery">
-                            <img src="img\gallery\GENERICPOSTER.png" class="mx-auto d-block" style="max-height: 35vw;" alt="Generic Dummy Holistic Healing Poster">
-                            <div class="caption"><p></p> </div>
+                            <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_5']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="Generic Dummy Holistic Healing Poster">
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_5'] ?></p> </div>
                         </div>
                         <div class="carousel-item" data-slide-number="5" data-toggle="lightbox" data-gallery="gallery">
-                            <img src="img\gallery\MEETOURNEWTEAMMEMBER.png" class="mx-auto d-block" style="max-height: 35vw;" alt="Team Member showcase doc">
-                            <div class="caption"><p></p> </div>
+                            <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_6']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="Team Member showcase doc">
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_6'] ?></p> </div>
                         </div>
                         <div class="carousel-item" data-slide-number="6" data-toggle="lightbox" data-gallery="gallery">
-                            <img src="img\gallery\Showcasephoto1.jpg" class="mx-auto d-block" style="max-height: 35vw;" alt="Red Leaves on tree. ">
-                            <div class="caption"><p></p> </div>
+                            <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_7']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="Red Leaves on tree. ">
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_7'] ?></p> </div>
                         </div>
                         <div class="carousel-item" data-slide-number="7" data-toggle="lightbox" data-gallery="gallery">
-                            <img src="img\gallery\Showcasephoto2.jpg" class="mx-auto d-block" style="max-height: 35vw;" alt="Image of green leaves">
-                            <div class="caption"><p></p> </div>
+                            <img src="img\gallery\<?=$homePageContentBlocks['gallery_image_8']?>" class="mx-auto d-block" style="max-height: 35vw;" alt="Image of green leaves">
+                            <div class="caption"><p><?= $homePageContentBlocks['gallery_caption_8'] ?></p> </div>
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">

@@ -5879,6 +5879,12 @@ textarea.form-control-lg {
   display: block;
 }
 
+.carousel-item.active{
+    display:block;
+    /*max-height: 35vw !important;*/
+}
+
+
 .carousel-item-next:not(.carousel-item-start),
 .active.carousel-item-end {
   transform: translateX(100%);
@@ -11010,7 +11016,7 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #FAF9EB;
-  background-image: url("../img/header-bg.jpg");
+    background-image: url("../img/gallery/header-bg.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;

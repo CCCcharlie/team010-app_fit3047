@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cb $cb
+ * @var string[] $content_types
  */
 ?>
 <div class="row">
@@ -18,14 +19,28 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="cb form content">
-            <?= $this->Form->create($cb) ?>
+            <?= $this->Form->create($cb, ['type'=>'file']) ?>
             <fieldset>
                 <legend><?= __('Edit Cb') ?></legend>
                 <?php
                     echo $this->Form->control('hint');
-                    echo $this->Form->control('content_type');
-                    echo $this->Form->control('content_value');
-                    echo $this->Form->control('previous_value');
+                    echo $this->Form->control('content_type', [
+                        'type' => 'select',
+                        'options' => $content_types,
+                        'empty' => '-- Select a content type --'
+                    ]);
+
+//                    debug($content_types === "text");
+
+//  content_value and content_image is simply the name of the field, not content_value in database
+//  therefore I can add another validator rule for name content_value for texts and content_image for images
+                    if ($cb->content_type == "text") {
+                        echo $this->Form->control('content_value');
+                    }else {
+                        echo $this->Form->control('content_image',['type'=>'file']);
+                    }
+                    //Validation for field names content_value and content_image is in CbTable.php
+                    //(This is to ensure that content_value = string and content_image = file)
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
