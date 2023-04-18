@@ -14,6 +14,11 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Enquiry $enquiry
 
+=======
+ * @var string[] $globalContentBlocks
+ * @var string[] $homePageContentBlocks
+ * @var iterable<\App\Model\Entity\Service> $services
+ * @var iterable<\App\Model\Entity\Cb> $cb
  */
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
@@ -50,7 +55,7 @@ $this->disableAutoLayout();
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="#page-top"><img src="img\holistichealinglogofull.png" alt="Holistic Healing" /> Holistic Healing </a>
+        <a class="navbar-brand" href="#page-top"><img <?= $this->Html->image($homePageContentBlocks['nav_logo'], ['alt' => 'Holistic Healing']); ?> /> <?= $homePageContentBlocks['nav_heading'] ?> </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars ms-1"></i>
@@ -68,9 +73,9 @@ $this->disableAutoLayout();
 <!--Welcome Page Goes Here-->
 <header class="masthead">
     <div class="container">
-        <div class="masthead-heading">Welcome to Holistic Healing</div>
-        <div class="masthead-heading text-uppercase"> A Journey to discover your inner self</div>
-        <a class="btn btn-primary btn-l text-uppercase" href="services">Book now</a>
+        <div class="masthead-heading"><?= $homePageContentBlocks['welcome_header'] ?></div>
+        <div class="masthead-heading text-uppercase"> <?= $homePageContentBlocks['welcome_description'] ?></div>
+        <a class="btn btn-primary btn-l text-uppercase" href="#contact">Book Now</a>
     </div>
 
 </header>
@@ -82,17 +87,15 @@ $this->disableAutoLayout();
 
     <div class="container">
         <!-- For cakephp, need to use $this->html->image instead of src to display the image-->
-        <img class="img-fluid1 about-heading-img mb-3 mb-lg-0" <?= $this->Html->image('aboutbg.jpg', ['alt' => 'About Background']); ?> />
+        <img class="img-fluid1 about-heading-img mb-3 mb-lg-0" <?= $this->Html->image($homePageContentBlocks['about_image'], ['alt' => 'About Background']); ?> />
         <div class="about-heading-content">
             <div class="row1">
                 <div class="col-xl-9 col-lg-10 mx-auto">
                     <div class="bg-faded rounded p-5"> <!--find p-5,mb-4-->
                         <h2 class="section-heading mb-4">
-                            <span class="section-heading-upper">About us</span>
+                            <span class="section-heading-upper"><?= $homePageContentBlocks['about_header'] ?></span>
                         </h2>
-                        <span class="aboutbody" >At Holistic Healing, we aim to provide our beloved customers a personal space in Melbourne and online for
-                            Spiral practices and facilitating life transformation by removing blocks and limiting beliefs.
-                             Through life improvement sessions, customers can learn, process and transmute stagnant energy into art
+                        <span class="aboutbody" ><?= $homePageContentBlocks['about_description'] ?>
                     </span>
                     </div>
                 </div>
@@ -107,18 +110,49 @@ $this->disableAutoLayout();
 <section class="page-section about-heading bg-gradient-reverse" id="services">
     <div class="container">
         <div class="gallery">
-            <div class="text-center"><h3 class="section-heading2 text-uppercase">Services</h3></div>
+            <div class="text-center"><h3 class="section-heading2 text-uppercase"><?= $homePageContentBlocks['service_header'] ?></h3></div>
 
-            <a href="img1.jpg">
-                <img src="img1-thumb.jpg" alt="Image 1">
-            </a>
-            <a href="img2.jpg">
-                <img src="img2-thumb.jpg" alt="Image 2">
-            </a>
-            <a href="img3.jpg">
-                <img src="img3-thumb.jpg" alt="Image 3">
-            </a>
-            <!-- 这里可以添加更多图片 -->
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <!-- align items stretch aligns the item to "--bs-card-height: 350px;"-->
+                        <!-- LOOP HERE -->
+                        <?php $i = 0; foreach ($services as $service): $i++; if($i==4){break;} ?>
+                            <div class="col-xs-3 col-sm-4 d-flex align-items-stretch">
+                                <div class="card">
+                                    <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
+                                    when clicked-->
+                                    <?php $viewURL = "/services/view/".$service->service_id?>
+
+                                    <!-- Image section -->
+                                    <a class="card-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fit: fill">
+                                        <?= @$this->Html->image($service->image_name) ?>
+                                    </a>
+                                    <div class="card-content">
+                                        <!-- Title section -->
+                                        <h4 class="card-title">
+                                            <a href="<?= $this->Url->build($viewURL) ?>">
+                                                <?= h($service->service_name) ?>
+                                            </a>
+                                        </h4>
+                                        <!-- Description section -->
+                                        <p class="card-subtitle">
+                                            What we offer: <?= h($service->service_desc) ?> <br>
+
+                                           Duration:  <?= h($service->service_duration) ?> Minutes |
+                                            Cost: $<?= h($service->service_price) ?> |
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+
+                    </div>
+                    <a class="btn btn-primary btn-l text-uppercase" href="Services">See Our Full Range</a>
+                </div>
+            </div>
+
+<!--            --><?php /*debug($homePageContentBlocks)*/?>
         </div>
     </div>
 </section>
@@ -127,16 +161,16 @@ $this->disableAutoLayout();
 <!--Section for the Gallery-->
 <section class="page-section bg-gradient" id="Gallery">
     <div id="wrap" class="container my-5">
-        <div class="text-center"><h3 class="section-heading2 text-uppercase" >Gallery</h3></div>
+        <div class="text-center"><h3 class="section-heading2 text-uppercase" ><?= $homePageContentBlocks['gallery_header'] ?></h3></div>
         <div class="row">
             <div class="col-12">
 
                 <!-- Upper Carousel -->
                 <div id="carousel" class="carousel slide gallery" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active" data-slide-number="0" data-toggle="lightbox" data-gallery="gallery">
-                            <img src="img\gallery\LIFEBECOMINGAMOUNTAINPROMO.png" class="mx-auto d-block " style="max-height: 35vw;"  alt="Promotional Poster Showcasing Holistic Healing">
 
+                        <div class="carousel-item active" data-slide-number="0" data-toggle="lightbox" data-gallery="gallery">
+                            <img class="carousel-image" <?= $this->Html->image($homePageContentBlocks['gallery_image_1'], ['alt' => 'Gallery 1']); ?>
                             <div class="caption"><p>Life Feel Like a Mountain? Holistic Healing is here to help. Come in store for a new promotion.</p></div>
                         </div>
                         <div class="carousel-item" data-slide-number="1" data-toggle="lightbox" data-gallery="gallery">
@@ -197,17 +231,15 @@ $this->disableAutoLayout();
 
 <!-- Contact-->
 <section class="page-section" id="contact">
-    <?= $this->Html->link(__('List Enquiry'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+
+        <?= $this->Form->create($enquiry) ?>
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Contact Us</h2>
-            <h3 class="section-subheading text-muted"> We can be contacted through our social media, phone number and email.
-
-            <br>
-                Else you can send us the enquiry ,and we will get back to you as soon as possible.
-            <br>Email: test@gmail.com
-            <br> Tel: 012345678
-            <br> IG: /testAccount </h3>
+            <h2 class="section-heading text-uppercase"><?= $homePageContentBlocks['contact_header'] ?></h2>
+            <h3 class="section-subheading text-muted"> <?= $homePageContentBlocks['contact_description'] ?>
+            <br> <?= $homePageContentBlocks['contact_email'] ?>
+            <br> <?= $homePageContentBlocks['contact_phone'] ?>
+            <br> <?= $homePageContentBlocks['contact_social'] ?> </h3>
         </div>
 
         <!-- * * SB Forms Contact Form * *-->
@@ -215,8 +247,6 @@ $this->disableAutoLayout();
         <!-- This form is pre-integrated with SB Forms.-->
 
         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-            <?= $this->Form->create($enquiry) ?>
-
 
             <div class="row align-items-stretch mb-5">
                 <div class="col-md-6">
@@ -272,9 +302,11 @@ $this->disableAutoLayout();
             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
             <!-- Submit Button-->
 <!--            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>-->
-            <?= $this->Form->submit('Submit') ?>
-        </form>
+            <?= $this->Form->button(__('Submit')) ?>
+
+
     </div>
+    <?= $this->Form->end() ?>
 </section>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

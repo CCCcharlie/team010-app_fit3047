@@ -3,17 +3,58 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Service> $services
  */
+
+$this->disableAutoLayout();
+$cakeDescription = 'Holistic Healing - All Services';
+
 ?>
 
 
+<head>
+    <?= $this->Html->charset() ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        <?= $cakeDescription ?>:
+        <?= $this->fetch('title') ?>
+    </title>
+    <?= $this->Html->meta('icon') ?>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+
+    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
+    <?= $this->fetch('meta') ?>
+    <?= $this->fetch('css') ?>
+    <?= $this->fetch('script') ?>
+</head>
+
+<body>
+<nav class="top-nav">
+    <div class="top-nav-title">
+        <!--  In order to show the image from webroot/img/cake.icon.png,
+        we must use $this->html->image instead of <img src=""> in this case for it to work -->
+
+        <!-- <?php /*= "$this->Url->build('/')" */?> <- this line of code is for redirection, "/" is the root path-->
+        <a href="<?= $this->Url->build('/') ?>"> <?= $this->Html->image('holistichealinglogo.png', ['alt' => 'Holistic healing logo']); ?>
+            <a href="<?= $this->Url->build('/') ?>">Holistic<span> Healings</a>
+    </div>
+    </div>
+</nav>
+<main class="main">
+    <div class="container">
+        <?= $this->Flash->render() ?>
+        <?= $this->fetch('content') ?>
+    </div>
+
 <div class="services index content">
-    <?= $this->Html->link(__('New Service'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <div>
-    <h1><?= __('Services') ?></h1>
+    <h1><?= __(' All Services') ?></h1>
     </div>
 
 <!-- Essentially tells index.php to use bootstrap.css -->
-<?= $this->Html->css('bootstrap.css')?>
+<?= $this->Html->css(['cake','bootstrap'])?>
 
     <?= $this->Html->script('windowresizer.js') ?>
 
@@ -44,9 +85,9 @@
                         </h4>
                         <!-- Description section -->
                         <p class="card-subtitle">
-                            <?= h($service->service_desc) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $service->service_id], ['confirm' => __('Are you sure you want to delete service: {0}?', $service->service_name)]) ?>
-                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $service->service_id]) ?>
+                            <?= h($service->service_desc) ?> <br>
+                            Duration:  <?= h($service->service_duration) ?> Minutes |
+                            Cost: $<?= h($service->service_price) ?> |
                         </p>
                     </div>
                 </div>
@@ -55,3 +96,8 @@
         </div>
     </div>
 </div>
+</main>
+<footer>
+</footer>
+</body>
+</html>
