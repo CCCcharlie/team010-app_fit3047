@@ -228,7 +228,7 @@ $this->disableAutoLayout();
 <!-- Contact-->
 <section class="page-section" id="contact">
 
-        <?= $this->Form->create($enquiry) ?>
+    <?= $this->Form->create($enquiry) ?>
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase"><?= $homePageContentBlocks['contact_header'] ?></h2>
@@ -249,13 +249,13 @@ $this->disableAutoLayout();
                     <div class="form-group">
                         <!-- Name input-->
 <!--                        <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />-->
-                        <?= $this->Form->control('name', ['required' => true, 'label' => 'Your Name']) ?>
+                        <?= $this->Form->control('Name', ['required' => true, 'label' => 'Your Name']) ?>
                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                     </div>
                     <div class="form-group">
                         <!-- Email address input-->
 <!--                        <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />-->
-                        <?= $this->Form->control('email', ['required' => true, 'label' => 'Your Email']) ?>
+                        <?= $this->Form->control('Email', ['required' => true, 'label' => 'Your Email']) ?>
 
                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                         <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
@@ -263,7 +263,7 @@ $this->disableAutoLayout();
                     <div class="form-group mb-md-0">
                         <!-- Phone number input-->
 <!--                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />-->
-                        <?= $this->Form->control('phone', ['required' => true, 'label' => 'Your Phone']) ?>
+                        <?= $this->Form->control('Phone', ['required' => true, 'label' => 'Your Phone']) ?>
                         <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
                     </div>
                 </div>
@@ -272,7 +272,7 @@ $this->disableAutoLayout();
                         <!-- Message input-->
 
 <!--                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>-->
-                        <?= $this->Form->control('message', ['required' => true, 'label' => 'Your Message', 'rows' => 4]) ?>
+                        <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message', 'rows' => 4]) ?>
 
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>

@@ -13,6 +13,8 @@ declare(strict_types=1);
  * @link      https://cakephp.org CakePHP(tm) Project
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
+
+
  */
 namespace App\Controller;
 
@@ -28,6 +30,10 @@ use Cake\View\Exception\MissingTemplateException;
  * This controller will render views from templates/Pages/
  *
  * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
+
+ * @property \App\Model\Table\EnquiryTable $Enquiry
+ * @method \App\Model\Entity\Enquiry[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+
  */
 class PagesController extends AppController
 {
@@ -38,6 +44,27 @@ class PagesController extends AppController
 
     public function home() {
         $contentBlocks = $this->fetchTable('Cb');
+
+
+        parent::initialize();
+        $this->loadModel('Enquiry');
+        $enquiry = $this->Enquiry->newEmptyEntity();
+        $this->set('enquiry', $enquiry);
+
+        if ($this->request->is('post')) {
+            $enquiry = $this->Enquiry->patchEntity($enquiry, $this->request->getData());
+
+            if ($this->Enquiry->save($enquiry)) {
+                $this->Flash->success(__('The enquiry has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The enquiry could not be saved. Please, try again.'));
+            
+
+        }
+        $this->set(compact('enquiry'));
+
 
         // Key-value pairs are much easier to use when retrieving content blocks
         // See https://book.cakephp.org/4/en/orm/retrieving-data-and-resultsets.html#finding-key-value-pairs
@@ -55,10 +82,20 @@ class PagesController extends AppController
 
 
 
+
+
+
+
+
+
+
+
 //        $services = $this->fetchTable('Services')->find()->all();
 //
 //        $this->set(compact('services'));
     }
+
+
 
     /**
      * Displays a view
@@ -99,4 +136,5 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
+
 }
