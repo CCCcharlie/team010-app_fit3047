@@ -2,11 +2,12 @@
 /**
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Cb> $cb
+ *
  */
+$cakeDescription = 'Holistic Healing - Site Editor';
 ?>
 <div class="cb index content">
-    <?= $this->Html->link(__('New Cb'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Cb') ?></h3>
+    <h2><?= __('Site Content Editor') ?></h2>
     <div class="table-responsive">
         <table>
             <thead>
@@ -20,7 +21,6 @@
             <tbody>
                 <?php foreach ($cb as $cb): ?>
                 <tr>
-                    <td><?= h($cb->id) ?></td>
                     <td><?= h($cb->hint) ?></td>
                     <td><?= h($cb->content_type) ?></td>
                     <td class="actions">
