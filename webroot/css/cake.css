@@ -73,6 +73,7 @@ th a,
 
 button{
     background-color: #2D593D;
+    border: 0.1rem #2D593D;
 }
 .button,button,input[type='button'],input[type='reset'],input[type='submit']{
     background-color: #2D593D;

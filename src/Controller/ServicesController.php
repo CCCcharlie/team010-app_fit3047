@@ -23,6 +23,16 @@ class ServicesController extends AppController
         $this->set(compact('services'));
     }
 
+
+    public function admindex()
+    {
+
+        $this->loadComponent('Paginator');
+        $services = $this->paginate($this->Services);
+
+        $this->set(compact('services'));
+    }
+
     /**
      * View method
      *
