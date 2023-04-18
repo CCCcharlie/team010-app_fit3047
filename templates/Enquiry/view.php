@@ -1,44 +1,46 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\ContentBlock $contentBlock
+ * @var \App\Model\Entity\Enquiry $enquiry
  */
 ?>
-    <div class="row">
+<div class="row">
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Content Block'), ['action' => 'edit', $contentBlock->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Content Block'), ['action' => 'delete', $contentBlock->id], ['confirm' => __('Are you sure you want to delete # {0}?', $contentBlock->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Content Blocks'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Content Block'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Edit Enquiry'), ['action' => 'edit', $enquiry->enquiry_id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Delete Enquiry'), ['action' => 'delete', $enquiry->enquiry_id], ['confirm' => __('Are you sure you want to delete # {0}?', $enquiry->enquiry_id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List Enquiry'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('New Enquiry'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
-        <div class="contentBlocks view content">
-            <h3><?= h($contentBlock->id) ?></h3>
+        <div class="enquiry view content">
+            <h3><?= h($enquiry->enquiry_id) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Hint') ?></th>
-                    <td><?= h($contentBlock->hint) ?></td>
+                    <th><?= __('Email') ?></th>
+                    <td><?= h($enquiry->Email) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Content Type') ?></th>
-                    <td><?= h($contentBlock->content_type) ?></td>
+                    <th><?= __('Message') ?></th>
+                    <td><?= h($enquiry->Message) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Content Value') ?></th>
-                    <td><?= h($contentBlock->content_value) ?></td>
+                    <th><?= __('Phone') ?></th>
+                    <td><?= $this->Number->format($enquiry->Phone) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Previous Value') ?></th>
-                    <td><?= h($contentBlock->previous_value) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($contentBlock->id) ?></td>
+                    <th><?= __('Enquiry Id') ?></th>
+                    <td><?= $this->Number->format($enquiry->enquiry_id) ?></td>
                 </tr>
             </table>
+            <div class="text">
+                <strong><?= __('Name') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($enquiry->Name)); ?>
+                </blockquote>
+            </div>
         </div>
     </div>
-    </div><?php
+</div>
