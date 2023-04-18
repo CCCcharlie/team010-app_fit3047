@@ -46,6 +46,8 @@ class AppController extends Controller
         $this->loadComponent('Auth');
         $this->loadComponent('Authentication.Authentication');
 
+        $this->Auth->allow(['login','index']);
+
 
 
         /*
@@ -63,8 +65,7 @@ class AppController extends Controller
         $this->Authentication->allowUnauthenticated(['login']);
         $this->Auth->allow('logout');
         $this->Auth->allow('add');
-        $this->Auth->allow('delete');
-        $this->Auth->allow('edit');
+
 
     }
 }

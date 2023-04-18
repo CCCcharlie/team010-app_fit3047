@@ -43,7 +43,6 @@ return static function (RouteBuilder $routes) {
      * `{action}` markers.
      */
     $routes->setRouteClass(DashedRoute::class);
-    $routes->connect('/', ['controller' => 'Users','action' => 'index']);
 
     $routes->scope('/', function (RouteBuilder $builder) {
         /*
@@ -54,6 +53,7 @@ return static function (RouteBuilder $routes) {
 
         //$builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'home']);
+        $builder->connect('/', ['controller' => 'Users','action' => 'index']);
 
 
         $builder->connect('/pages/*', 'Pages::display');
