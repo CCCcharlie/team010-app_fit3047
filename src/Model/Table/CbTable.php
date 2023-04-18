@@ -63,6 +63,12 @@ class CbTable extends Table
             ->notEmptyString('content_type');
 
         $validator
+            ->scalar('content_description')
+            ->maxLength('content_description', 500)
+            ->requirePresence('content_description', 'create')
+            ->notEmptyString('content_description');
+
+        $validator
             ->scalar('content_value')
             ->requirePresence('content_value', 'create')
             ->notEmptyString('content_value');

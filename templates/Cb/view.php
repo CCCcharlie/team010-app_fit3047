@@ -8,10 +8,10 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Cb'), ['action' => 'edit', $cb->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Cb'), ['action' => 'delete', $cb->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cb->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Cb'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Cb'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Change this content'), ['action' => 'edit', $cb->id], ['class' => 'side-nav-item']) ?>
+<!--            --><?php //= $this->Form->postLink(__('Delete Cb'), ['action' => 'delete', $cb->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cb->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Return to List view'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+<!--            --><?php //= $this->Html->link(__('New Cb'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">

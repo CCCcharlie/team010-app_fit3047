@@ -30,6 +30,7 @@ $cakeDescription = 'Holistic Healing - Site Editor';
                     <td><?= h($cb->content_type) ?></td>
                     <td><?= h($cb->content_description) ?></td>
                     <td class="actions">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $cb->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $cb->id]) ?>
 <!--                        --><?php //= $this->Form->postLink(__('Delete'), ['action' => 'delete', $cb->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cb->id)]) ?>
                     </td>

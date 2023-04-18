@@ -53,8 +53,8 @@ $cakeDescription = 'Holistic Healing';
              If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
              to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
 
-            <a target="_self" href="<?= $this->Url->build('/booking') ?>">Site Editor</a>
-            <a target="_self" href="<?= $this->Url->build('/enquiries') ?>">See all Enquiries</a>
+            <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
+            <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">See all Enquiries</a>
             <a target="_self" href="<?= $this->Url->build('/') ?>">Return to Customer Page</a>
             <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
         </div>
