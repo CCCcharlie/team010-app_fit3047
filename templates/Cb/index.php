@@ -8,10 +8,18 @@ $cakeDescription = 'Holistic Healing - Site Editor';
 ?>
 <div class="cb index content">
     <h2><?= __('Site Content Editor') ?></h2>
-    <p>This is the site content editor. It's here to let you change</p> <br>
-    <p>Unsure how to edit? Follow the tips listed here: </p>
+    <p>This is the site content editor. It's here to let you change your website and keep things up to-date.</p><br>
+    <p>If you wish to change services see the navigation bar above.</p><br><br>
+    <p>It should be stated that this content editor will not allow you to dramatically change this website, only change the elements already in place. </p> <br>
+    <p>Unsure how to edit? Follow the tips listed here: </p><br>
+    <p>. Find the piece you want to edit through using both the hint (That's what it's called in the web-page.) And the description.</p><br>
+    <p>. Click 'Edit' on the Actions Column. You can also click view if you wish to see this item on its own.</p>
+    <p>. Change the content to your desires. At the moment, images can be replaced and text can be edited.</p>
+    <p>. Hit submit. Your changes should apply to the website instantly. </p> <br>
+    <p>Success! </p><br><br>
+    <p>Note: Certain will not apply if the user has not cleared their cache recently.</p>
     <p></p>
-    <p></p>
+
 
     <div class="table-responsive">
         <table>

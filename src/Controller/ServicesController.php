@@ -107,6 +107,16 @@ class ServicesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+
+    public function admindex()
+    {
+
+        $this->loadComponent('Paginator');
+        $services = $this->paginate($this->Services);
+
+        $this->set(compact('services'));
+    }
+
     public function edit($id = null)
     {
         $service = $this->Services->get($id, [

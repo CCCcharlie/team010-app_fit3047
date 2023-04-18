@@ -14,7 +14,7 @@
  * @var \App\View\AppView $this
  */
 
-$cakeDescription = 'Holistic Healing';
+$cakeDescription = 'Holistic Healing - Admin Portal';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +55,7 @@ $cakeDescription = 'Holistic Healing';
 
             <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
             <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">See all Enquiries</a>
+            <a target="_self" href="<?= $this->Url->build('/services/admindex') ?>">Edit Services</a>
             <a target="_self" href="<?= $this->Url->build('/') ?>">Return to Customer Page</a>
             <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
         </div>
