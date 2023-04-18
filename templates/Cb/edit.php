@@ -24,6 +24,8 @@
                 <legend><?= __('Edit Cb') ?></legend>
                 <?php
                     echo $this->Form->control('hint'); ?>
+
+                <!-- Constrain content type to be impossible to edit so that it doesnt break -->
                 <table>
                 <tr>
                     <th><?= __('Content Type') ?></th>
