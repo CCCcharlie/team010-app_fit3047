@@ -33,6 +33,26 @@
                 </tr>
                 </table>
                 <br>
+
+                <?php echo $this->Form->control('content_description', ['type'=>'textarea', 'style' => 'height: 10rem;']); ?>
+
+                <!-- Displays the content of the previous value (which is your current value here)-->
+                <table>
+                    <tr>
+                        <th><?= __('Previous Value') ?></th>
+                        <td><?php if(!$cb->previous_value){
+                            echo h("No previous value");
+
+                                } else {
+                            echo h($cb->previous_value);
+                                }
+                            ?>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+
+
                 <?php
 //                    debug($content_types === "text");
 
