@@ -9,12 +9,12 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $cb->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $cb->id), 'class' => 'side-nav-item']
-            ) ?>
-            <?= $this->Html->link(__('List Cb'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+<!--            --><?php //= $this->Form->postLink(
+//                __('Delete'),
+//                ['action' => 'delete', $cb->id],
+//                ['confirm' => __('Are you sure you want to delete # {0}?', $cb->id), 'class' => 'side-nav-item']
+//            ) ?>
+            <?= $this->Html->link(__('Return to List View'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
@@ -23,13 +23,17 @@
             <fieldset>
                 <legend><?= __('Edit Cb') ?></legend>
                 <?php
-                    echo $this->Form->control('hint');
-                    echo $this->Form->control('content_type', [
-                        'type' => 'select',
-                        'options' => $content_types,
-                        'empty' => '-- Select a content type --'
-                    ]);
+                    echo $this->Form->control('hint'); ?>
 
+                <!-- Constrain content type to be impossible to edit so that it doesnt break -->
+                <table>
+                <tr>
+                    <th><?= __('Content Type') ?></th>
+                    <td><?= h($cb->content_type) ?></td>
+                </tr>
+                </table>
+                <br>
+                <?php
 //                    debug($content_types === "text");
 
 //  content_value and content_image is simply the name of the field, not content_value in database

@@ -1,39 +1,37 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var iterable<\App\Model\Entity\ContentBlock> $contentBlocks
+ * @var iterable<\App\Model\Entity\Enquiry> $enquiry
  */
 ?>
-<div class="contentBlocks index content">
-    <?= $this->Html->link(__('New Content Block'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Content Blocks') ?></h3>
+<div class="enquiry index content">
+    <?= $this->Html->link(__('New Enquiry'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <h3><?= __('Enquiry') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
-            <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('hint') ?></th>
-                <th><?= $this->Paginator->sort('content_type') ?></th>
-                <th><?= $this->Paginator->sort('content_value') ?></th>
-                <th><?= $this->Paginator->sort('previous_value') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
+                <tr>
+                    <th><?= $this->Paginator->sort('Email') ?></th>
+                    <th><?= $this->Paginator->sort('Phone') ?></th>
+                    <th><?= $this->Paginator->sort('Message') ?></th>
+                    <th><?= $this->Paginator->sort('enquiry_id') ?></th>
+                    <th class="actions"><?= __('Actions') ?></th>
+                </tr>
             </thead>
             <tbody>
-            <?php foreach ($contentBlocks as $contentBlock): ?>
+                <?php foreach ($enquiry as $enquiry): ?>
                 <tr>
-                    <td><?= $this->Number->format($contentBlock->id) ?></td>
-                    <td><?= h($contentBlock->hint) ?></td>
-                    <td><?= h($contentBlock->content_type) ?></td>
-                    <td><?= h($contentBlock->content_value) ?></td>
-                    <td><?= h($contentBlock->previous_value) ?></td>
+                    <td><?= h($enquiry->Email) ?></td>
+                    <td><?= $this->Number->format($enquiry->Phone) ?></td>
+                    <td><?= h($enquiry->Message) ?></td>
+                    <td><?= $this->Number->format($enquiry->enquiry_id) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $contentBlock->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $contentBlock->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $contentBlock->id], ['confirm' => __('Are you sure you want to delete # {0}?', $contentBlock->id)]) ?>
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $enquiry->enquiry_id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $enquiry->enquiry_id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $enquiry->enquiry_id], ['confirm' => __('Are you sure you want to delete # {0}?', $enquiry->enquiry_id)]) ?>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

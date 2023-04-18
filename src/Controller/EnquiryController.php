@@ -46,17 +46,17 @@ class EnquiryController extends AppController
      */
     public function add()
     {
-        $Enquiry = $this->Enquiry->newEmptyEntity();
+        $enquiry = $this->Enquiry->newEmptyEntity();
         if ($this->request->is('post')) {
-            $Enquiry = $this->Enquiry->patchEntity($Enquiry, $this->request->getData());
-            if ($this->Enquiry->save($Enquiry)) {
-                $this->Flash->success(__('The contact has been saved.'));
+            $enquiry = $this->Enquiry->patchEntity($enquiry, $this->request->getData());
+            if ($this->Enquiry->save($enquiry)) {
+                $this->Flash->success(__('The enquiry has been saved.'));
 
-                return $this->redirect(['action' => 'add']);
+                return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The contact could not be saved. Please, try again.'));
+            $this->Flash->error(__('The enquiry could not be saved. Please, try again.'));
         }
-        $this->set(compact('Enquiry'));
+        $this->set(compact('enquiry'));
     }
 
     /**

@@ -46,19 +46,16 @@ $cakeDescription = 'Holistic Healing';
 
             <!-- <?php /*= "$this->Url->build('/')" */?> <- this line of code is for redirection, "/" is the root path-->
             <a href="<?= $this->Url->build('/') ?>"> <?= $this->Html->image('holistichealinglogo.png', ['alt' => 'Holistic healing logo']); ?>
-            <a href="<?= $this->Url->build('/') ?>"><span> Healings</a>
+            <a href="<?= $this->Url->build('/') ?>"> Holistic <span> Healings - Staff Page</a>
         </div>
         <div class="top-nav-links">
             <!--  target acts as where I want to display the href, _self is the default so it will update itself
              If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
              to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
 
-            <a target="_self" href="<?= $this->Url->build('/booking') ?>">Make a Booking</a>
-            <a target="_self" href="<?= $this->Url->build('/customer') ?>">Customer</a>
-            <a target="_self" href="<?= $this->Url->build('/expertise') ?>">Expertise</a>
-            <a target="_self" href="<?= $this->Url->build('/payment') ?>">Payment</a>
-            <a target="_self" href="<?= $this->Url->build('/services') ?>">Services</a>
-            <a target="_self" href="<?= $this->Url->build('/staff') ?>">Staff</a>
+            <a target="_self" href="<?= $this->Url->build('/booking') ?>">Site Editor</a>
+            <a target="_self" href="<?= $this->Url->build('/enquiries') ?>">See all Enquiries</a>
+            <a target="_self" href="<?= $this->Url->build('/') ?>">Return to Customer Page</a>
             <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
         </div>
     </nav>

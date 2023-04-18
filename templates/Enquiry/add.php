@@ -13,13 +13,15 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="enquiry form content">
-            <?= $this->Form->create() ?>
+            <?= $this->Form->create($enquiry) ?>
             <fieldset>
-                <legend><?= __('Add Contact') ?></legend>
-                <?= $this->Form->control('name') ?>
-                <?= $this->Form->control('email') ?>
-                <?= $this->Form->control('phone') ?>
-                <?= $this->Form->control('message', ['rows' => '3']) ?>
+                <legend><?= __('Add Enquiry') ?></legend>
+                <?php
+                    echo $this->Form->control('Name');
+                    echo $this->Form->control('Email');
+                    echo $this->Form->control('Phone');
+                    echo $this->Form->control('Message');
+                ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>

@@ -98,11 +98,11 @@ class CbController extends AppController
                 //if it exists, do all of this
                 if ($image_name) {
                     //if a directory was not made already, create one
-                    if (!is_dir(WWW_ROOT . 'img' . DS . 'Gallery')) {
-                        mkdir(WWW_ROOT . 'img' . DS . 'Gallery');
+                    if (!is_dir(WWW_ROOT . 'img' . DS . 'gallery')) {
+                        mkdir(WWW_ROOT . 'img' . DS . 'gallery');
                     }
                     //Set target path to webroot/img/user-img/name_of_image
-                    $targetPath = WWW_ROOT . 'img' . DS . 'Gallery' . DS . $image_name;
+                    $targetPath = WWW_ROOT . 'img' . DS . 'gallery' . DS . $image_name;
 
                     //Move the image obtained from the form, to the path defined above
                     $image->moveTo($targetPath);
