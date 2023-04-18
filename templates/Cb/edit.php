@@ -23,13 +23,15 @@
             <fieldset>
                 <legend><?= __('Edit Cb') ?></legend>
                 <?php
-                    echo $this->Form->control('hint');
-                    echo $this->Form->control('content_type', [
-                        'type' => 'select',
-                        'options' => $content_types,
-                        'empty' => '-- Select a content type --'
-                    ]);
-
+                    echo $this->Form->control('hint'); ?>
+                <table>
+                <tr>
+                    <th><?= __('Content Type') ?></th>
+                    <td><?= h($cb->content_type) ?></td>
+                </tr>
+                </table>
+                <br>
+                <?php
 //                    debug($content_types === "text");
 
 //  content_value and content_image is simply the name of the field, not content_value in database
