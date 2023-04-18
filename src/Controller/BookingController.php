@@ -9,7 +9,7 @@ namespace App\Controller;
  * @property \App\Model\Table\BookingTable $Booking
  * @method \App\Model\Entity\Booking[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class BookingController extends AppController
+class BookingController extends AppControllers
 {
     /**
      * Index method

@@ -42,45 +42,45 @@ class PagesController extends AppController
     //$builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);     This
     //$builder->connect('/', ['controller' => 'Pages', 'action' => 'home']);                To this
 
-    public function home() {
-        $contentBlocks = $this->fetchTable('Cb');
-
-
-        parent::initialize();
-        $this->loadModel('Enquiry');
-        $enquiry = $this->Enquiry->newEmptyEntity();
-        $this->set('enquiry', $enquiry);
-
-        if ($this->request->is('post')) {
-            $enquiry = $this->Enquiry->patchEntity($enquiry, $this->request->getData());
-
-            if ($this->Enquiry->save($enquiry)) {
-                $this->Flash->success(__('The enquiry has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The enquiry could not be saved. Please, try again.'));
-            
-
-        }
-        $this->set(compact('enquiry'));
-
-
-        // Key-value pairs are much easier to use when retrieving content blocks
-        // See https://book.cakephp.org/4/en/orm/retrieving-data-and-resultsets.html#finding-key-value-pairs
-        $homePageContentBlocks = $contentBlocks
-            ->find('list', [
-                'keyField' => 'hint',
-                'valueField' => 'content_value'
-            ])
-            ->toArray();
-
-        $services = $this->fetchTable('Services')->find()->all();
-
-
-        $this->set(compact('homePageContentBlocks', 'services'));
-
-
+//    public function home() {
+//        $contentBlocks = $this->fetchTable('Cb');
+//
+//
+//        parent::initialize();
+//        $this->loadModel('Enquiry');
+//        $enquiry = $this->Enquiry->newEmptyEntity();
+//        $this->set('enquiry', $enquiry);
+//
+//        if ($this->request->is('post')) {
+//            $enquiry = $this->Enquiry->patchEntity($enquiry, $this->request->getData());
+//
+//            if ($this->Enquiry->save($enquiry)) {
+//                $this->Flash->success(__('The enquiry has been saved.'));
+//
+//                return $this->redirect(['action' => 'index']);
+//            }
+//            $this->Flash->error(__('The enquiry could not be saved. Please, try again.'));
+//
+//
+//        }
+//        $this->set(compact('enquiry'));
+//
+//
+//        // Key-value pairs are much easier to use when retrieving content blocks
+//        // See https://book.cakephp.org/4/en/orm/retrieving-data-and-resultsets.html#finding-key-value-pairs
+//        $homePageContentBlocks = $contentBlocks
+//            ->find('list', [
+//                'keyField' => 'hint',
+//                'valueField' => 'content_value'
+//            ])
+//            ->toArray();
+//
+//        $services = $this->fetchTable('Services')->find()->all();
+//
+//
+//        $this->set(compact('homePageContentBlocks', 'services'));
+//
+//
 
 
 
@@ -93,7 +93,7 @@ class PagesController extends AppController
 //        $services = $this->fetchTable('Services')->find()->all();
 //
 //        $this->set(compact('services'));
-    }
+//}
 
 
 
