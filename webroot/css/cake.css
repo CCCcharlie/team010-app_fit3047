@@ -262,7 +262,7 @@ th {
     .desc:after {
         content: " \2190";
     }
-/* Gallery */
+/* gallery */
     .carousel {
         position: fixed;
     }
