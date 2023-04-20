@@ -4252,7 +4252,7 @@ textarea.form-control-lg {
 .card-subtitle {
     margin-top: calc(-0.5 * var(--bs-card-title-spacer-y));
     margin-bottom: 0;
-    font-size: 0.7vw;
+    font-size: 1.5rem;
 }
 
 .card-text:last-child {
@@ -5963,8 +5963,8 @@ textarea.form-control-lg {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   display: inline-block;
-  width: 2rem;
-  height: 2rem;
+  width: 4rem;
+  height: 4rem;
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: 100% 100%;
@@ -6034,7 +6034,7 @@ textarea.form-control-lg {
   left: 15%;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-  color: #fff;
+  color: ghostwhite;
   text-align: center;
 }
 
@@ -11337,7 +11337,7 @@ section#contact {
   background-position: center;
 }
 section#contact .section-heading {
-  color: #2D593D;
+  color: ghostwhite;
     font-size: 6rem;
     font-style: normal; /* set the font style to normal (non-italicized) */
     font-family: Quicksand;
@@ -11442,6 +11442,7 @@ img, svg{vertical-align: central;}
 
 .aboutbody{
     font-size: 2rem;
+    color:#2D593D;
 }
 .row1  {
     flex-shrink: 0;
@@ -11460,7 +11461,7 @@ img, svg{vertical-align: central;}
 
 .text-muted {
     --bs-text-opacity: 0;
-    color: #2D593D !important;
+    color: #f6e1c5; !important;
 }
 .page-section h3.section-subheading{
     font-size: 2rem;

@@ -81,7 +81,7 @@ $this->disableAutoLayout();
 </header>
 <!--End Welcome Page-->
 
-<!--ABout Page Goes Here-->
+<!--About Page Goes Here-->
 
 <section class="page-section1 about-heading bg-gradient" id="about">
 
@@ -226,13 +226,13 @@ $this->disableAutoLayout();
 </section>
 
 <!-- Contact-->
-<section class="page-section" id="contact">
+<section class="page-section bg-gradient" id="contact">
 
     <?= $this->Form->create($enquiry) ?>
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase-headers"><?= $homePageContentBlocks['contact_header'] ?></h2>
-            <h3 class="section-subheading text-muted"> <?= $homePageContentBlocks['contact_description'] ?>
+            <h3 class="section-subheading"> <?= $homePageContentBlocks['contact_description'] ?>
             <br> <?= $homePageContentBlocks['contact_email'] ?>
             <br> <?= $homePageContentBlocks['contact_phone'] ?>
             <br> <?= $homePageContentBlocks['contact_social'] ?> </h3>
@@ -295,10 +295,10 @@ $this->disableAutoLayout();
 
             <!-- This is what your users will see when there is-->
             <!-- an error submitting the form-->
-            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error! Message unable to send, please review form</div></div>
             <!-- Submit Button-->
 <!--            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>-->
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('SUBMIT')) ?>
 
 
     </div>
