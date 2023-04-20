@@ -7784,7 +7784,17 @@ textarea.form-control-lg {
 }
 
 .p-5 {
-  padding: 3rem !important;
+    padding: 3rem !important;
+    position: absolute;
+    bottom: 70%;
+    width: 100%;
+    left: 15%;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+
+
+
 }
 
 .px-0 {

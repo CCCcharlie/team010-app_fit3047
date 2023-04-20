@@ -91,7 +91,7 @@ $this->disableAutoLayout();
         <div class="about-heading-content">
             <div class="row1">
                 <div class="col-xl-9 col-lg-10 mx-auto">
-                    <div class="bg-faded rounded p-5"> <!--find p-5,mb-4-->
+                    <div class="bg-faded rounded p-5 "> <!--find p-5,mb-4-->
                         <h2 class="section-heading mb-4">
                             <span class="section-heading-upper"><?= $homePageContentBlocks['about_header'] ?></span>
                         </h2>
