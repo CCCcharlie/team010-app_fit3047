@@ -90,7 +90,7 @@ $this->disableAutoLayout();
         <img class="img-fluid1 about-heading-img mb-3 mb-lg-0" src="img\gallery\<?=$homePageContentBlocks['about_image']?>" alt="About Background Image" />
 
         <div class="about-heading-content">
-            <div class="row1">
+            <div class="row1">f
                 <div class="col-xl-9 col-lg-10 mx-auto">
                     <div class="bg-faded rounded p-5 "> <!--find p-5,mb-4-->
                         <h2 class="section-heading mb-4">

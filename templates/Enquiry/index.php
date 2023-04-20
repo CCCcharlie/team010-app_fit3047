@@ -5,8 +5,7 @@
  */
 ?>
 <div class="enquiry index content">
-    <?= $this->Html->link(__('New Enquiry'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Enquiry') ?></h3>
+    <h2><?= __('Enquiry') ?></h2>
     <div class="table-responsive">
         <table>
             <thead>
