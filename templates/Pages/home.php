@@ -71,7 +71,7 @@ $this->disableAutoLayout();
     </div>
 </nav>
 <!--Welcome Page Goes Here-->
-<header class="masthead" style="background-image: url(<?= $this->Html->image('gallery/'.$homePageContentBlocks['welcome_image']) ?>">
+<header class="masthead" style="background-image: url(<?= $this->Html->image('gallery/' . $homePageContentBlocks['welcome_image']) ?>">
     <div class="container">
         <div class="masthead-heading"><?= $homePageContentBlocks['welcome_header'] ?></div>
         <div class="masthead-heading text-uppercase"> <?= $homePageContentBlocks['welcome_description'] ?></div>
