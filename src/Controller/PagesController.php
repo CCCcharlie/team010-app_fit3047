@@ -60,7 +60,7 @@ class PagesController extends AppController
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The enquiry could not be saved. Please, try again.'));
-            
+
 
         }
         $this->set(compact('enquiry'));

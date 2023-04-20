@@ -88,15 +88,17 @@ $this->disableAutoLayout();
     <div class="container">
         <!-- For cakephp, need to use $this->html->image instead of src to display the image-->
         <img class="img-fluid1 about-heading-img mb-3 mb-lg-0" src="img\gallery\<?=$homePageContentBlocks['about_image']?>" alt="About Background Image" />
+
         <div class="about-heading-content">
             <div class="row1">
                 <div class="col-xl-9 col-lg-10 mx-auto">
-                    <div class="bg-faded rounded p-5"> <!--find p-5,mb-4-->
+                    <div class="bg-faded rounded p-5 "> <!--find p-5,mb-4-->
                         <h2 class="section-heading mb-4">
                             <span class="section-heading-upper"><?= $homePageContentBlocks['about_header'] ?></span>
                         </h2>
-                        <span class="aboutbody" ><?= $homePageContentBlocks['about_description'] ?>
+                        <span class="aboutbody  row1 " ><?= $homePageContentBlocks['about_description'] ?>
                     </span>
+
                     </div>
                 </div>
             </div>

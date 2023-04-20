@@ -22,7 +22,7 @@
                 <?php foreach ($enquiry as $enquiry): ?>
                 <tr>
                     <td><?= h($enquiry->Email) ?></td>
-                    <td><?= $this->Number->format($enquiry->Phone) ?></td>
+                    <td><?= $this->Number->format($enquiry->Phone, ['Phone' => 'AU','format' => 'international']) ?></td>
                     <td><?= h($enquiry->Message) ?></td>
                     <td><?= $this->Number->format($enquiry->enquiry_id) ?></td>
                     <td class="actions">

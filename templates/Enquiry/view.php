@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Phone') ?></th>
-                    <td><?= $this->Number->format($enquiry->Phone) ?></td>
+                    <td><?= $this->Number->format($enquiry->Phone, ['Phone' => 'AU','format' => 'international'])?></td>
                 </tr>
                 <tr>
                     <th><?= __('Enquiry Id') ?></th>
