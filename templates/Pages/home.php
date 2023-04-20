@@ -63,8 +63,8 @@ $this->disableAutoLayout();
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#Gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#Gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -110,7 +110,7 @@ $this->disableAutoLayout();
 <section class="page-section about-heading bg-gradient-reverse" id="services">
     <div class="container">
         <div class="gallery">
-            <div class="text-center"><h3 class="section-heading2 text-uppercase"><?= $homePageContentBlocks['service_header'] ?></h3></div>
+            <div class="text-center"><h3 class="section-heading2 text-uppercase-headers"><?= $homePageContentBlocks['service_header'] ?></h3></div>
 
             <div class="content">
                 <div class="container">
@@ -157,7 +157,7 @@ $this->disableAutoLayout();
 <!--Section for the Gallery-->
 <section class="page-section bg-gradient" id="Gallery">
     <div id="wrap" class="container my-5">
-        <div class="text-center"><h3 class="section-heading2 text-uppercase" ><?= $homePageContentBlocks['gallery_header'] ?></h3></div>
+        <div class="text-center"><h3 class="section-heading2 text-uppercase-headers" ><?= $homePageContentBlocks['gallery_header'] ?></h3></div>
         <div class="row">
             <div class="col-12">
 
@@ -231,7 +231,7 @@ $this->disableAutoLayout();
     <?= $this->Form->create($enquiry) ?>
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase"><?= $homePageContentBlocks['contact_header'] ?></h2>
+            <h2 class="section-heading text-uppercase-headers"><?= $homePageContentBlocks['contact_header'] ?></h2>
             <h3 class="section-subheading text-muted"> <?= $homePageContentBlocks['contact_description'] ?>
             <br> <?= $homePageContentBlocks['contact_email'] ?>
             <br> <?= $homePageContentBlocks['contact_phone'] ?>
@@ -249,21 +249,21 @@ $this->disableAutoLayout();
                     <div class="form-group">
                         <!-- Name input-->
 <!--                        <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />-->
-                        <?= $this->Form->control('Name', ['required' => true, 'label' => 'Your Name']) ?>
+                        <?= $this->Form->control('Name', ['required' => true, 'label' => 'Your Name*']) ?>
                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                     </div>
                     <div class="form-group">
                         <!-- Email address input-->
 <!--                        <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />-->
-                        <?= $this->Form->control('Email', ['required' => true, 'label' => 'Your Email']) ?>
+                        <?= $this->Form->control('Email', ['required' => true, 'label' => 'Your Email*']) ?>
 
                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is invalid, please try again.</div>
                     </div>
                     <div class="form-group mb-md-0">
                         <!-- Phone number input-->
 <!--                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />-->
-                        <?= $this->Form->control('Phone', ['required' => true, 'label' => 'Your Phone']) ?>
+                        <?= $this->Form->control('Phone', ['required' => true, 'label' => 'Your Phone*']) ?>
                         <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
                     </div>
                 </div>
@@ -272,7 +272,7 @@ $this->disableAutoLayout();
                         <!-- Message input-->
 
 <!--                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>-->
-                        <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message', 'rows' => 4]) ?>
+                        <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message*', 'rows' => 4]) ?>
 
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>
