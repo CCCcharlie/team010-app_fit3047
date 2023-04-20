@@ -11338,14 +11338,14 @@ section#contact {
 }
 section#contact .section-heading {
   color: ghostwhite;
-    font-size: 6rem;
+    font-size: 5rem;
     font-style: normal; /* set the font style to normal (non-italicized) */
     font-family: Quicksand;
 }
 
 .div section#contact .section-heading2{
     color: ghostwhite;
-    font-size: 6rem;
+    font-size: 5rem;
     font-style: normal; /* set the font style to normal (non-italicized) */
     font-family: Quicksand;
 }
@@ -11436,7 +11436,7 @@ img, svg{vertical-align: central;}
 }
 .section-heading .section-heading-upper {
     display: block;
-    font-size: 6rem;
+    font-size: 5rem;
     font-weight: 800;
 }
 
