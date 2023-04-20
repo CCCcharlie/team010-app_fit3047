@@ -22,9 +22,13 @@
             <?= $this->Form->create($cb, ['type'=>'file']) ?>
             <fieldset>
                 <legend><?= __('Edit Cb') ?></legend>
-                <?php
-                    echo $this->Form->control('hint'); ?>
-
+                <table>
+                <tr>
+                <th><?= __('Hint') ?></th>
+                <td><?= h($cb->hint) ?></td>
+                    
+                </tr>    
+                </table>
                 <!-- Constrain content type to be impossible to edit so that it doesnt break -->
                 <table>
                 <tr>

@@ -14,7 +14,6 @@
                     <th><?= $this->Paginator->sort('Email') ?></th>
                     <th><?= $this->Paginator->sort('Phone') ?></th>
                     <th><?= $this->Paginator->sort('Message') ?></th>
-                    <th><?= $this->Paginator->sort('enquiry_id') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -22,9 +21,8 @@
                 <?php foreach ($enquiry as $enquiry): ?>
                 <tr>
                     <td><?= h($enquiry->Email) ?></td>
-                    <td><?= $this->Number->format($enquiry->Phone) ?></td>
+                    <td><?= h($enquiry->Phone) ?></td>
                     <td><?= h($enquiry->Message) ?></td>
-                    <td><?= $this->Number->format($enquiry->enquiry_id) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $enquiry->enquiry_id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $enquiry->enquiry_id]) ?>

@@ -125,7 +125,7 @@ $this->disableAutoLayout();
                                     <?php $viewURL = "/services/view/".$service->service_id?>
 
                                     <!-- Image section -->
-                                    <a class="card-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fit: fill">
+                                    <a class="service-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fill: fill">
                                         <?= @$this->Html->image($service->image_name) ?>
                                     </a>
                                     <div class="card-content">
@@ -138,7 +138,7 @@ $this->disableAutoLayout();
                                         <!-- Description section -->
                                         <p class="card-subtitle"><?= h($service->service_desc) ?> <br>
                                             Duration:  <?= h($service->service_duration) ?> Minutes |
-                                            Cost: $<?= h($service->service_price) ?> |
+                                            Cost: $ <?= h($service->service_price) ?> |
                                         </p>
                                     </div>
                                 </div>
@@ -297,8 +297,9 @@ $this->disableAutoLayout();
             <!-- an error submitting the form-->
             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error! Message unable to send, please review form</div></div>
             <!-- Submit Button-->
-<!--            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>-->
-            <?= $this->Form->button(__('SUBMIT')) ?>
+ <!--           <div class = text-center <a class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">SUBMIT</a> </div>-->
+           <?= $this->Form->button(__('SUBMIT')) ?>
+
 
 
     </div>

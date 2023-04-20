@@ -93,7 +93,7 @@ class ServicesController extends AppController
             if ($this->Services->save($service)) {
                 $this->Flash->success(__('The service has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'admindex']);
             }
             $this->Flash->error(__('The service could not be saved. Please, try again.'));
         }
@@ -152,7 +152,7 @@ class ServicesController extends AppController
             if ($this->Services->save($service)) {
                 $this->Flash->success(__('The service has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'admindex']);
             }
                 $this->Flash->error(__('Unknown error!! Please try again'));
         }
@@ -176,6 +176,6 @@ class ServicesController extends AppController
             $this->Flash->error(__('The service could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'admindex']);
     }
 }
