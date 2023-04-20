@@ -63,8 +63,8 @@ $this->disableAutoLayout();
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#Gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#Gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -122,7 +122,7 @@ $this->disableAutoLayout();
                                 <div class="card">
                                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                                     when clicked-->
-                                    <?php $viewURL = "/services/view/".$service->service_id?>
+                                    <?php $viewURL = "/#contact" ?>
 
                                     <!-- Image section -->
                                     <a class="card-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fit: fill">
@@ -236,6 +236,7 @@ $this->disableAutoLayout();
             <br> <?= $homePageContentBlocks['contact_email'] ?>
             <br> <?= $homePageContentBlocks['contact_phone'] ?>
             <br> <?= $homePageContentBlocks['contact_social'] ?> </h3>
+            <br> <h3 class="section-subheading text-muted"> All fields marked with * are mandatory </h3>
         </div>
 
         <!-- * * SB Forms Contact Form * *-->
@@ -249,13 +250,13 @@ $this->disableAutoLayout();
                     <div class="form-group">
                         <!-- Name input-->
 <!--                        <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />-->
-                        <?= $this->Form->control('Name', ['required' => true, 'label' => 'Your Name']) ?>
+                        <?= $this->Form->control('Name', ['required' => true, 'label' => 'Your Name*']) ?>
                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                     </div>
                     <div class="form-group">
                         <!-- Email address input-->
 <!--                        <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />-->
-                        <?= $this->Form->control('Email', ['required' => true, 'label' => 'Your Email']) ?>
+                        <?= $this->Form->control('Email', ['required' => true, 'label' => 'Your Email*', 'type' => 'email']) ?>
 
                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                         <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
@@ -263,7 +264,7 @@ $this->disableAutoLayout();
                     <div class="form-group mb-md-0">
                         <!-- Phone number input-->
 <!--                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />-->
-                        <?= $this->Form->control('Phone', ['required' => true, 'label' => 'Your Phone']) ?>
+                        <?= $this->Form->control('Phone', ['required' => true, 'label' => 'Your Phone*']) ?>
                         <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
                     </div>
                 </div>
@@ -272,7 +273,7 @@ $this->disableAutoLayout();
                         <!-- Message input-->
 
 <!--                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>-->
-                        <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message', 'rows' => 4]) ?>
+                        <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message*', 'rows' => 4]) ?>
 
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>
@@ -285,7 +286,6 @@ $this->disableAutoLayout();
             <div class="d-none" id="submitSuccessMessage">
                 <div class="text-center text-white mb-3">
                     <div class="fw-bolder">Form submission successful!</div>
-                    To activate this form, sign up at
                     <br />
 
                 </div>
@@ -295,7 +295,7 @@ $this->disableAutoLayout();
 
             <!-- This is what your users will see when there is-->
             <!-- an error submitting the form-->
-            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">There was an Error sending the message!</div></div>
             <!-- Submit Button-->
 <!--            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>-->
             <?= $this->Form->button(__('Submit')) ?>

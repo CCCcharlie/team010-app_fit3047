@@ -49,7 +49,7 @@ $cakeDescription = 'Holistic Healing - All Services';
     </div>
 
 <div class="services index content">
-    <a class="btn float-right" href="/">Return to Home.</a>
+    <a class="button float-right" href="/">Return to Home.</a>
     <div>
     <h1><?= __(' All Services') ?></h1>
     </div>
@@ -71,7 +71,7 @@ $cakeDescription = 'Holistic Healing - All Services';
                 <div class="card">
                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                     when clicked-->
-                    <?php $viewURL = "/services/view/".$service->service_id?>
+                    <?php $viewURL = "/#contact" ?>
 
                     <!-- Image section -->
                     <a class="card-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fit: fill">

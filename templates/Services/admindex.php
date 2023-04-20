@@ -6,6 +6,10 @@
 
 $cakeDescription = 'Holistic Healing - All Services';
 $this->disableAutoLayout();
+error_reporting(E_ALL ^ E_WARNING); 
+error_reporting(E_ALL & ~E_USER_DEPRECATED);
+error_reporting(0);
+/* TODO: REMOVE THIS AND FIX ERRORS IT2 */ 
 ?>
 
 <head>
@@ -86,7 +90,7 @@ $this->disableAutoLayout();
                             <div class="card">
                                 <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                                 when clicked-->
-                                <?php $viewURL = "/services/view/".$service->service_id?>
+                                <?php $viewURL = "/services/admindex" ?>
 
                                 <!-- Image section -->
                                 <a class="card-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fit: fill">
@@ -107,7 +111,7 @@ $this->disableAutoLayout();
 
 
                                     <br><br><p style="font-size:150%; color:darkred">Admin Controls:  </p>
-                                    <p style="font-size:150%;><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $service->service_id], ['confirm' => __('Are you sure you want to delete service: {0}?', $service->service_name)]) ?>
+                                    <p style="font-size:150%"><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $service->service_id], ['confirm' => __('Are you sure you want to delete this service: {0}? Changes are irreverisble.', $service->service_name)]) ?>
                                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $service->service_id]) ?></p>
 
                                 </div>
