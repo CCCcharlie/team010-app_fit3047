@@ -83,7 +83,7 @@ $this->disableAutoLayout();
 
 <!--About Page Goes Here-->
 
-<section class="page-section1 about-heading bg-gradient" id="about">
+<section class="page-section1 about-heading bg-gradient-reverse" id="about">
 
     <div class="container">
         <!-- For cakephp, need to use $this->html->image instead of src to display the image-->
@@ -107,7 +107,7 @@ $this->disableAutoLayout();
 <!--End about Page-->
 
 <!--Section for the services-->
-<section class="page-section about-heading bg-gradient-reverse" id="services">
+<section class="page-section about-heading bg-gradient" id="services">
     <div class="container">
         <div class="gallery">
             <div class="text-center"><h3 class="section-heading2 text-uppercase-headers"><?= $homePageContentBlocks['service_header'] ?></h3></div>
@@ -155,7 +155,7 @@ $this->disableAutoLayout();
 <!--End about Page-->
 
 <!--Section for the Gallery-->
-<section class="page-section bg-gradient" id="Gallery">
+<section class="page-section bg-gradient-reverse" id="Gallery">
     <div id="wrap" class="container my-5">
         <div class="text-center"><h3 class="section-heading2 text-uppercase-headers" ><?= $homePageContentBlocks['gallery_header'] ?></h3></div>
         <div class="row">
@@ -249,7 +249,7 @@ $this->disableAutoLayout();
                     <div class="form-group">
                         <!-- Name input-->
 <!--                        <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />-->
-                        <?= $this->Form->control('Name', ['required' => true, 'label' => 'First Name*']) ?>
+                        <?= $this->Form->control('Name', ['required' => true, 'label' => 'Full Name*']) ?>
                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                     </div>
                     <div class="form-group">
@@ -260,6 +260,15 @@ $this->disableAutoLayout();
                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                         <div class="invalid-feedback" data-sb-feedback="email:email">Email is invalid, please try again.</div>
                     </div>
+                    <div class="form-group mb-md-0">
+                            <!-- Phone number input-->
+                            <!--                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />-->
+                            <?= $this->Form->control('Phone', ['required' => true, 'label' => 'Phone Number*']) ?>
+                            <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                    </div>
+
+                    </div>
+                    <div class="col-md-6">
                     <div class="form-group form-group-textarea mb-md-0">
                         <!-- Message input-->
 
@@ -268,23 +277,10 @@ $this->disableAutoLayout();
 
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>
-
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <!-- Name input-->
-                        <!--                        <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />-->
-                        <?= $this->Form->control('Name', ['required' => true, 'label' => 'Last Name*']) ?>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                    </div>
-                    <div class="form-group mb-md-0">
-                        <!-- Phone number input-->
-                        <!--                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />-->
-                        <?= $this->Form->control('Phone', ['required' => true, 'label' => 'Phone Number*']) ?>
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
                     </div>
 
                 </div>
+
             </div>
             <!-- Submit success message-->
             <!---->

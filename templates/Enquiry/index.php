@@ -11,6 +11,7 @@
         <table>
             <thead>
                 <tr>
+                    <th><?= $this->Paginator->sort('Name') ?></th>
                     <th><?= $this->Paginator->sort('Email') ?></th>
                     <th><?= $this->Paginator->sort('Phone') ?></th>
                     <th><?= $this->Paginator->sort('Message') ?></th>
@@ -20,6 +21,7 @@
             <tbody>
                 <?php foreach ($enquiry as $enquiry): ?>
                 <tr>
+                    <td><?= h($enquiry->Name) ?></td>
                     <td><?= h($enquiry->Email) ?></td>
                     <td><?= h($enquiry->Phone) ?></td>
                     <td><?= h($enquiry->Message) ?></td>

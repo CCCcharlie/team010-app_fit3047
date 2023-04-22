@@ -18,6 +18,10 @@
             <h3><?= h($enquiry->enquiry_id) ?></h3>
             <table>
                 <tr>
+                    <th><?= __('Client Name') ?></th>
+                    <td><?= h($enquiry->Name) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Client E-mail') ?></th>
                     <td><?= h($enquiry->Email) ?></td>
                 </tr>
