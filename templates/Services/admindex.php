@@ -47,8 +47,8 @@ error_reporting(0);
          to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
 
         <a target="_self" style="font-size: 150%" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
-        <a target="_self" style="font-size: 150%" href="<?= $this->Url->build('/enquiry') ?>">See all Enquiries</a>
-        <a target="_self" style="font-size: 150%" href="<?= $this->Url->build('/services/admindex') ?>">Edit Services</a>
+        <a target="_self" style="font-size: 150%" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiries</a>
+        <a target="_self" style="font-size: 150%" href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
         <a target="_self" style="font-size: 150%" href="<?= $this->Url->build('/') ?>">Return to Customer Page</a>
         <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
     </div>
