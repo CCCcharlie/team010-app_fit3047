@@ -56,9 +56,6 @@ $this->disableAutoLayout();
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="#page-top"><img src="img\gallery\<?=$homePageContentBlocks['nav_logo']?>" alt="Holistic Healing Logo"/> <?= $homePageContentBlocks['nav_heading'] ?> </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars ms-1"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
@@ -122,7 +119,7 @@ $this->disableAutoLayout();
                                 <div class="card">
                                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                                     when clicked-->
-                                    <?php $viewURL = "/services/view/".$service->service_id?>
+                                    <?php $viewURL = "#contact"?>
 
                                     <!-- Image section -->
                                     <a class="service-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fill: fill">
