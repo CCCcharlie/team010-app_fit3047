@@ -5,8 +5,8 @@
  */
 ?>
 <div class="enquiry index content">
-    <?= $this->Html->link(__('New Enquiry'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h2><?= __('Customer Enquiries') ?></h2>
+<!--    --><?php //= $this->Html->link(__('New Enquiry'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+<!--    <h2>--><?php //= __('Customer Enquiries') ?><!--</h2>-->
     <p>Here you can see all your enquiries.</p><br>
     <p>Click 'Edit Enquiry' to edit your enquiry. (eg. If you notice an error in the details.)</p>
     <p>Click 'Delete Enquiry' to delete an enquiry. (eg. If you notice a spam/duplicate enquiry.)</p>
