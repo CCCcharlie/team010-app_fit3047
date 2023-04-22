@@ -53,7 +53,7 @@ $this->disableAutoLayout();
 <body>
 <body id="page-top">
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+<nav class="navbar navbar-dark fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="#page-top"><img src="img\gallery\<?=$homePageContentBlocks['nav_logo']?>" alt="Holistic Healing Logo"/> <?= $homePageContentBlocks['nav_heading'] ?> </a>
 
