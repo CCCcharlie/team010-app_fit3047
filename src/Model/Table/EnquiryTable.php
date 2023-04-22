@@ -53,7 +53,13 @@ class EnquiryTable extends Table
         $validator
             ->scalar('Name')
             ->requirePresence('Name', 'create')
-            ->notEmptyString('Name');
+            ->notEmptyString('Name')
+            ->add('Name', [
+                'validCharacters' => [
+                    'rule' => ['custom', '/^[a-zA-Z]+(?:[-\'\s]{1}[a-zA-Z]+)*$/'],
+                    'message' => 'Please enter a valid name. Names cannot have multiple "-", or apostrophes in a row. Names cannot have numbers. '
+                ]
+            ]);
 
         $validator
             ->scalar('Email')
@@ -66,7 +72,7 @@ class EnquiryTable extends Table
                 ],
                 'emailContainsAt' => [
                     'rule' => ['custom', '/@/'],
-                    'message' => 'Please enter a valid email address'
+                    'message' => 'Your e-mail must contain the @ symbol.'
                 ]
             ]);
 
@@ -76,15 +82,13 @@ class EnquiryTable extends Table
             ->notEmptyString('Phone')
             ->add('Phone', [
                 'validFormat' => [
-                // Only allowing Australian No's. given our User Persona's are all AUS based. - Alex
                     'rule' => [
-                        'custom',
-                        '/^(?:\+61|0)[28]\d{8}$/'
+                        'custom', // Only allowing AUS Phone numbers because all personas are AUS Based.
+                        '/^(0[1-9]\d{8}|13\d{4}|1300\d{6}|1800\d{6})$/'
                     ],
                     'message' => 'Please enter a valid Australian phone number'
                 ]
             ]);
-
         $validator
             ->scalar('Message')
             ->maxLength('Message', 50)
