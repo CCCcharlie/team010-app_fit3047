@@ -2880,6 +2880,15 @@ position: relative;
   --bs-btn-disabled-border-color: #ffc800;
 }
 
+.btn-sizing {
+    font-size: 2rem;
+}
+
+.btn-sizing-hp {
+    font-size: 4rem;
+    margin-top: 5rem;
+}
+
 .btn-secondary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #6c757d;
@@ -11061,7 +11070,7 @@ header.masthead {
   background-size: 100%;}
 
 header.masthead .masthead-heading {
-    text-align: match-parent;
+  text-align: match-parent;
   font-size: 9rem;
   font-weight: 700;
   line-height: 3.25rem;
@@ -11075,11 +11084,11 @@ header.masthead .masthead-heading {
     padding-bottom: 20rem;
   }
   header.masthead .masthead-heading {
-    font-size:6.2rem;
+    font-size: 6.5rem;
     font-weight: 700;
-    line-height: 1rem;
-    margin-bottom: 4rem;
-    margin-top: 10rem;
+    line-height: 6rem;
+    margin-bottom: 2rem;
+    margin-top: 6rem;
   }
 }
 #portfolio .portfolio-item {
@@ -11372,15 +11381,17 @@ section#contact .section-heading {
     font-family: Quicksand;
 }
 
-
-
+.form-group {
+    margin-bottom: 1.5rem;
+    padding: .25rem;
+}
 
 section#contact form#contactForm .form-group {
   margin-bottom: 1.5rem;
 }
 section#contact form#contactForm .form-group input,
 section#contact form#contactForm .form-group textarea {
-  padding: 1.25rem;
+  padding: 3rem;
 }
 section#contact form#contactForm .form-group input.form-control {
     height: 50%;

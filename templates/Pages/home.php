@@ -75,7 +75,7 @@ $this->disableAutoLayout();
     <div class="container">
         <div class="masthead-heading"><?= $homePageContentBlocks['welcome_header'] ?></div>
         <div class="masthead-heading text-uppercase"> <?= $homePageContentBlocks['welcome_description'] ?></div>
-        <a class="btn btn-primary btn-l text-uppercase" href="#contact">Book now</a>
+        <a class="btn btn-primary btn-l text-uppercase btn-sizing-hp" href="#contact">Book now</a>
     </div>
 
 </header>
@@ -145,7 +145,7 @@ $this->disableAutoLayout();
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <a class="btn btn-primary btn-l text-uppercase" href="services">See All Services</a>
+                    <a class="btn btn-primary btn-l text-uppercase btn-sizing" href="services">See All Services</a>
                 </div>
             </div>
 <!--            --><?php /*debug($homePageContentBlocks)*/?>
@@ -249,33 +249,41 @@ $this->disableAutoLayout();
                     <div class="form-group">
                         <!-- Name input-->
 <!--                        <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />-->
-                        <?= $this->Form->control('Name', ['required' => true, 'label' => 'Your Name*']) ?>
+                        <?= $this->Form->control('Name', ['required' => true, 'label' => 'First Name*']) ?>
                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                     </div>
                     <div class="form-group">
                         <!-- Email address input-->
 <!--                        <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />-->
-                        <?= $this->Form->control('Email', ['required' => true, 'label' => 'Your Email*']) ?>
+                        <?= $this->Form->control('Email', ['required' => true, 'label' => 'Email*']) ?>
 
                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                         <div class="invalid-feedback" data-sb-feedback="email:email">Email is invalid, please try again.</div>
                     </div>
-                    <div class="form-group mb-md-0">
-                        <!-- Phone number input-->
-<!--                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />-->
-                        <?= $this->Form->control('Phone', ['required' => true, 'label' => 'Your Phone*']) ?>
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                    </div>
-                </div>
-                <div class="col-md-6">
                     <div class="form-group form-group-textarea mb-md-0">
                         <!-- Message input-->
 
-<!--                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>-->
+                        <!--                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>-->
                         <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message*', 'rows' => 4]) ?>
 
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <!-- Name input-->
+                        <!--                        <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />-->
+                        <?= $this->Form->control('Name', ['required' => true, 'label' => 'Last Name*']) ?>
+                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                    </div>
+                    <div class="form-group mb-md-0">
+                        <!-- Phone number input-->
+                        <!--                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />-->
+                        <?= $this->Form->control('Phone', ['required' => true, 'label' => 'Phone Number*']) ?>
+                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                    </div>
+
                 </div>
             </div>
             <!-- Submit success message-->
@@ -298,7 +306,7 @@ $this->disableAutoLayout();
             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error! Message unable to send, please review form</div></div>
             <!-- Submit Button-->
  <!--           <div class = text-center <a class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">SUBMIT</a> </div>-->
-           <?= $this->Form->button(__('SUBMIT')) ?>
+            <?= $this->Form->button(__('SUBMIT')) ?></form>
 
 
 
