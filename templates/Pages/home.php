@@ -119,7 +119,7 @@ $this->disableAutoLayout();
                                 <div class="card">
                                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                                     when clicked-->
-                                    <?php $viewURL = "#contact".$service->service_id?>
+                                    <?php $viewURL = "#contact"?>
 
                                     <!-- Image section -->
                                     <a class="service-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fill: fill">
