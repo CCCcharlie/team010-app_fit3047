@@ -24,12 +24,12 @@ $cakeDescription = 'Holistic Healing - Site Editor';
         </div>
         <div class="accordion-panel">
             <p>This is the site content editor. It's here to let you change your website and keep things up to-date.</p><br>
-            <p>If you wish to change services see the navigation bar above.</p><br>
+            <p>If you wish to go to other components of site, please use the navigation bar above.</p><br>
             <p>It should be stated that this content editor will not allow you to dramatically change this website, only change the elements already in place. </p> <br>
-            <p>Unsure how to edit? Follow the tips listed here: </p><br>
-            <p>i.) Find the piece you want to edit through using both the hint and the description.</p><br>
+            <p>Don't know how to edit? Follow the tips listed here: </p><br>
+            <p>i.) Find the piece you want to edit through using both the hint and the description.</p>
             <p>ii.) Click 'Edit' on the Actions Column.</p>
-            <p>iii.) Change the content to your desires. This site </p>
+            <p>iii.) Change the content to your desires. </p>
             <p>iv.) Hit submit. Your changes should apply to the website instantly. </p> <br>
             <p>Success! </p><br>
         </div>
