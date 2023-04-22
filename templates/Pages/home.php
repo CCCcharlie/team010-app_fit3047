@@ -304,7 +304,7 @@ $this->disableAutoLayout();
 <!--        Bandaid Style fix to stop the button from looking so pre-baked-->
     <?= $this->Form->button(__('SUBMIT'), [
         'style' => 'background-color: #2D593D; color: #fff; padding: 10px 20px; border: 2px solid #2D593D; border-radius: 5px; font-size: 16px; cursor: pointer;',
-        'url' => '#contact'
+        'url' => '/#contact'
     ]) ?>
     </form>
 
