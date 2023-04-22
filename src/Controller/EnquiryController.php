@@ -50,11 +50,11 @@ class EnquiryController extends AppController
         if ($this->request->is('post')) {
             $enquiry = $this->Enquiry->patchEntity($enquiry, $this->request->getData());
             if ($this->Enquiry->save($enquiry)) {
-                $this->Flash->success(__('The enquiry has been saved.'));
+                // $this->Flash->success(__('The enquiry has been saved.')); - Causes issues.
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The enquiry could not be saved. Please, try again.'));
+            // $this->Flash->error(__('The enquiry could not be saved. Please, try again.')); - Commenting out because it's showing on pages it shouldn't. -Alex
         }
         $this->set(compact('enquiry'));
     }
@@ -78,7 +78,8 @@ class EnquiryController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The enquiry could not be saved. Please, try again.'));
+            // $this->Flash->error(__('The enquiry could not be saved. Please, try again.'));
+            // Showing on pages it shouldn't. Commented out.
         }
         $this->set(compact('enquiry'));
     }
