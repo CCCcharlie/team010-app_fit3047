@@ -11090,6 +11090,14 @@ header.masthead .masthead-heading {
     margin-bottom: 2rem;
     margin-top: 6rem;
   }
+
+    header.masthead .masthead-heading-desc {
+        font-size: 5.5rem;
+        font-weight: 700;
+        line-height: 6rem;
+        margin-bottom: 2rem;
+        margin-top: 6rem;
+    }
 }
 #portfolio .portfolio-item {
   max-width: 26rem;

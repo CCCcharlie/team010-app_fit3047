@@ -74,7 +74,7 @@ $this->disableAutoLayout();
 <header class="masthead" style="background-image: url(<?= $this->Html->image('gallery/' . $homePageContentBlocks['welcome_image']) ?>">
     <div class="container">
         <div class="masthead-heading"><?= $homePageContentBlocks['welcome_header'] ?></div>
-        <div class="masthead-heading text-uppercase"> <?= $homePageContentBlocks['welcome_description'] ?></div>
+        <div class="masthead-heading-desc"> <?= $homePageContentBlocks['welcome_description'] ?></div>
         <a class="btn btn-primary btn-l text-uppercase btn-sizing-hp" href="#contact">Book now</a>
     </div>
 
