@@ -6,7 +6,8 @@
 ?>
 <div class="enquiry index content">
     <?= $this->Html->link(__('New Enquiry'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h2><?= __('Enquiry') ?></h2>
+    <h2><?= __('Customer Enquiries') ?></h2>
+    <p>Here you can see all your enquiries.</p>
     <div class="table-responsive">
         <table>
             <thead>
@@ -26,7 +27,6 @@
                     <td><?= h($enquiry->Phone) ?></td>
                     <td><?= h($enquiry->Message) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $enquiry->enquiry_id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $enquiry->enquiry_id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $enquiry->enquiry_id], ['confirm' => __('Are you sure you want to delete # {0}?', $enquiry->enquiry_id)]) ?>
                     </td>

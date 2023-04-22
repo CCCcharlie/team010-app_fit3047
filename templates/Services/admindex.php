@@ -6,10 +6,10 @@
 
 $cakeDescription = 'Holistic Healing - All Services';
 $this->disableAutoLayout();
-error_reporting(E_ALL ^ E_WARNING); 
+error_reporting(E_ALL ^ E_WARNING);
 error_reporting(E_ALL & ~E_USER_DEPRECATED);
 error_reporting(0);
-/* TODO: REMOVE THIS AND FIX ERRORS IT2 */ 
+/* TODO: REMOVE THIS AND FIX ERRORS IT2 */
 ?>
 
 <head>
@@ -38,7 +38,7 @@ error_reporting(0);
         we must use $this->html->image instead of <img src=""> in this case for it to work -->
 
         <!-- <?php /*= "$this->Url->build('/')" */?> <- this line of code is for redirection, "/" is the root path-->
-        <a href="<?= $this->Url->build('/') ?>"> <?= $this->Html->image('holistichealinglogo.png', ['alt' => 'Holistic healing logo']); ?>
+        <a href="<?= $this->Url->build('/') ?>"><?= $this->Html->image('holistichealinglogofull.png', ['alt' => 'Holistic healing logo', 'class' => 'logo']); ?>
             <a href="<?= $this->Url->build('/') ?>"> Holistic <span> Healings - Admin Portal</a>
     </div>
     <div class="top-nav-links">
