@@ -72,10 +72,10 @@ th a,
 }
 
 button{
-    background-color: #2D593D;
+    background-color: #2D593D; !important;
 }
 .button,button,input[type='button'],input[type='reset'],input[type='submit']{
-    background-color: #2D593D;
+    background-color: #2D593D; !important;
     border: 0.1rem #2D593D;
 
 }

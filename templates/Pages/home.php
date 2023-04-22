@@ -91,7 +91,7 @@ $this->disableAutoLayout();
         <div class="about-heading-content">
             <div class="row1">
                 <div class="col-xl-9 col-lg-10 mx-auto">
-                    <div class="bg-faded rounded p-5 "> <!--find p-5,mb-4-->
+                    <div class="bg-faded rounded p-5 "> <!--find p-5,mb-4. I've done a few temporary fixes here.-->
                         <h2 class="section-heading mb-4">
                             <span class="section-heading-upper"><?= $homePageContentBlocks['about_header'] ?></span>
                         </h2>
@@ -302,7 +302,7 @@ $this->disableAutoLayout();
             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error! Message unable to send, please review form</div></div>
             <!-- Submit Button-->
  <!--           <div class = text-center <a class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">SUBMIT</a> </div>-->
-            <?= $this->Form->button(__('SUBMIT')) ?></form>
+    <?= $this->Form->button(__('SUBMIT'), ['style' => 'background-color: #2D593D; color: #fff; padding: 10px 20px; border: 2px solid #2D593D; border-radius: 5px; font-size: 16px; cursor: pointer;']) ?></form>
 
 
 
