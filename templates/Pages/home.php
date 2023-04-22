@@ -228,7 +228,7 @@ $this->disableAutoLayout();
 <!-- Contact-->
 <section class="page-section bg-gradient" id="contact">
 
-    <?= $this->Form->create($enquiry) ?>
+    <?= $this->Form->create($enquiry, ['url' => '#contact']) ?>
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase-headers"><?= $homePageContentBlocks['contact_header'] ?></h2>
@@ -304,7 +304,7 @@ $this->disableAutoLayout();
 <!--        Bandaid Style fix to stop the button from looking so pre-baked-->
     <?= $this->Form->button(__('SUBMIT'), [
         'style' => 'background-color: #2D593D; color: #fff; padding: 10px 20px; border: 2px solid #2D593D; border-radius: 5px; font-size: 16px; cursor: pointer;',
-        'url' => '/#contact'
+        'href' => '#contact'
     ]) ?>
     </form>
 
