@@ -56,9 +56,6 @@ $this->disableAutoLayout();
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="#page-top"><img src="img\gallery\<?=$homePageContentBlocks['nav_logo']?>" alt="Holistic Healing Logo"/> <?= $homePageContentBlocks['nav_heading'] ?> </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars ms-1"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
@@ -74,7 +71,7 @@ $this->disableAutoLayout();
 <header class="masthead" style="background-image: url(<?= $this->Html->image('gallery/' . $homePageContentBlocks['welcome_image']) ?>">
     <div class="container">
         <div class="masthead-heading"><?= $homePageContentBlocks['welcome_header'] ?></div>
-        <div class="masthead-heading text-uppercase"> <?= $homePageContentBlocks['welcome_description'] ?></div>
+        <div class="masthead-heading-desc"> <?= $homePageContentBlocks['welcome_description'] ?></div>
         <a class="btn btn-primary btn-l text-uppercase btn-sizing-hp" href="#contact">Book now</a>
     </div>
 
@@ -91,7 +88,7 @@ $this->disableAutoLayout();
         <div class="about-heading-content">
             <div class="row1">
                 <div class="col-xl-9 col-lg-10 mx-auto">
-                    <div class="bg-faded rounded p-5 "> <!--find p-5,mb-4-->
+                    <div class="bg-faded rounded p-5 "> <!--find p-5,mb-4. I've done a few temporary fixes here.-->
                         <h2 class="section-heading mb-4">
                             <span class="section-heading-upper"><?= $homePageContentBlocks['about_header'] ?></span>
                         </h2>
@@ -122,7 +119,7 @@ $this->disableAutoLayout();
                                 <div class="card">
                                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                                     when clicked-->
-                                    <?php $viewURL = "/services/view/".$service->service_id?>
+                                    <?php $viewURL = "#contact"?>
 
                                     <!-- Image section -->
                                     <a class="service-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fill: fill">
@@ -228,7 +225,7 @@ $this->disableAutoLayout();
 <!-- Contact-->
 <section class="page-section bg-gradient" id="contact">
 
-    <?= $this->Form->create($enquiry) ?>
+    <?= $this->Form->create($enquiry, ['url' => '#contact']) ?>
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase-headers"><?= $homePageContentBlocks['contact_header'] ?></h2>
@@ -288,8 +285,7 @@ $this->disableAutoLayout();
             <!-- has successfully submitted-->
             <div class="d-none" id="submitSuccessMessage">
                 <div class="text-center text-white mb-3">
-                    <div class="fw-bolder">Form submission successful!</div>
-                    To activate this form, sign up at
+                    <div class="fw-bolder">Enquiry submission successful!</div>
                     <br />
 
                 </div>
@@ -302,7 +298,12 @@ $this->disableAutoLayout();
             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error! Message unable to send, please review form</div></div>
             <!-- Submit Button-->
  <!--           <div class = text-center <a class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">SUBMIT</a> </div>-->
-            <?= $this->Form->button(__('SUBMIT')) ?></form>
+<!--        Bandaid Style fix to stop the button from looking so pre-baked-->
+    <?= $this->Form->button(__('SUBMIT'), [
+        'style' => 'background-color: #2D593D; color: #fff; padding: 10px 20px; border: 2px solid #2D593D; border-radius: 5px; font-size: 16px; cursor: pointer;',
+        'href' => '#contact'
+    ]) ?>
+    </form>
 
 
 

@@ -21,39 +21,42 @@
         <div class="cb form content">
             <?= $this->Form->create($cb, ['type'=>'file']) ?>
             <fieldset>
-                <legend><?= __('Edit Cb') ?></legend>
+                <legend><?= __('Edit This Item') ?></legend>
+                <p>Welcome to the Edit Page. Please make any changes below. </p>
                 <table>
                 <tr>
-                <th><?= __('Hint') ?></th>
+                <th><?= __('Hint: ') ?></th>
                 <td><?= h($cb->hint) ?></td>
-                    
-                </tr>    
+
+                </tr>
                 </table>
                 <!-- Constrain content type to be impossible to edit so that it doesnt break -->
                 <table>
                 <tr>
                     <th><?= __('Content Type') ?></th>
                     <td><?= h($cb->content_type) ?></td>
+                    <th><?= __('Content Description') ?></th>
+                    <td><?= h($cb->content_description) ?></td>
                 </tr>
                 </table>
                 <br>
 
-                <?php echo $this->Form->control('content_description', ['type'=>'textarea', 'style' => 'height: 10rem;']); ?>
+<!--                --><?php //echo $this->Form->control('content_description', ['type'=>'textarea', 'style' => 'height: 10rem;']); ?>
 
                 <!-- Displays the content of the previous value (which is your current value here)-->
-                <table>
-                    <tr>
-                        <th><?= __('Previous Value') ?></th>
-                        <td><?php if(!$cb->previous_value){
-                            echo h("No previous value");
-
-                                } else {
-                            echo h($cb->previous_value);
-                                }
-                            ?>
-                        </td>
-                    </tr>
-                </table>
+<!--                <table>-->
+<!--                    <tr>-->
+<!--                        <th>--><?php //= __('Previous Value') ?><!--</th>-->
+<!--                        <td>--><?php //if(!$cb->previous_value){
+//                            echo h("No previous value");
+//
+//                                } else {
+//                            echo h($cb->previous_value);
+//                                }
+//                            ?>
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                </table>-->
                 <br>
 
 

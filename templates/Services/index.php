@@ -37,7 +37,7 @@ $cakeDescription = 'Holistic Healing - All Services';
         we must use $this->html->image instead of <img src=""> in this case for it to work -->
 
         <!-- <?php /*= "$this->Url->build('/')" */?> <- this line of code is for redirection, "/" is the root path-->
-        <a href="<?= $this->Url->build('/') ?>"> <?= $this->Html->image('holistichealinglogo.png', ['alt' => 'Holistic healing logo']); ?>
+        <a href="<?= $this->Url->build('/') ?>"> <?= $this->Html->image('holistichealinglogofull.png', ['alt' => 'Holistic healing logo', 'class' => 'logo']); ?>
             <a href="<?= $this->Url->build('/') ?>">Holistic<span> Healings</a>
     </div>
     </div>

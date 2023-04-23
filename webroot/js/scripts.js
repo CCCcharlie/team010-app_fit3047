@@ -76,3 +76,22 @@ $("[id^=carousel]").carousel({
 //     $("[id=carousel-selector-" + id + "]").addClass("selected");
 //     $("#carousel-thumbs").carousel(thumbNum);
 // });
+
+// Accordion function
+// var acc = document.querySelectorAll(".accordion-header");
+// var i;
+//
+// for (i = 0; i < acc.length; i++) {
+//     acc[i].addEventListener("click", function() {
+//         /* Toggle active class to expand/collapse panel */
+//         this.classList.toggle("active");
+//
+//         /* Toggle display property of panel to show/hide content */
+//         var panel = this.nextElementSibling;
+//         if (panel.style.display === "block") {
+//             panel.style.display = "none";
+//         } else {
+//             panel.style.display = "block";
+//         }
+//     });
+// }

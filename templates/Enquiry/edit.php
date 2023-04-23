@@ -12,9 +12,9 @@
             <?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $enquiry->enquiry_id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $enquiry->enquiry_id), 'class' => 'side-nav-item']
+                ['confirm' => __('Are you sure you want to delete # {0}? This change cannot be undone!', $enquiry->enquiry_id), 'class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(__('List Enquiry'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Return to Enquiry Page'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">

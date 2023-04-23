@@ -53,22 +53,45 @@ class EnquiryTable extends Table
         $validator
             ->scalar('Name')
             ->requirePresence('Name', 'create')
-            ->notEmptyString('Name');
+            ->notEmptyString('Name')
+            ->add('Name', [
+                'validCharacters' => [
+                    'rule' => ['custom', '/^[a-zA-Z]+(?:[-\'\s]{1}[a-zA-Z]+)*$/'],
+                    'message' => 'Please enter a valid name. Names cannot have multiple "-", or apostrophes in a row. Names cannot have numbers. '
+                ]
+            ]);
 
         $validator
             ->scalar('Email')
-            ->maxLength('Email', 50)
             ->requirePresence('Email', 'create')
-            ->notEmptyString('Email');
+            ->notEmptyString('Email')
+            ->add('Email', [
+                'validEmail' => [
+                    'rule' => 'email',
+                    'message' => 'Please enter a valid email address'
+                ],
+                'emailContainsAt' => [
+                    'rule' => ['custom', '/@/'],
+                    'message' => 'Your e-mail must contain the @ symbol.'
+                ]
+            ]);
 
         $validator
-            ->integer('Phone')
+            ->scalar('Phone')
             ->requirePresence('Phone', 'create')
-            ->notEmptyString('Phone');
-
+            ->notEmptyString('Phone')
+            ->add('Phone', [
+                'validFormat' => [
+                    'rule' => [
+                        'custom', // Only allowing AUS Phone numbers because all personas are AUS Based.
+                        '/^(0[1-9]\d{8}|13\d{4}|1300\d{6}|1800\d{6})$/'
+                    ],
+                    'message' => 'Please enter a valid Australian phone number'
+                ]
+            ]);
         $validator
             ->scalar('Message')
-            ->maxLength('Message', 50)
+            ->maxLength('Message', 500)
             ->requirePresence('Message', 'create')
             ->notEmptyString('Message');
 

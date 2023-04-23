@@ -28,7 +28,7 @@ class CbController extends AppController
      */
     public function index()
     {
-        $cb = $this->paginate($this->Cb);
+        $cb = $this->paginate($this->Cb, ['limit' => 10]);
 
         $this->set(compact('cb'));
     }
@@ -60,11 +60,11 @@ class CbController extends AppController
         if ($this->request->is('post')) {
             $cb = $this->Cb->patchEntity($cb, $this->request->getData());
             if ($this->Cb->save($cb)) {
-                $this->Flash->success(__('The cb has been saved.'));
+                $this->Flash->success(__('The website edit has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The cb could not be saved. Please, try again.'));
+            $this->Flash->error(__('There was an issue with the website edit. Please, try again.'));
         }
         $this->set(compact('cb'));
     }
@@ -117,7 +117,7 @@ class CbController extends AppController
             }
             //save if there are no errors
             if ($this->Cb->save($cb)) {
-                $this->Flash->success(__('The cb has been saved.'));
+                $this->Flash->success(__('Your changes have been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
