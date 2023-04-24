@@ -119,7 +119,7 @@ $this->disableAutoLayout();
                                 <div class="card">
                                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                                     when clicked-->
-                                    <?php $viewURL = "#contact"?>
+                                    <!-- <?php $viewURL = "#contact"?> -->
 
                                     <!-- Image section -->
                                     <a class="service-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fill: fill">
@@ -300,7 +300,7 @@ $this->disableAutoLayout();
  <!--           <div class = text-center <a class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">SUBMIT</a> </div>-->
 <!--        Bandaid Style fix to stop the button from looking so pre-baked-->
     <?= $this->Form->button(__('SUBMIT'), [
-        'style' => 'background-color: #2D593D; color: #fff; padding: 10px 20px; border: 2px solid #2D593D; border-radius: 5px; font-size: 16px; cursor: pointer;',
+        'style' => 'background-color: #ffc800; color: #fff; padding: 2px 20px; border: 2px solid #ffc800; border-radius: 5px; font-size: 20px; cursor: pointer;',
         'href' => '#contact'
     ]) ?>
     </form>
