@@ -55,12 +55,16 @@ class PagesController extends AppController
             $enquiry = $this->Enquiry->patchEntity($enquiry, $this->request->getData());
 
             if ($this->Enquiry->save($enquiry)) {
-                $this->Flash->success(__('The enquiry has been saved.'));
+                echo '<script>alert("The enquiry has been saved")</script>';
 
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->success(__('The enquiry has been saved.'));
+                echo '<script>setTimeout(function(){ window.location.href = "index.php"; }, 3000);</script>'; // Wait for 3 seconds before redirecting
+                exit; // Stop the execution of the current script
+
+//               return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The enquiry could not be saved. Please, try again.'));
-            
+
 
         }
         $this->set(compact('enquiry'));
