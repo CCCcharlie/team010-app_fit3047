@@ -58,7 +58,7 @@ class PagesController extends AppController
                 echo '<script>alert("The enquiry has been saved")</script>';
 
 //                $this->Flash->success(__('The enquiry has been saved.'));
-                echo '<script>setTimeout(function(){ window.location.href = "index.php"; }, 3000);</script>'; // Wait for 3 seconds before redirecting
+                echo '<script>setTimeout(function(){ window.location.href = "index.php"; }, 200);</script>'; // Wait for 3 seconds before redirecting
                 exit; // Stop the execution of the current script
 
 //               return $this->redirect(['action' => 'index']);
