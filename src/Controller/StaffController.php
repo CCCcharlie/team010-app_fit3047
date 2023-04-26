@@ -12,6 +12,18 @@ namespace App\Controller;
 class StaffController extends AppController
 {
     /**
+     * Controller initialize override
+     *
+     * @return void
+     */
+    public function initialize(): void {
+        parent::initialize();
+
+        // Controller-level function/action whitelist for authentication
+        $this->Authentication->allowUnauthenticated(['login', 'logout']);
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Http\Response|null|void Renders view
@@ -102,4 +114,45 @@ class StaffController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    /**
+     * Login method
+     *
+     * @return \Cake\Http\Response|void|null Redirect to location before authentication
+     */
+    public function login() {
+        $this->request->allowMethod(['get', 'post']);
+        $result = $this->Authentication->getResult();
+        // if user passes authentication, grant access to the system
+        if ($result && $result->isValid()) {
+            // set a fallback location in case user logged in without triggering 'unauthenticatedRedirect'
+            $fallbackLocation = ['controller' => 'Staff', 'action' => 'index'];
+
+            // and redirect user to the location they're trying to access
+            return $this->redirect($this->Authentication->getLoginRedirect() ?? $fallbackLocation);
+        }
+
+        // display error if user submitted their credentials but authentication failed
+        if ($this->request->is('post') && !$result->isValid()) {
+            $this->Flash->error(__('Email address and/or Password is incorrect. Please try again. '));
+        }
+    }
+
+    /**
+     * Logout method
+     *
+     * @return \Cake\Http\Response|void|null
+     */
+    public function logout() {
+        // We only need to log out a user when they're logged in
+        $result = $this->Authentication->getResult();
+        if ($result && $result->isValid()) {
+            $this->Authentication->logout();
+
+            $this->Flash->success(__('You have been logged out successfully. '));
+        }
+
+        // Otherwise just send them to the login page
+        return $this->redirect(['controller' => 'Staff', 'action' => 'login']);
+    }
+
 }

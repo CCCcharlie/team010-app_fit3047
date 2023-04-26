@@ -22,6 +22,7 @@ use Cake\View\View;
  *
  * Your application's default view class
  *
+ * @property \Authentication\View\Helper\IdentityHelper Identity Authentication Plugin Identity view helper
  * @link https://book.cakephp.org/4/en/views.html#the-app-view
  */
 class AppView extends View
@@ -37,5 +38,7 @@ class AppView extends View
      */
     public function initialize(): void
     {
+        // Load View Helper of Authentication plugin
+        $this->loadHelper('Authentication.Identity');
     }
 }

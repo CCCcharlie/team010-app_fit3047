@@ -12,6 +12,18 @@ namespace App\Controller;
 class ServicesController extends AppController
 {
     /**
+     * Controller initialize override
+     *
+     * @return void
+     */
+    public function initialize(): void {
+        parent::initialize();
+
+        // Controller-level function/action whitelist for authentication
+        $this->Authentication->allowUnauthenticated(['view', 'index']);
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Http\Response|null|void Renders view

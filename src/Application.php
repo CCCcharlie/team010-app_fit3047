@@ -28,13 +28,24 @@ use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
+use Cake\Routing\Router;
+use Psr\Http\Message\ServerRequestInterface;
+
+
+//AUTH
+use Authentication\AuthenticationService;
+use Authentication\AuthenticationServiceInterface;
+use Authentication\AuthenticationServiceProviderInterface;
+use Authentication\Identifier\IdentifierInterface;
+use Authentication\Middleware\AuthenticationMiddleware;
+
 /**
  * Application setup class.
  *
  * This defines the bootstrapping logic and middleware layers you
  * want to use in your application.
  */
-class Application extends BaseApplication
+class Application extends BaseApplication implements AuthenticationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
@@ -64,6 +75,9 @@ class Application extends BaseApplication
         }
 
         // Load more plugins here
+        $this->addPlugin('Authentication');
+        $this->addPlugin('Migrations');
+
     }
 
     /**
@@ -101,7 +115,10 @@ class Application extends BaseApplication
             // https://book.cakephp.org/4/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
             ->add(new CsrfProtectionMiddleware([
                 'httponly' => true,
-            ]));
+            ]))
+
+            // Add Authentication support by plugin
+            ->add(new AuthenticationMiddleware($this));
 
         return $middlewareQueue;
     }
@@ -112,17 +129,53 @@ class Application extends BaseApplication
      * @param \Cake\Core\ContainerInterface $container The Container to update.
      * @return void
      * @link https://book.cakephp.org/4/en/development/dependency-injection.html#dependency-injection
+
+     * Authentication plugin implementation
+     * @param ServerRequestInterface $request
+     * @return AuthenticationServiceInterface
+
      */
-    public function services(ContainerInterface $container): void
-    {
+    public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface {
+        $authenticationService = new AuthenticationService([
+            'unauthenticatedRedirect' => Router::url([
+                'controller' => 'Staff',
+                'action' => 'login',
+                'plugin' => null,
+                'prefix' => null
+            ]),
+            'queryParam' => 'redirect',
+        ]);
+
+        $authentication_fields = [
+            IdentifierInterface::CREDENTIAL_USERNAME => 'staff_email',
+            IdentifierInterface::CREDENTIAL_PASSWORD => 'staff_password'
+        ];
+
+        // Load identifiers, ensure we check email and password fields
+        $authenticationService->loadIdentifier('Authentication.Password', ['fields' => $authentication_fields]);
+
+        // Load the authenticators, you want session first
+        $authenticationService->loadAuthenticator('Authentication.Session');
+        // Configure form data check to pick email and password
+        $authenticationService->loadAuthenticator('Authentication.Form', [
+            'fields' => $authentication_fields,
+            'loginUrl' => Router::url([
+                'controller' => 'Staff',
+                'action' => 'login',
+                'plugin' => null,
+                'prefix' => null
+            ]),
+        ]);
+
+        return $authenticationService;
     }
 
     /**
-     * Bootstrapping for CLI application.
+     * Register application container services.
      *
-     * That is when running commands.
-     *
+     * @param \Cake\Core\ContainerInterface $container The Container to update.
      * @return void
+     * @link https://book.cakephp.org/4/en/development/dependency-injection.html#dependency-injection
      */
     protected function bootstrapCli(): void
     {
@@ -130,7 +183,8 @@ class Application extends BaseApplication
         $this->addOptionalPlugin('Bake');
 
         $this->addPlugin('Migrations');
-
+    }
+        public function services(ContainerInterface $container): void {
         // Load more plugins here
     }
 }

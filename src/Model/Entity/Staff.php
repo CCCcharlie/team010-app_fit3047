@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 
 /**
@@ -31,6 +32,34 @@ class Staff extends Entity
         'staff_lname' => true,
         'staff_position' => true,
         'staff_email' => true,
-        'staff_password' => true,
+//        'staff_password' => true,
     ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var array<string>
+     */
+    protected $_hidden = [
+        'staff_password',
+    ];
+
+    /**
+     * Generate display field for User entity
+     * @return string Display field
+     */
+
+
+    /**
+     * Hashing password for Staff entity
+     * @param string $staff_password Password field
+     * @return string|null hashed password
+     */
+    protected function _setStaffPassword(string $staff_password): ?string {
+        if (strlen($staff_password) > 0) {
+            return (new DefaultPasswordHasher())->hash($staff_password);
+        }
+        return $staff_password;
+    }
+
 }
