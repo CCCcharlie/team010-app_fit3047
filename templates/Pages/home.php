@@ -19,6 +19,10 @@
  * @var string[] $homePageContentBlocks
  * @var iterable<\App\Model\Entity\Service> $services
  * @var iterable<\App\Model\Entity\Cb> $cb
+  * @var \App\Model\Entity\Booking $Booking
+ * @var \Cake\Collection\CollectionInterface|string[] $customer
+ * @var \Cake\Collection\CollectionInterface|string[] $staff
+ * @var \Cake\Collection\CollectionInterface|string[] $services
  */
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
@@ -33,6 +37,8 @@ $this->disableAutoLayout();
 <!DOCTYPE html>
 <html>
 <head>
+
+
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
@@ -41,15 +47,22 @@ $this->disableAutoLayout();
     </title>
     <?= $this->Html->meta('icon') ?>
 
+
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" type="text/css" />
 
 
-    <?= $this->Html->css(['cake','normalize.min', 'milligram.min', 'bootstrap']) ?>
+
+    <?= $this->Html->css(['cake','normalize.min', 'milligram.min', 'bootstrap','home']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script.js') ?>
+
+
+
+
 </head>
+
 <body>
 <body id="page-top">
 <!-- Navigation-->
@@ -72,10 +85,33 @@ $this->disableAutoLayout();
     <div class="container">
         <div class="masthead-heading"><?= $homePageContentBlocks['welcome_header'] ?></div>
         <div class="masthead-heading-desc"> <?= $homePageContentBlocks['welcome_description'] ?></div>
-        <a class="btn btn-primary btn-l text-uppercase btn-sizing-hp" href="#contact">Book now</a>
+        <a class=" btn btn-primary btn-l text-uppercase btn-sizing-hp" onclick="openForm()">Book now</a>
+<!--        <button class="open-button btn btn-primary btn-l text-uppercase btn-sizing-hp" onclick="openForm()">Open Form</button>-->
+
     </div>
 
+
+    <div class="form-popup" class="booking form content" id="myForm">
+        <form  method="post" class="form-container">
+            <button id="closeBtn" >X</button>
+            <?= $this->Form->create($Booking) ?>
+        <fieldset>
+            <legend><?= __('Add Booking') ?></legend>
+
+            <?php
+            echo $this->Form->control('booking_date');
+            echo $this->Form->control('booking_time');
+            echo $this->Form->control('cust_id', ['options' => $customer]);
+            echo $this->Form->control('staff_id', ['options' => $staff]);
+            echo $this->Form->control('service_id', ['options' => $services]);
+            ?>
+        </fieldset>
+        <?= $this->Form->button(__('Submit')) ?>
+        <?= $this->Form->end() ?>
+    </div>
 </header>
+
+
 <!--End Welcome Page-->
 
 <!--About Page Goes Here-->
@@ -321,6 +357,29 @@ $this->disableAutoLayout();
 <script src='https://kit.fontawesome.com/ad153db3f4.js'></script><script src="js/scripts.js"></script>
 
 <!--contact form-->
+
+
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+        console.log(document.getElementById("myForm"));
+
+
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+
+    var popup = document.getElementById("popup");
+    var closeBtn = document.getElementById("close-btn");
+
+    closeBtn.addEventListener("click", function() {
+        popup.style.display = "none";
+    });
+
+</script>
+
 </body>
 </html>
 

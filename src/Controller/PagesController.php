@@ -32,6 +32,7 @@ use Cake\View\Exception\MissingTemplateException;
  * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
 
  * @property \App\Model\Table\EnquiryTable $Enquiry
+ *  @property \App\Model\Table\BookingTable $Booking
  * @method \App\Model\Entity\Enquiry[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
 
  */
@@ -45,11 +46,15 @@ class PagesController extends AppController
     public function home() {
         $contentBlocks = $this->fetchTable('Cb');
 
-
+//-booking enquiry
         parent::initialize();
         $this->loadModel('Enquiry');
         $enquiry = $this->Enquiry->newEmptyEntity();
         $this->set('enquiry', $enquiry);
+
+        $this->loadModel('Booking');
+        $Booking = $this->Booking->newEmptyEntity();
+        $this->set('Booking', $Booking);
 
         if ($this->request->is('post')) {
             $enquiry = $this->Enquiry->patchEntity($enquiry, $this->request->getData());
@@ -68,6 +73,21 @@ class PagesController extends AppController
 
         }
         $this->set(compact('enquiry'));
+//booking
+
+        if ($this->request->is('post')) {
+            $Booking = $this->Booking->patchEntity($Booking, $this->request->getData());
+            if ($this->Booking->save($Booking)) {
+                $this->Flash->success(__('The booking has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The booking could not be saved. Please, try again.'));
+        }
+        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
+        $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
+        $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
+        $this->set(compact('Booking', 'customer', 'staff', 'services'));
 
 
         // Key-value pairs are much easier to use when retrieving content blocks
