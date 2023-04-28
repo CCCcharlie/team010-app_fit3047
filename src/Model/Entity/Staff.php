@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use Authentication\PasswordHasher\DefaultPasswordHasher; // Add this line
 use Cake\ORM\Entity;
 
 /**
@@ -33,4 +34,11 @@ class Staff extends Entity
         'staff_email' => true,
         'staff_password' => true,
     ];
+
+    protected function _setStaffPassword(string $password) : ?string
+    {
+        if (strlen($password) > 0) {
+            return (new DefaultPasswordHasher())->hash($password);
+        }
+    }
 }
