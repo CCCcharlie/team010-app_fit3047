@@ -93,7 +93,7 @@ $this->disableAutoLayout();
 
     <div class="form-popup" class="booking form content" id="myForm">
         <form  method="post" class="form-container">
-            <button id="closeBtn" >X</button>
+            <button type="button" id="closeBtn" >X</button>
             <?= $this->Form->create($Booking) ?>
         <fieldset>
             <legend><?= __('Add Booking') ?></legend>
@@ -362,7 +362,7 @@ $this->disableAutoLayout();
 <script>
     function openForm() {
         document.getElementById("myForm").style.display = "block";
-        console.log(document.getElementById("myForm"));
+        // console.log(document.getElementById("myForm"));
 
 
     }
@@ -371,10 +371,11 @@ $this->disableAutoLayout();
         document.getElementById("myForm").style.display = "none";
     }
 
-    var popup = document.getElementById("popup");
-    var closeBtn = document.getElementById("close-btn");
+    var popup = document.getElementById("myForm");
+    var closeBtn = document.getElementById("closeBtn");
 
     closeBtn.addEventListener("click", function() {
+        console.log(document.getElementById("myForm"));
         popup.style.display = "none";
     });
 
