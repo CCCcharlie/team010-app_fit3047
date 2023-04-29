@@ -100,7 +100,7 @@ $this->disableAutoLayout();
 
             <?php
             echo $this->Form->control('booking_date',['class'=> 'fieldfont']);
-            echo $this->Form->control('booking_time');
+            echo $this->Form->control('booking_time',['class'=> 'fieldfont']);
             echo $this->Form->control('cust_id', ['options' => $customer,'class' => 'fieldfont']);
             echo $this->Form->control('staff_id', ['options' => $staff,'class' => 'fieldfont']);
             echo $this->Form->control('service_id', ['options' => $services,'class' => 'fieldfont']);
