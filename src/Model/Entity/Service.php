@@ -33,4 +33,9 @@ class Service extends Entity
         'service_price' => true,
         'image_name' => true,
     ];
+
+    public function __toString()
+    {
+        return $this->service_name; // 假设服务名称存储在 "name" 属性中
+    }
 }

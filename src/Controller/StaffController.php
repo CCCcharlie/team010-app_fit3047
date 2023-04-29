@@ -39,6 +39,8 @@ class StaffController extends AppController
         }
         // display error if user submitted and authentication failed
         if ($this->request->is('post') && !$result->isValid()) {
+            debug($result);
+            exit;
             $this->Flash->error(__('Invalid username or password'));
         }
     }

@@ -92,18 +92,18 @@ $this->disableAutoLayout();
 
 
     <div class="form-popup" class="booking form content" id="myForm">
-        <form  method="post" class="form-container">
+        <form  method="post" class="form-container" >
             <button type="button" id="closeBtn" >X</button>
             <?= $this->Form->create($Booking) ?>
-        <fieldset>
+        <fieldset class="fieldfont">
             <legend><?= __('Add Booking') ?></legend>
 
             <?php
-            echo $this->Form->control('booking_date');
+            echo $this->Form->control('booking_date',['class'=> 'fieldfont']);
             echo $this->Form->control('booking_time');
-            echo $this->Form->control('cust_id', ['options' => $customer]);
-            echo $this->Form->control('staff_id', ['options' => $staff]);
-            echo $this->Form->control('service_id', ['options' => $services]);
+            echo $this->Form->control('cust_id', ['options' => $customer,'class' => 'fieldfont']);
+            echo $this->Form->control('staff_id', ['options' => $staff,'class' => 'fieldfont']);
+            echo $this->Form->control('service_id', ['options' => $services,'class' => 'fieldfont']);
             ?>
         </fieldset>
         <?= $this->Form->button(__('Submit')) ?>
