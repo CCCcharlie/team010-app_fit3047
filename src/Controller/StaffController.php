@@ -7,6 +7,7 @@ namespace App\Controller;
  * Staff Controller
  *
  * @property \App\Model\Table\StaffTable $Staff
+ *
  * @method \App\Model\Entity\Staff[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class StaffController extends AppController
@@ -59,6 +60,33 @@ class StaffController extends AppController
 
         $this->set(compact('staff'));
     }
+    // To be Fixed, taken from Bill's CMS System
+    public function resetPassword($nonce = null) {
+        $user = $this->Staff->findByNonce($nonce)->first();
+
+        // If nonce cannot find the user, or nonce is expired, prompt for re-reset password
+        if (!$user || $user->nonce_expiry < FrozenTime::now()) {
+            $this->Flash->error(__('Your link is invalid or expired. Please try again. '));
+            return $this->redirect(['action' => 'forgetPassword']);
+        }
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            // Used a different validation set in Model/Table file to ensure both fields are filled
+            $user = $this->Staff->patchEntity($user, $this->request->getData(), ['validate' => 'resetPassword']);
+            // Also clear the nonce-related fields on successful password resets
+            $user->nonce = null;
+            $user->nonce_expiry = null;
+
+            if ($this->Staff->save($user)) {
+                $this->Flash->success(__('Your password has been successfully reset. Please login with new password. '));
+                return $this->redirect(['action' => 'login']);
+            }
+            $this->Flash->error(__('The password cannot be reset. Please try again.'));
+        }
+
+        $this->set(compact('user'));
+    }
+
 
     /**
      * View method
