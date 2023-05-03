@@ -61,30 +61,89 @@ class StaffController extends AppController
         $this->set(compact('staff'));
     }
     // To be Fixed, taken from Bill's CMS System
+
+
+    public function forgetPassword() {
+        if ($this->request->is('post')) {
+            // Retrieve the user entity by provided email address
+            if ($staff = $this->Staff->findByEmail($this->request->getData('email'))->first()) {
+                // Set nonce and expiry date
+                $staff->nonce = Security::randomString(128);
+                $staff->nonce_expiry = new FrozenTime('7 days');
+                if ($this->Staff->save($staff)) {
+                    // Now let's send the password reset email
+                    $mailer = new Mailer('default');
+
+                    // email basic config
+                    $mailer
+                        ->setEmailFormat('both')
+                        ->setTo($staff->email)
+                        ->setSubject('Reset your account password');
+
+                    // select email template
+                    $mailer
+                        ->viewBuilder()
+                        ->setTemplate('reset_password');
+
+                    // transfer required view variables to email template
+                    $mailer
+                        ->setViewVars([
+                            'first_name' => $staff->staff_fname,
+                            'last_name' => $staff->staff_lname,
+                            'nonce' => $staff->nonce,
+                            'email' => $staff->staff_email
+                        ]);
+
+                    //Send email
+                    if (!$mailer->deliver()) {
+                        // Just in case something goes wrong when sending emails
+                        $this->Flash->error(__('We have encountered an issue when sending you emails. Please try again. '));
+                        return $this->render();  // Skip the rest of the controller and render the view
+                    }
+                } else {
+                    // Just in case something goes wrong when saving nonce and expiry
+                    $this->Flash->error(__('We are having issue to reset your password. Please try again. '));
+                    return $this->render();  // Skip the rest of the controller and render the view
+                }
+            }
+
+            /*
+             * **This is bit of a special design**
+             * We don't tell the user if their account exists, or if the email has been sent,
+             * because it may be used by someone with malicious intent. We only need to tell
+             * the user that they'll get an email.
+             */
+            $this->Flash->success(__('Please check your inbox (or spam folder) for an email regarding how to reset your account password. '));
+            return $this->redirect(['action' => 'login']);
+
+        }
+    }
+
+
     public function resetPassword($nonce = null) {
-        $user = $this->Staff->findByNonce($nonce)->first();
+        $staff = $this->Staff->findByNonce($nonce)->first();
 
         // If nonce cannot find the user, or nonce is expired, prompt for re-reset password
-        if (!$user || $user->nonce_expiry < FrozenTime::now()) {
+        if (!$staff || $staff->nonce_expiry < FrozenTime::now()) {
             $this->Flash->error(__('Your link is invalid or expired. Please try again. '));
             return $this->redirect(['action' => 'forgetPassword']);
         }
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             // Used a different validation set in Model/Table file to ensure both fields are filled
-            $user = $this->Staff->patchEntity($user, $this->request->getData(), ['validate' => 'resetPassword']);
+            $staff = $this->Staff->patchEntity($staff, $this->request->getData(), ['validate' => 'resetPassword']);
             // Also clear the nonce-related fields on successful password resets
-            $user->nonce = null;
-            $user->nonce_expiry = null;
+            $staff->nonce = null;
+            $staff->nonce_expiry = null;
 
-            if ($this->Staff->save($user)) {
+            if ($this->Staff->save($staff)) {
                 $this->Flash->success(__('Your password has been successfully reset. Please login with new password. '));
                 return $this->redirect(['action' => 'login']);
             }
             $this->Flash->error(__('The password cannot be reset. Please try again.'));
         }
 
-        $this->set(compact('user'));
+        $this->set(compact('staff'));
     }
 
 
