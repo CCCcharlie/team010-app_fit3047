@@ -39,8 +39,6 @@ class StaffController extends AppController
         }
         // display error if user submitted and authentication failed
         if ($this->request->is('post') && !$result->isValid()) {
-            debug($result);
-            exit;
             $this->Flash->error(__('Invalid username or password'));
         }
     }
@@ -88,12 +86,28 @@ class StaffController extends AppController
         $staff = $this->Staff->newEmptyEntity();
         if ($this->request->is('post')) {
             $staff = $this->Staff->patchEntity($staff, $this->request->getData());
-            if ($this->Staff->save($staff)) {
-                $this->Flash->success(__('The staff has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //Query to check if email is unique, no duplicate emails allowed
+            $query = null;
+            if($this->request->getData('staff_email')){
+                $inputEmail = $this->request->getData('staff_email');
+                $this->$query = $this->Staff->find('all', [
+                    'conditions' => ['Staff.staff_email LIKE' => $inputEmail]
+                ])
+                ->toArray();
             }
-            $this->Flash->error(__('The staff could not be saved. Please, try again.'));
+
+            //If it's not empty (staff exists, then show custom error message
+            if (!empty($this->$query)) {
+                $this->Flash->error(__('Inputted Email already exists, staff could not be saved. Please, try again.'));
+
+            } elseif ($this->Staff->save($staff)) {
+                $this->Flash->success(__('The staff has been saved.'));
+                return $this->redirect(['action' => 'index']);
+            //Other errors are shown as this as default
+            } else {
+                $this->Flash->error(__('The staff could not be saved. Please, try again.'));
+            }
         }
         $this->set(compact('staff'));
     }
