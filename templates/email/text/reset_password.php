@@ -18,7 +18,7 @@ Hi <?= h($first_name) ?>,
 Thank you for your request to reset the password of your account on Cake CMS/Auth Sample.
 
 To reset your account password, use the button below to access the reset password page:
-<?= $this->Url->build(['controller' => 'Staff', 'action' => 'reset_password', $nonce], ['fullBase' => true]) ?>
+<?= $this->Url->build(['controller' => 'Staff', 'action' => 'resetpassword', $nonce], ['fullBase' => true]) ?>
 
 
 ==========

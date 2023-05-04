@@ -1,27 +1,13 @@
 <?php
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * Reset Password HTML email template
  *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
  * @var \App\View\AppView $this
- * @var string $content
+ * @var string $first_name email recipient's first name
+ * @var string $last_name email recipient's last name
+ * @var string $email email recipient's email address
+ * @var string $nonce nonce used to reset the password
  */
-
-$content_split = explode("\n", $content);
-$body = '';
-
-foreach ($content_split as $line) :
-    $body .= '<p> ' . h($line) . "</p>\n";
-endforeach;
-
 ?>
 <div class="content">
     <!-- START CENTERED WHITE CONTAINER -->
@@ -32,7 +18,28 @@ endforeach;
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                         <td>
-                            <?= $body ?>
+                            <h3>Reset your account password</h3>
+                            <p>Hi <?= h($first_name) ?>, </p>
+                            <p>Thank you for your request to reset the password of your account on <b>Cake CMS/Auth Sample</b>. </p>
+                            <p></p>
+                            <p>To reset your account password, use the button below to access the reset password page: </p>
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                                <tbody>
+                                <tr>
+                                    <td align="left">
+                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td><a href="<?= $this->Url->build(['controller' => 'Staff', 'action' => 'resetpassword', $nonce], ['fullBase' => true]) ?>" target="_blank">Reset account password</a></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p>or use the following link: <br>
+                                <?= $this->Html->link($this->Url->build(['controller' => 'Staff', 'action' => 'resetpassword', $nonce], ['fullBase' => true]), ['controller' => 'Staff', 'action' => 'resetpassword', $nonce], ['fullBase' => true, 'style' => 'word-break:break-all']) ?></p>
                         </td>
                     </tr>
                 </table>
@@ -46,8 +53,11 @@ endforeach;
         <table role="presentation" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td class="content-block">
+                    This email is addressed to <?= $first_name ?>  <?= $last_name ?> &lt;<?= $email ?>&gt;<br>
+                    Please discard this email if it not meant for you
+                    <br>
+                    <br>
                     Copyright &copy; <?= date("Y"); ?> Monash FIT Industry Experience
-                    <br> Don't like these emails? <?= $this->Html->link('Unsubscribe', ['/'], ['fullBase' => true]) ?>.
                 </td>
             </tr>
         </table>
