@@ -88,4 +88,28 @@ class StaffTable extends Table
 
         return $validator;
     }
+        /**
+     * Reset Password validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationResetPassword(Validator $validator): Validator {
+        $validator
+            ->scalar('staff_password')
+            ->requirePresence('staff_password', 'reset-password')
+            ->notEmptyString('staff_password');
+
+        // Validate retyped password
+        $validator
+            ->requirePresence('password_confirm', 'reset-password')
+            ->sameAs('password_confirm', 'staff_password', 'Both passwords must match');
+
+        $validator
+            ->uuid('nonce')
+            ->maxLength('nonce', 128)
+            ->allowEmptyString('nonce');
+
+        return $validator;
+    }
 }
