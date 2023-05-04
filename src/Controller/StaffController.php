@@ -22,7 +22,7 @@ class StaffController extends AppController
         parent::beforeFilter($event);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
-        $this->Authentication->addUnauthenticatedActions(['login', 'add']);
+        $this->Authentication->addUnauthenticatedActions(['login', 'add','forgetpassword','resetpassword']);
     }
     public function login()
     {
@@ -63,7 +63,7 @@ class StaffController extends AppController
     // To be Fixed, taken from Bill's CMS System
 
 
-    public function forgetPassword() {
+    public function forgetpassword() {
         if ($this->request->is('post')) {
             // Retrieve the user entity by provided email address
             if ($staff = $this->Staff->findByEmail($this->request->getData('email'))->first()) {
@@ -120,18 +120,18 @@ class StaffController extends AppController
     }
 
 
-    public function resetPassword($nonce = null) {
+    public function resetpassword($nonce = null) {
         $staff = $this->Staff->findByNonce($nonce)->first();
 
         // If nonce cannot find the user, or nonce is expired, prompt for re-reset password
         if (!$staff || $staff->nonce_expiry < FrozenTime::now()) {
             $this->Flash->error(__('Your link is invalid or expired. Please try again. '));
-            return $this->redirect(['action' => 'forgetPassword']);
+            return $this->redirect(['action' => 'forgetpassword']);
         }
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             // Used a different validation set in Model/Table file to ensure both fields are filled
-            $staff = $this->Staff->patchEntity($staff, $this->request->getData(), ['validate' => 'resetPassword']);
+            $staff = $this->Staff->patchEntity($staff, $this->request->getData(), ['validate' => 'resetpassword']);
             // Also clear the nonce-related fields on successful password resets
             $staff->nonce = null;
             $staff->nonce_expiry = null;
@@ -222,6 +222,33 @@ class StaffController extends AppController
         }
         $this->set(compact('staff'));
     }
+
+
+
+    /**
+     * Change Password method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function changepassword($id = null) {
+        $staff = $this->Staff->get($id, [
+            'contain' => [],
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            // Used a different validation set in Model/Table file to ensure both fields are filled
+            $user = $this->Staff->patchEntity($staff, $this->request->getData(), ['validate' => 'resetpassword']);
+            if ($this->Staff->save($staff)) {
+                $this->Flash->success(__('The staff password change has been saved.'));
+
+                return $this->redirect(['action' => 'login']);
+            }
+            $this->Flash->error(__('The password change could not be saved. Please, try again.'));
+        }
+        $this->set(compact('staff'));
+    }
+
 
     /**
      * Delete method
