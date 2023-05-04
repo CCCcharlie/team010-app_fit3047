@@ -85,18 +85,17 @@ class StaffController extends AppController
 
             $thisEmail = $this->request->getData('staff_email');
 
-            $staff = $this->Staff->find('first', array(
+            $query = $this->Staff->find('all', array(
                 'conditions' => array(
                     'Staff.staff_email' => $thisEmail
                 )
             ));
-            debug($staff);
+            $staff = $query->first();
 
             if ($staff) {
                 // Set nonce and expiry date
                 $staff->nonce = Security::randomString(128);
                 $staff->nonce_expiry = new FrozenTime('7 days');
-                exit();
                 if ($this->Staff->save($staff)) {
                     // Now let's send the password reset email
                     $mailer = new Mailer('default');
