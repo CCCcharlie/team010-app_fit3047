@@ -16,7 +16,7 @@ $this->disableAutoLayout();
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <?= $this->fetch('title') ?> - Cake CMS/Auth Sample
+        <?= $this->fetch('title') ?> - Holistic Healing
     </title>
     <?= $this->Html->meta('icon') ?>
 

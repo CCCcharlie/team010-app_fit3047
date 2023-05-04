@@ -66,10 +66,23 @@ class StaffController extends AppController
     public function forgetpassword() {
         if ($this->request->is('post')) {
             // Retrieve the user entity by provided email address
-            if ($staff = $this->Staff->findByEmail($this->request->getData('email'))->first()) {
+//            debug($this->request->getData('staff_email'));
+//            exit;
+
+            $query = null;
+            if($this->request->getData('staff_email')){
+                $inputEmail = $this->request->getData('staff_email');
+                $this->$query = $this->Staff->find('all', [
+                    'conditions' => ['Staff.staff_email LIKE' => $inputEmail]
+                ])
+                    ->toArray();
+            }
+            $staff = $query;
+            if ($staff) {
                 // Set nonce and expiry date
                 $staff->nonce = Security::randomString(128);
                 $staff->nonce_expiry = new FrozenTime('7 days');
+
                 if ($this->Staff->save($staff)) {
                     // Now let's send the password reset email
                     $mailer = new Mailer('default');
@@ -77,7 +90,7 @@ class StaffController extends AppController
                     // email basic config
                     $mailer
                         ->setEmailFormat('both')
-                        ->setTo($staff->email)
+                        ->setTo($staff->staff_email)
                         ->setSubject('Reset your account password');
 
                     // select email template

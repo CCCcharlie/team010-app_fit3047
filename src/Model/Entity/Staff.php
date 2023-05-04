@@ -35,6 +35,14 @@ class Staff extends Entity
         'staff_password' => true,
     ];
 
+/**
+* Generate display field for User entity
+* @return string Display field
+*/
+    protected function _getStaffFullDisplay(): string {
+        return $this->staff_fname . ' ' . $this->staff_lname . ' (' . $this->staff_email . ')';
+    }
+
     protected function _setStaffPassword(string $password) : ?string
     {
         if (strlen($password) > 0) {
