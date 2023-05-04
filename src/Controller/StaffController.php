@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\I18n\FrozenTime;
+use Cake\Mailer\Mailer;
+use Cake\Utility\Security;
+
 /**
  * Staff Controller
  *
@@ -69,20 +73,30 @@ class StaffController extends AppController
 //            debug($this->request->getData('staff_email'));
 //            exit;
 
-            $query = null;
-            if($this->request->getData('staff_email')){
-                $inputEmail = $this->request->getData('staff_email');
-                $this->$query = $this->Staff->find('all', [
-                    'conditions' => ['Staff.staff_email LIKE' => $inputEmail]
-                ])
-                    ->toArray();
-            }
-            $staff = $query;
+//            $query = null;
+//            if($this->request->getData('staff_email')){
+//                $inputEmail = $this->request->getData('staff_email');
+//                $this->$query = $this->Staff->find('all', [
+//                    'conditions' => ['Staff.staff_email LIKE' => $inputEmail]
+//                ]);
+//            }
+//            $staff = $this->$query;
+//            debug($staff);
+
+            $thisEmail = $this->request->getData('staff_email');
+
+            $staff = $this->Staff->find('first', array(
+                'conditions' => array(
+                    'Staff.staff_email' => $thisEmail
+                )
+            ));
+            debug($staff);
+
             if ($staff) {
                 // Set nonce and expiry date
                 $staff->nonce = Security::randomString(128);
                 $staff->nonce_expiry = new FrozenTime('7 days');
-
+                exit();
                 if ($this->Staff->save($staff)) {
                     // Now let's send the password reset email
                     $mailer = new Mailer('default');
@@ -126,12 +140,19 @@ class StaffController extends AppController
              * because it may be used by someone with malicious intent. We only need to tell
              * the user that they'll get an email.
              */
+
             $this->Flash->success(__('Please check your inbox (or spam folder) for an email regarding how to reset your account password. '));
             return $this->redirect(['action' => 'login']);
 
         }
     }
 
+    /**
+     * Reset Password method
+     *
+     * @param string|null $nonce Reset password nonce
+     * @return \Cake\Http\Response|null|void Redirects on successful password reset, renders view otherwise.
+     */
 
     public function resetpassword($nonce = null) {
         $staff = $this->Staff->findByNonce($nonce)->first();

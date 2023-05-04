@@ -15,6 +15,9 @@ use Cake\ORM\Entity;
  * @property string $staff_position
  * @property string $staff_email
  * @property string $staff_password
+ * @property string|null $nonce
+ * @property \Cake\I18n\FrozenTime $nonce_expiry
+
  */
 class Staff extends Entity
 {
@@ -33,6 +36,9 @@ class Staff extends Entity
         'staff_position' => true,
         'staff_email' => true,
         'staff_password' => true,
+        'nonce' => true,
+        'expiry' => true,
+
     ];
 
 /**
