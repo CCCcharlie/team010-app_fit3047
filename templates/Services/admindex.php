@@ -9,7 +9,7 @@ $this->disableAutoLayout();
 error_reporting(E_ALL ^ E_WARNING);
 error_reporting(E_ALL & ~E_USER_DEPRECATED);
 error_reporting(0);
-/* TODO: REMOVE THIS AND FIX ERRORS IT2 */
+/* TODO: REMOVE THIS AND FIX ERRORS IF POSSIBLE */
 ?>
 
 <head>
@@ -31,7 +31,7 @@ error_reporting(0);
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
-<body>
+
 <nav class="top-nav">
     <div class="top-nav-title">
         <!--  In order to show the image from webroot/img/cake.icon.png,
@@ -46,13 +46,15 @@ error_reporting(0);
          If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
          to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
 
-        <a target="_self" style="font-size: 150%" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
-        <a target="_self" style="font-size: 150%" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
-        <a target="_self" style="font-size: 150%" href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
-        <a target="_self" style="font-size: 150%" href="<?= $this->Url->build('/') ?>"> Customer Page</a>
+        <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
+        <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
+        <a target="_self" href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
+        <a target="_self" href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
+        <a target="_self" href="<?= $this->Url->build('/staff/logout') ?>">Logout</a>
         <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
     </div>
 </nav>
+<body>
 <main class="main">
     <div class="container">
         <?= $this->Flash->render() ?>

@@ -51,7 +51,7 @@ $this->disableAutoLayout();
                     <?= $this->Form->button(__('Send verification email')) ?>
                     <?= $this->Form->end() ?>
                     <hr style="margin: 2rem 0 3rem 0">
-                    <?= $this->Html->link(__('Back to login'), ['controller' => 'Staff', 'action' => 'login'], ['class' => 'button button-outline']) ?>
+                    <?= $this->Html->link(__('Back to login'), ['controller' => 'Staff', 'action' => 'login'], ['class' => 'button']) ?>
                 </div>
             </div>
         </div>
