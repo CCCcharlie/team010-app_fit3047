@@ -76,6 +76,10 @@ $this->disableAutoLayout();
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                 <li class="nav-item"><a class="nav-link" href="#Gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <?php if ($this->Identity->isLoggedIn()){
+                    echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
+                }
+                ?>
             </ul>
         </div>
     </div>
