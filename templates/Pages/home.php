@@ -321,6 +321,7 @@ $this->disableAutoLayout();
 
                         <!--                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>-->
                         <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message*', 'type'=>'textarea', 'style' => 'height: 28.6rem;']) ?>
+                        <td style="width: 20px;height: 40px"></td>
 
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>
