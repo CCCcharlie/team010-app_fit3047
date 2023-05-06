@@ -58,6 +58,7 @@
                     {
                         title: 'Healing Sesson - D-Lewis',
                         start: '2023-05-12T12:00:00'
+
                     },
                     {
                         title: 'Healing Session - JBruh',
@@ -74,50 +75,102 @@
                     }
                 ],
                 eventClick: function(info) {
-                    var dialog = document.getElementById('event-dialog');
-                    dialog.style.display = 'block';
-                    var dialogTitle = dialog.querySelector('.dialog-title');
-                    dialogTitle.textContent = 'Add/Edit Event - ' + info.event.start.toLocaleDateString();
-                    var dialogForm = dialog.querySelector('form');
+                    var dialog = document.createElement('div');
+                    dialog.classList.add('dialog');
+                    dialog.style.position = 'absolute';
+                    dialog.style.top = info.jsEvent.clientY + 'px';
+                    dialog.style.left = info.jsEvent.clientX + 'px';
+                    dialog.style.background = 'white';
+                    dialog.style.padding = '10px';
+                    dialog.style.border = '1px solid black';
+                    document.body.appendChild(dialog);
 
-                    // set the form fields based on the selected event
-                    var eventTitleInput = dialogForm.querySelector('#eventTitle');
-                    eventTitleInput.value = info.event.title;
-                    var eventStartInput = dialogForm.querySelector('#eventStart');
-                    eventStartInput.value = info.event.start.toISOString().slice(0, -8);
-                    var eventEndInput = dialogForm.querySelector('#eventEnd');
-                    eventEndInput.value = info.event.end.toISOString().slice(0, -8);
-                    var eventUrlInput = dialogForm.querySelector('#eventUrl');
-                    eventUrlInput.value = info.event.url;
+                    var dialogTitle = document.createElement('h2');
+                    dialogTitle.textContent = 'Edit/Delete Event';
+                    dialog.appendChild(dialogTitle);
 
-                    // add a delete button
+                    var form = document.createElement('form');
+                    dialog.appendChild(form);
+
+                    var titleLabel = document.createElement('label');
+                    titleLabel.textContent = 'Event Title*:';
+                    form.appendChild(titleLabel);
+
+                    var titleInput = document.createElement('input');
+                    titleInput.setAttribute('type', 'text');
+                    titleInput.setAttribute('id', 'eventTitle');
+                    titleInput.setAttribute('name', 'eventTitle');
+                    titleInput.setAttribute('value', info.event.title);
+                    form.appendChild(titleInput);
+
+                    var startLabel = document.createElement('label');
+                    startLabel.textContent = 'Event Start*:';
+                    form.appendChild(startLabel);
+
+                    var startInput = document.createElement('input');
+                    startInput.setAttribute('type', 'datetime-local');
+                    startInput.setAttribute('id', 'eventStart');
+                    startInput.setAttribute('name', 'eventStart');
+                    startInput.setAttribute('value', info.event.start.toISOString().slice(0, 16));
+                    form.appendChild(startInput);
+
+                    var endLabel = document.createElement('label');
+                    endLabel.textContent = 'Event End*:';
+                    form.appendChild(endLabel);
+
+                    var endInput = document.createElement('input');
+                    endInput.setAttribute('type', 'datetime-local');
+                    endInput.setAttribute('id', 'eventEnd');
+                    endInput.setAttribute('name', 'eventEnd');
+                    endInput.setAttribute('value', info.event.end.toISOString().slice(0, 16));
+                    form.appendChild(endInput);
+
+                    var urlLabel = document.createElement('label');
+                    urlLabel.textContent = 'Event URL:';
+                    form.appendChild(urlLabel);
+
+                    var urlInput = document.createElement('input');
+                    urlInput.setAttribute('type', 'url');
+                    urlInput.setAttribute('id', 'eventUrl');
+                    urlInput.setAttribute('name', 'eventUrl');
+                    urlInput.setAttribute('value', info.event.url || '');
+                    form.appendChild(urlInput);
+
+                    var editButton = document.createElement('button');
+                    editButton.setAttribute('type', 'button');
+                    editButton.textContent = 'Edit Event';
+                    form.appendChild(editButton);
+
                     var deleteButton = document.createElement('button');
+                    deleteButton.setAttribute('type', 'button');
                     deleteButton.textContent = 'Delete Event';
-                    deleteButton.style.marginLeft = '10px';
-                    dialogForm.appendChild(deleteButton);
+                    form.appendChild(deleteButton);
 
-                    // handle form submission
-                    dialogForm.addEventListener('submit', function(event) {
-                        event.preventDefault();
-                        // update the event with the form data
-                        info.event.setProp('title', eventTitleInput.value);
-                        info.event.setStart(eventStartInput.value);
-                        info.event.setEnd(eventEndInput.value);
-                        info.event.setProp('url', eventUrlInput.value);
-                        dialog.style.display = 'none';
+                    editButton.addEventListener('click', function() {
+                        var title = titleInput.value;
+                        var start = new Date(startInput.value);
+                        var end = new Date(endInput.value);
+                        var url = urlInput.value;
+                        info.event.setProp('title', title);
+                        info.event.setStart(start);
+                        info.event.setEnd(end);
+                        info.event.setProp('url', url);
+                        dialog.remove();
                     });
 
-                    // handle delete button click
                     deleteButton.addEventListener('click', function() {
                         info.event.remove();
-                        dialog.style.display = 'none';
+                        dialog.remove();
                     });
+
+
                 },
                 dateClick: function(info) {
                     // removes any existing dialog boxes
                     if (dialog) {
                         dialog.remove();
                     }
+
 
                     // create a new dialog box
                     dialog = document.createElement('div');
