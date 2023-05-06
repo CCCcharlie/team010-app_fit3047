@@ -13,6 +13,8 @@ use Cake\ORM\Entity;
  * @property int $Phone
  * @property string $Message
  * @property int $enquiry_id
+ * @property bool $replied
+ * @property \Cake\I18n\FrozenTime $created
  */
 class Enquiry extends Entity
 {
@@ -30,5 +32,7 @@ class Enquiry extends Entity
         'Email' => true,
         'Phone' => true,
         'Message' => true,
+        'replied' => true,
+        'created' => true,
     ];
 }
