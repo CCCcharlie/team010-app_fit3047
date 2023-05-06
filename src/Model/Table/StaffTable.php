@@ -72,7 +72,9 @@ class StaffTable extends Table
             ->scalar('staff_position')
             ->maxLength('staff_position', 20)
             ->requirePresence('staff_position', 'create')
-            ->notEmptyString('staff_position');
+            ->notEmptyString('staff_position')
+            ->inList('staff_position', ['admin', 'staff', 'admin bookable', 'staff bookable'], 'Invalid position');
+
 
         $validator
             ->scalar('staff_email')

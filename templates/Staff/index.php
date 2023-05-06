@@ -30,36 +30,51 @@
 
         <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
     </div>
+
+    <div class="cb index content">
+
+
+
 </nav>
+
+
 <div class="staff index content">
+
     <?= $this->Html->link(__('Add A Staff Member'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+
     <h2><?= __('Staff') ?></h2>
+    <p>Here you can see all the staff.</p><br>
+    <p>All staff have a role. If your role is 'Admin'. You can edit the roles/details of other staff,  & create other staff accounts.</p><br>
+    <p>If your role is staff, you may simply view the staff. </p>
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('staff_id') ?></th>
-                    <th><?= $this->Paginator->sort('staff_fname') ?></th>
-                    <th><?= $this->Paginator->sort('staff_lname') ?></th>
+                    <th><?= $this->Paginator->sort(__('Staff First Name', 'staff_fname')) ?></th>
+                    <th><?= $this->Paginator->sort(__('Staff Last Name', 'staff_lname')) ?></th>
                     <th><?= $this->Paginator->sort('staff_position') ?></th>
                     <th><?= $this->Paginator->sort('staff_email') ?></th>
-                    <th><?= $this->Paginator->sort('staff_password') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($staff as $staff): ?>
                 <tr>
-                    <td><?= $this->Number->format($staff->staff_id) ?></td>
                     <td><?= h($staff->staff_fname) ?></td>
                     <td><?= h($staff->staff_lname) ?></td>
                     <td><?= h($staff->staff_position) ?></td>
                     <td><?= h($staff->staff_email) ?></td>
-                    <td><?= h($staff->staff_password) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $staff->staff_id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $staff->staff_id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $staff->staff_id], ['confirm' => __('Are you sure you want to delete # {0}?', $staff->staff_id)]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $staff->staff_id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $staff->staff_id], [
+                                'confirm' => __('Are you sure you want to delete {0} {1}\'s account?', $staff->staff_fname, $staff->staff_lname)
+                            ]) ?>
+
+<!--                        --><?php //= $this->Html->link(__('Edit'), ['action' => 'edit', $staff->staff_id]) ?>
+<!--                        --><?php //= $this->Form->postLink(__('Delete'), ['action' => 'delete', $staff->staff_id], [
+//                            'confirm' => __('Are you sure you want to delete {0} {1}\'s account?', $staff->staff_fname, $staff->staff_lname)
+//                        ]) ?>
+
                     </td>
                 </tr>
                 <?php endforeach; ?>

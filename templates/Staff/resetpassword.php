@@ -32,7 +32,7 @@ $this->assign('title', 'Reset Password');
                 <?= $this->Form->button(__('Reset Password')) ?>
                 <?= $this->Form->end() ?>
                 <hr class="hr-between-buttons">
-                <?= $this->Html->link(__('Back to login'), ['controller' => 'Staff', 'action' => 'login'], ['class' => 'button button-outline']) ?>
+                <?= $this->Html->link(__('Back to login'), ['controller' => 'Staff', 'action' => 'login'], ['class' => 'button']) ?>
             </div>
         </div>
     </div>

@@ -28,19 +28,24 @@
     </div>
 </nav>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-        </div>
-    </aside>
     <div class="column-responsive column-80">
         <div class="staff form content">
             <?= $this->Form->create($staff) ?>
             <fieldset>
                 <legend><?= __('Add a new Staff Account') ?></legend>
+                <p>Here you can add a new staff account.</p><br>
+                <p>When adding an account you can select roles. Admin will give them control over other staff accounts. Give this out sparingly.</p><br>
+                <p>The bookable addition, will mean they can be booked by customers in the "book now" feature.</p><br>
                 <?php
                     echo $this->Form->control('staff_fname', ['label' => 'Staff First Name*']);
                     echo $this->Form->control('staff_lname', ['label' => 'Staff Last Name*']);
-                    echo $this->Form->control('staff_position', ['label' => 'Staff Role*']);
+                     echo $this->Form->label('staff_position', 'Staff Position*');
+                    echo $this->Form->select('staff_position',  [
+                    'admin' => 'admin',
+                    'staff' => 'staff',
+                    'admin_bookable' => 'admin bookable',
+                    'staff_bookable' => 'staff bookable'
+                ]);
                     echo $this->Form->control('staff_email', ['label' => 'Staff E-Mail*']);
                     echo $this->Form->control('staff_password', ['label' => 'Your Password*']);
                 ?>
