@@ -106,8 +106,8 @@ $this->disableAutoLayout();
 
 
     <div class="form-popup" class="booking form content" id="myForm">
-        <form  method="post" class="form-container" >
-            <button type="button" id="closeBtn" >X</button>
+        <form  method="post" class="form-container">
+            <button type="button" id="closeBtn" style="background-color: #ffc800; color: #fff; padding: 1px 10px; border: 1px solid #ffc800; border-radius: 9px; font-size: 20px; cursor: pointer;">X</button>
             <?= $this->Form->create($Booking) ?>
         <fieldset class="fieldfont">
             <legend><?= __('Add Booking') ?></legend>
@@ -120,7 +120,9 @@ $this->disableAutoLayout();
             echo $this->Form->control('service_id', ['options' => $services,'class' => 'fieldfont']);
             ?>
         </fieldset>
-        <?= $this->Form->button(__('Submit')) ?>
+        <?= $this->Form->button(__('Submit'), [
+            'style' => 'background-color: #ffc800; color: #fff; padding: 1px 10px; border: 1px solid #ffc800; border-radius: 9px; font-size: 20px; cursor: pointer;',
+        ]) ?>
         <?= $this->Form->end() ?>
     </div>
 </header>
@@ -353,7 +355,7 @@ $this->disableAutoLayout();
  <!--           <div class = text-center <a class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">SUBMIT</a> </div>-->
 <!--        Bandaid Style fix to stop the button from looking so pre-baked-->
     <?= $this->Form->button(__('SUBMIT'), [
-        'style' => 'background-color: #ffc800; color: #fff; padding: 2px 20px; border: 2px solid #ffc800; border-radius: 5px; font-size: 20px; cursor: pointer;',
+        'style' => 'background-color: #ffc800; width:10%; color: #fff; padding: 2px 20px; border: 2px solid #ffc800; border-radius: 5px; font-size: 20px; cursor: pointer;',
         'href' => '#contact'
     ]) ?>
     </form>
