@@ -38,8 +38,8 @@ error_reporting(0);
         we must use $this->html->image instead of <img src=""> in this case for it to work -->
 
         <!-- <?php /*= "$this->Url->build('/')" */?> <- this line of code is for redirection, "/" is the root path-->
-        <a href="<?= $this->Url->build('/cb') ?>"><?= $this->Html->image('holistichealinglogofull.png', ['alt' => 'Holistic healing logo', 'class' => 'logo']); ?>
-            <a href="<?= $this->Url->build('/cb') ?>"> Holistic Healings - Staff page <span> </a>
+        <a href="<?= $this->Url->build('/staff') ?>"> <?= $this->Html->image('holistichealinglogofull.png', ['alt' => 'Holistic healing logo', 'class' => 'logo']); ?>
+            <a href="<?= $this->Url->build('/staff') ?>"> Holistic Healings - Staff Page<span></a>
     </div>
     <div class="top-nav-links">
         <!--  target acts as where I want to display the href, _self is the default so it will update itself
@@ -49,8 +49,19 @@ error_reporting(0);
         <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
         <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
         <a target="_self" href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
+        <br>
         <a target="_self" href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
+        <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a>
+        <?= "|" ?>
+        <!-- To obtain the identity, use $identity = $this->request->getAttribute('authentication')->getIdentity(); to find the currently logged in entity
+to get the name or any value in the staff table, use the get and then the name of the attribute $identity->get('staff_fname')-->
+        <?php $identity = $this->request->getAttribute('authentication')->getIdentity();
+        //debug($identity->get('staff_fname'));
+        //exit();
+        ?>
+        <a target ="_self" title="Hi there">Hi <?php echo $identity->get('staff_fname')?> :)</a> <?= "|" ?>
         <a target="_self" href="<?= $this->Url->build('/staff/logout') ?>">Logout</a>
+
         <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
     </div>
 </nav>
@@ -74,6 +85,7 @@ error_reporting(0);
         </div>
 
         <?= $this->Html->link(__('Add a New Service'), ['action' => 'add'], ['class' => 'button']) ?>
+        <?= $this->Html->link(__('What customers see'), ['action' => 'index'], ['class' =>  'button']) ?>
 
         <!-- Essentially tells index.php to use bootstrap.css -->
         <?= $this->Html->css(['cake','bootstrap'])?>
