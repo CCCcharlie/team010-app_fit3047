@@ -78,9 +78,9 @@ $this->disableAutoLayout();
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
-
         <!-- Honestly, I dont know why echo "<br>" doesnt work here nor why the font size is so small.
          so I resorted on using invisible character "ㅤ" for spaces instead of a break line-->
+
         <?php if ($this->Identity->isLoggedIn()){
             echo "ㅤㅤ";
             echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
@@ -106,11 +106,11 @@ $this->disableAutoLayout();
 
 
     <div class="form-popup" class="booking form content" id="myForm">
-        <form  method="post" class="form-container" >
-            <button type="button" id="closeBtn" >X</button>
+        <form  method="post" class="form-container">
+            <button type="button" id="closeBtn" style="background-color: #ffc800; color: #fff; padding: 1px 10px; border: 1px solid #ffc800; border-radius: 9px; font-size: 20px; cursor: pointer;">X</button>
             <?= $this->Form->create($Booking) ?>
         <fieldset class="fieldfont">
-            <legend><?= __('Add Booking') ?></legend>
+            <legend><?= __('Add Booking')?></legend>
 
             <?php
             echo $this->Form->control('booking_date',['class'=> 'fieldfont']);
@@ -120,7 +120,9 @@ $this->disableAutoLayout();
             echo $this->Form->control('service_id', ['options' => $services,'class' => 'fieldfont']);
             ?>
         </fieldset>
-        <?= $this->Form->button(__('Submit')) ?>
+        <?= $this->Form->button(__('Submit'), [
+            'style' => 'background-color: #ffc800; color: #fff; padding: 1px 10px; border: 1px solid #ffc800; border-radius: 9px; font-size: 20px; cursor: pointer;',
+        ]) ?>
         <?= $this->Form->end() ?>
     </div>
 </header>
@@ -164,7 +166,10 @@ $this->disableAutoLayout();
                     <div class="row">
                         <!-- align items stretch aligns the item to "--bs-card-height: 350px;"-->
                         <!-- LOOP HERE -->
-                        <?php $i = 0; foreach ($services as $service): $i++; if($i==4){break;} ?>
+                        <!-- Removed the 3 iteration -->
+                        <!-- $i = 0; foreach ($services as $service): $i++; if($i==4){break;}  -->
+
+                        <?php foreach ($services as $service):?>
                             <div class="col-xs-3 col-sm-4 d-flex align-items-stretch">
                                 <div class="card">
                                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
@@ -350,7 +355,7 @@ $this->disableAutoLayout();
  <!--           <div class = text-center <a class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">SUBMIT</a> </div>-->
 <!--        Bandaid Style fix to stop the button from looking so pre-baked-->
     <?= $this->Form->button(__('SUBMIT'), [
-        'style' => 'background-color: #ffc800; color: #fff; padding: 2px 20px; border: 2px solid #ffc800; border-radius: 5px; font-size: 20px; cursor: pointer;',
+        'style' => 'background-color: #ffc800; width:10%; color: #fff; padding: 2px 20px; border: 2px solid #ffc800; border-radius: 5px; font-size: 20px; cursor: pointer;',
         'href' => '#contact'
     ]) ?>
     </form>

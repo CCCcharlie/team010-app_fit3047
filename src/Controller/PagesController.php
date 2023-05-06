@@ -107,8 +107,9 @@ class PagesController extends AppController
             ])
             ->toArray();
 
-        $services = $this->fetchTable('Services')->find()->all();
-
+        $services = $this->fetchTable('Services')->find('all', [
+            'conditions' => ['Services.home LIKE' => true]
+        ]);
 
         $this->set(compact('homePageContentBlocks', 'services'));
 
