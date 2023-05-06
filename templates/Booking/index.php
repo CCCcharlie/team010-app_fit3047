@@ -37,16 +37,22 @@
 
     <h2>BOOKINGS VIEWER</h2>
     <script>
-
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
+            var dialog;
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
+                selectable: true,
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                businessHours: {
+                    daysOfWeek: [1, 2, 3, 4, 5], // Monday - Friday
+                    startTime: '09:00', // 9am
+                    endTime: '17:00' // 5pm
                 },
                 events: [
                     {
@@ -66,7 +72,112 @@
                         url: 'http://google.com/',
                         start: '2023-05-28'
                     }
-                ]
+                ],
+                eventClick: function(info) {
+                    var dialog = document.getElementById('event-dialog');
+                    dialog.style.display = 'block';
+                    var dialogTitle = dialog.querySelector('.dialog-title');
+                    dialogTitle.textContent = 'Add/Edit Event - ' + info.event.start.toLocaleDateString();
+                    var dialogForm = dialog.querySelector('form');
+
+                    // set the form fields based on the selected event
+                    var eventTitleInput = dialogForm.querySelector('#eventTitle');
+                    eventTitleInput.value = info.event.title;
+                    var eventStartInput = dialogForm.querySelector('#eventStart');
+                    eventStartInput.value = info.event.start.toISOString().slice(0, -8);
+                    var eventEndInput = dialogForm.querySelector('#eventEnd');
+                    eventEndInput.value = info.event.end.toISOString().slice(0, -8);
+                    var eventUrlInput = dialogForm.querySelector('#eventUrl');
+                    eventUrlInput.value = info.event.url;
+
+                    // add a delete button
+                    var deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete Event';
+                    deleteButton.style.marginLeft = '10px';
+                    dialogForm.appendChild(deleteButton);
+
+                    // handle form submission
+                    dialogForm.addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        // update the event with the form data
+                        info.event.setProp('title', eventTitleInput.value);
+                        info.event.setStart(eventStartInput.value);
+                        info.event.setEnd(eventEndInput.value);
+                        info.event.setProp('url', eventUrlInput.value);
+                        dialog.style.display = 'none';
+                    });
+
+                    // handle delete button click
+                    deleteButton.addEventListener('click', function() {
+                        info.event.remove();
+                        dialog.style.display = 'none';
+                    });
+                },
+                dateClick: function(info) {
+                    // removes any existing dialog boxes
+                    if (dialog) {
+                        dialog.remove();
+                    }
+
+                    // create a new dialog box
+                    dialog = document.createElement('div');
+                    dialog.classList.add('dialog');
+                    dialog.innerHTML = `
+        <p>Select an action for the date/time: ${info.dateStr}</p>
+        <button id="add-event">Add Event</button>
+      `;
+                    dialog.style.position = 'absolute';
+                    dialog.style.top = info.jsEvent.clientY + 'px';
+                    dialog.style.left = info.jsEvent.clientX + 'px';
+                    dialog.style.background = 'white';
+                    dialog.style.padding = '10px';
+                    dialog.style.border = '1px solid black';
+                    document.body.appendChild(dialog);
+
+                    // attach event listeners to the dialog buttons
+                    var addButton = dialog.querySelector('#add-event');
+                    addButton.addEventListener('click', function () {
+                        // handle add event logic here
+                        var form = document.createElement('form');
+                        form.innerHTML = `
+    <label for="eventTitle">Event Title*:</label>
+    <input type="text" id="eventTitle" name="eventTitle"><br>
+    <label for="eventStart">Event Start*:</label>
+    <input type="datetime-local" id="eventStart" name="eventStart" value="${info.dateStr}T12:00"><br>
+    <label for="eventEnd">Event End*:</label>
+    <input type="datetime-local" id="eventEnd" name="eventEnd" value="${info.dateStr}T13:00"><br>
+    <label for="eventUrl">Event URL:</label>
+    <input type="url" id="eventUrl" name="eventUrl"><br>
+    <button type="submit">Add Event</button>
+  `;
+                        form.addEventListener('submit', function(event) {
+                            event.preventDefault();
+                            var eventTitle = document.getElementById('eventTitle').value;
+                            var eventStart = document.getElementById('eventStart').value;
+                            var eventEnd = document.getElementById('eventEnd').value;
+                            var eventUrl = document.getElementById('eventUrl').value;
+                            var newEvent = {
+                                title: eventTitle,
+                                start: eventStart,
+                                end: eventEnd,
+                                url: eventUrl
+                            };
+                            calendar.addEvent(newEvent);
+                            dialog.remove();
+                        });
+                        dialog.childNodes.forEach(function(child) {
+                            dialog.removeChild(child);
+                        });
+                        dialog.appendChild(form);
+                    });
+                }
+            });
+
+            // add click event listener to document to close dialog box on outside click
+            document.addEventListener('click', function(e) {
+                if (dialog && !dialog.contains(e.target)) {
+                    dialog.remove();
+                }
             });
 
             calendar.render();
