@@ -106,8 +106,8 @@ $this->disableAutoLayout();
 
 
     <div class="form-popup" class="booking form content" id="myForm">
-        <form  method="post" class="form-container" >
-            <button type="button" id="closeBtn" >X</button>
+        <form  method="post" class="form-container">
+            <button type="button" id="closeBtn" style="background-color: #ffc800; color: #fff; padding: 1px 10px; border: 1px solid #ffc800; border-radius: 9px; font-size: 20px; cursor: pointer;">X</button>
             <?= $this->Form->create($Booking) ?>
         <fieldset class="fieldfont">
             <legend><?= __('Add Booking') ?></legend>
@@ -120,7 +120,9 @@ $this->disableAutoLayout();
             echo $this->Form->control('service_id', ['options' => $services,'class' => 'fieldfont']);
             ?>
         </fieldset>
-        <?= $this->Form->button(__('Submit')) ?>
+        <?= $this->Form->button(__('Submit'), [
+            'style' => 'background-color: #ffc800; color: #fff; padding: 1px 10px; border: 1px solid #ffc800; border-radius: 9px; font-size: 20px; cursor: pointer;',
+        ]) ?>
         <?= $this->Form->end() ?>
     </div>
 </header>
@@ -321,7 +323,6 @@ $this->disableAutoLayout();
 
                         <!--                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>-->
                         <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message*', 'type'=>'textarea', 'style' => 'height: 28.6rem;']) ?>
-                        <td style="width: 20px;height: 40px"></td>
 
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>
