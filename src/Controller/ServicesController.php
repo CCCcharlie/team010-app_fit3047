@@ -185,4 +185,23 @@ class ServicesController extends AppController
 
         return $this->redirect(['action' => 'admindex']);
     }
+
+    public function updateHome($id = null) {
+        $this->request->allowMethod(['post', 'delete']);
+        $service= $this->Services->get($id);
+
+        // Flip the home field value (should be a boolean)
+        $service->home = !$service->home;
+
+        if ($this->Services->save($service)) {
+            $this->Flash->success(__('Show in home status has been updated.'));
+        } else {
+            $this->Flash->error(__('An unexpected error occured, please try again'));
+        }
+
+        // Instead of redirect to index page, redirect to where the user came from
+        // Remember the function is being called from both index listing and view page sidebar
+        return $this->redirect($this->referer());
+    }
+
 }

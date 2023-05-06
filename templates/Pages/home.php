@@ -78,9 +78,9 @@ $this->disableAutoLayout();
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
-
         <!-- Honestly, I dont know why echo "<br>" doesnt work here nor why the font size is so small.
          so I resorted on using invisible character "ㅤ" for spaces instead of a break line-->
+
         <?php if ($this->Identity->isLoggedIn()){
             echo "ㅤㅤ";
             echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
@@ -166,7 +166,10 @@ $this->disableAutoLayout();
                     <div class="row">
                         <!-- align items stretch aligns the item to "--bs-card-height: 350px;"-->
                         <!-- LOOP HERE -->
-                        <?php $i = 0; foreach ($services as $service): $i++; if($i==4){break;} ?>
+                        <!-- Removed the 3 iteration -->
+                        <!-- $i = 0; foreach ($services as $service): $i++; if($i==4){break;}  -->
+
+                        <?php foreach ($services as $service):?>
                             <div class="col-xs-3 col-sm-4 d-flex align-items-stretch">
                                 <div class="card">
                                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect

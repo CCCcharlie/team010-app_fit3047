@@ -49,11 +49,12 @@ $cakeDescription = 'Holistic Healing - All Services';
     </div>
 
 <div class="services index content">
-    <a class="button float-right" href="/">Return to Home.</a>
-    <div>
-    <h1><?= __(' All Services') ?></h1>
-    </div>
-
+    <h1> <?php echo ' All Services '?> </h1>
+    <?php if ($this->Identity->isLoggedIn()) {
+        //postButton is for standalone buttons
+        echo $this->Form->postButton('To Services - Admin side', ['type' => 'button', 'controller' => 'Services', 'action' => 'admindex']);
+    }
+    ?>
 <!-- Essentially tells index.php to use bootstrap.css -->
 <?= $this->Html->css(['cake','bootstrap'])?>
 
