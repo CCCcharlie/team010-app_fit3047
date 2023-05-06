@@ -6,16 +6,69 @@
 ?>
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
     <meta charset='utf-8' />
-    <script src='js/index.global.js'></script>
+    <script src='js/index.global.js' src='fcpackages/daygrid/index.global.js'></script>
+
+    <nav class="top-nav">
+        <div class="top-nav-title">
+            <!--  In order to show the image from webroot/img/cake.icon.png,
+            we must use $this->html->image instead of <img src=""> in this case for it to work -->
+
+            <!-- <?php /*= "$this->Url->build('/')" */?> <- this line of code is for redirection, "/" is the root path-->
+            <a href="<?= $this->Url->build('/cb') ?>"> <?= $this->Html->image('holistichealinglogofull.png', ['alt' => 'Holistic healing logo', 'class' => 'logo']); ?>
+                <a href="<?= $this->Url->build('/cb') ?>"> Holistic Healings - Staff Page<span></a>
+        </div>
+        <div class="top-nav-links">
+            <!--  target acts as where I want to display the href, _self is the default so it will update itself
+             If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
+             to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
+
+            <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
+            <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
+            <a target="_self" href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
+            <a target="_self" href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
+            <a target="_self" href="<?= $this->Url->build('/staff/logout') ?>">Logout</a>
+
+            <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
+        </div>
+    </nav>
+
+    <h2>BOOKINGS VIEWER</h2>
     <script>
 
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
+
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth'
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                    {
+                        title: 'Healing Sesson - D-Lewis',
+                        start: '2023-05-12T12:00:00'
+                    },
+                    {
+                        title: 'Healing Session - JBruh',
+                        start: '2023-05-12T14:30:00'
+                    },
+                    {
+                        title: 'Staff Meeting',
+                        start: '2023-05-13T07:00:00'
+                    },
+                    {
+                        title: 'Click for example hyperlink',
+                        url: 'http://google.com/',
+                        start: '2023-05-28'
+                    }
+                ]
             });
+
             calendar.render();
         });
 
