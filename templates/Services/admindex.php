@@ -109,11 +109,23 @@ error_reporting(0);
                                     <p class="card-subtitle">
                                         <?= h($service->service_desc) ?> <br>
                                         Duration:  <?= h($service->service_duration) ?> Minutes |
-                                        Cost: $<?= h($service->service_price) ?> |
+                                        Cost: $<?= h($service->service_price) ?> | <br>
+                                        Shown in home page? <?= $service->home ? "✅" : "❌" ?>
 
 
                                     <br><br><p style="font-size:150%; color:darkred">Admin Controls:  </p>
-                                    <p style="font-size:150%"><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $service->service_id], ['confirm' => __('Are you sure you want to delete this service: {0}? Changes are irreverisble.', $service->service_name)]) ?>
+                                    <p style="font-size:150%">
+                                        <?php
+                                        //if true means it that it is shown in home page, so show as hide in home page
+                                        if ($service->home) {
+                                            echo $this->Form->postLink(__('Hide in home page'), ['action' => 'update_home', $service->service_id], ['confirm' => __("Are you sure you want to show this service in the home page? \nService: {0} ", $service->service_name)]);
+                                        } else {
+                                            echo $this->Form->postLink(__('Show in home page'), ['action' => 'update_home', $service->service_id], ['confirm' => __("Are you sure you want to hide this service from home page? \nFrom: {0} {1} ", $service->service_name)]);
+                                        }
+                                        echo "<br>";
+                                        echo "<hr>";
+                                        ?>
+                                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $service->service_id], ['confirm' => __('Are you sure you want to delete this service: {0}? Changes are irreverisble.', $service->service_name)]) ?>
                                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $service->service_id]) ?></p>
 
                                 </div>

@@ -164,7 +164,10 @@ $this->disableAutoLayout();
                     <div class="row">
                         <!-- align items stretch aligns the item to "--bs-card-height: 350px;"-->
                         <!-- LOOP HERE -->
-                        <?php $i = 0; foreach ($services as $service): $i++; if($i==4){break;} ?>
+                        <!-- Removed the 3 iteration -->
+                        <!-- $i = 0; foreach ($services as $service): $i++; if($i==4){break;}  -->
+
+                        <?php foreach ($services as $service):?>
                             <div class="col-xs-3 col-sm-4 d-flex align-items-stretch">
                                 <div class="card">
                                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
@@ -321,7 +324,6 @@ $this->disableAutoLayout();
 
                         <!--                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>-->
                         <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message*', 'type'=>'textarea', 'style' => 'height: 28.6rem;']) ?>
-                        <td style="width: 20px;height: 40px"></td>
 
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>

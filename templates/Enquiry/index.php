@@ -56,6 +56,8 @@
                     <td><?= h($enquiry->Name) ?></td>
                     <td><?= h($enquiry->Email) ?></td>
                     <td><?= h($enquiry->Phone) ?></td>
+                    <!-- style="word-break: break-all"
+                     this one line is all it takes to display the text in one screen in the form, no need to scroll to the right -->
                     <td style="word-break: break-all"><?= h($enquiry->Message) ?></td>
 
                     <td><?= $enquiry->replied ? "✅" : "❌" ?></td>
