@@ -110,7 +110,7 @@ $this->disableAutoLayout();
             <button type="button" id="closeBtn" style="background-color: #ffc800; color: #fff; padding: 1px 10px; border: 1px solid #ffc800; border-radius: 9px; font-size: 20px; cursor: pointer;">X</button>
             <?= $this->Form->create($Booking) ?>
         <fieldset class="fieldfont">
-            <legend><?= __('Add Booking') ?></legend>
+            <legend><?= __('Add Booking')?></legend>
 
             <?php
             echo $this->Form->control('booking_date',['class'=> 'fieldfont']);
