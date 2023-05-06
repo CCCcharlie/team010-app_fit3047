@@ -95,6 +95,11 @@ class EnquiryTable extends Table
             ->requirePresence('Message', 'create')
             ->notEmptyString('Message');
 
+        //Added validator for replied
+        $validator
+            ->boolean('replied')
+            ->notEmptyString('replied');
+
         return $validator;
     }
 }
