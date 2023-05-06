@@ -56,7 +56,7 @@
                     <td><?= h($enquiry->Name) ?></td>
                     <td><?= h($enquiry->Email) ?></td>
                     <td><?= h($enquiry->Phone) ?></td>
-                    <td><?= h($enquiry->Message) ?></td>
+                    <td style="word-break: break-all"><?= h($enquiry->Message) ?></td>
 
                     <td><?= $enquiry->replied ? "✅" : "❌" ?></td>
                     <td><?= h($enquiry->created) ?></td>
