@@ -76,12 +76,22 @@ $this->disableAutoLayout();
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                 <li class="nav-item"><a class="nav-link" href="#Gallery">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                <?php if ($this->Identity->isLoggedIn()){
-                    echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
-                }
-                ?>
             </ul>
         </div>
+
+        <!-- Honestly, I dont know why echo "<br>" doesnt work here nor why the font size is so small.
+         so I resorted on using invisible character "ㅤ" for spaces instead of a break line-->
+        <?php if ($this->Identity->isLoggedIn()){
+            echo "ㅤㅤ";
+            echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
+            echo "ㅤ";
+            echo $this->Html->link(__('Admindex'), ['controller' => 'Services', 'action' => 'admindex']);
+        } else {
+            echo "ㅤ";
+            echo $this->Html->link(__('Login'), ['controller' => 'Staff', 'action' => 'login']);
+        }
+        ?>
+
     </div>
 </nav>
 <!--Welcome Page Goes Here-->
@@ -310,7 +320,7 @@ $this->disableAutoLayout();
                         <!-- Message input-->
 
                         <!--                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>-->
-                        <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message*', 'rows' => 4]) ?>
+                        <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message*', 'type'=>'textarea', 'style' => 'height: 28.6rem;']) ?>
 
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>

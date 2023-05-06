@@ -91,7 +91,6 @@ class EnquiryTable extends Table
             ]);
         $validator
             ->scalar('Message')
-            ->maxLength('Message', 500)
             ->requirePresence('Message', 'create')
             ->notEmptyString('Message');
 
