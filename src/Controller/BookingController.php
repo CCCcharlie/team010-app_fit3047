@@ -63,6 +63,9 @@ class BookingController extends AppController
         $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
         $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
         $this->set(compact('booking', 'customer', 'staff', 'services'));
+
+        //check date
+
     }
 
     /**

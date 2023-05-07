@@ -112,19 +112,32 @@ class PagesController extends AppController
 
         $this->set(compact('homePageContentBlocks', 'services'));
 
+//booking var
+
+
+        $booked_dates = $this->Booking->find('list', [
+            'keyField' => 'id',
+            'valueField' => function ($booking) {
+
+
+                return $booking->booking_date->format('Y-m-d');
+
+            }
+
+        ])->toArray();
 
 
 
+        $booked_dates = array_map(function($date) {
+
+            return date( $date);
+        }, $booked_dates);
 
 
 
+        $this->set( compact($booked_dates));
 
 
-
-
-//        $services = $this->fetchTable('Services')->find()->all();
-//
-//        $this->set(compact('services'));
     }
 
 
