@@ -88,7 +88,6 @@ $this->disableAutoLayout();
             echo $this->Html->link(__('Admindex'), ['controller' => 'Services', 'action' => 'admindex']);
         } else {
             echo "ㅤ";
-            echo $this->Html->link(__('Login'), ['controller' => 'Staff', 'action' => 'login']);
         }
         ?>
 
@@ -399,7 +398,20 @@ $this->disableAutoLayout();
     });
 
 </script>
+<footer class="footer">
 
+    <p>&copy; <script>document.write(new Date().getFullYear())</script>  Copyright Holisitic Healings</p>
+    <?php if ($this->Identity->isLoggedIn()){
+        echo "ㅤㅤ";
+        echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
+        echo "ㅤ";
+        echo $this->Html->link(__('Admindex'), ['controller' => 'Services', 'action' => 'admindex']);
+    } else {
+        echo "ㅤ";
+        echo $this->Html->link(__('Staff Login'), ['controller' => 'Staff', 'action' => 'login']);
+    }
+    ?>
+</footer>
 </body>
 </html>
 

@@ -7,6 +7,8 @@
 // Scripts
 //
 
+const year = new Date().getFullYear();
+document.getElementById("current-year").textContent = year;
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -35,6 +37,8 @@ window.addEventListener('DOMContentLoaded', event => {
 $("[id^=carousel-thumbs]").carousel({
     interval: false
 });
+
+
 
 // Added to stop the top carousel form playing.
 $("[id^=carousel]").carousel({
@@ -95,3 +99,4 @@ $("[id^=carousel]").carousel({
 //         }
 //     });
 // }
+

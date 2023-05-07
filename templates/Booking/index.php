@@ -53,7 +53,7 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                events: '/bookings/events',
+                events: '/bookings/events', // WHY WONT YOU WORK GODDAMIT
                 selectable: true,
                 headerToolbar: {
                     left: 'prev,next today',
@@ -67,6 +67,7 @@
                 },
                 events: [
                     {
+                        id: 1,
                         title: 'Healing Sesson - D-Lewis',
                         start: '2023-05-12T12:00:00',
                         end: '2023-05-12T13:00:00'

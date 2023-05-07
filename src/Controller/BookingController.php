@@ -110,7 +110,7 @@ class BookingController extends AppController
     }
 
     public function events() {
-        $bookingsTable = $this->getTableLocator()->get('Bookings');
+        $bookingsTable = $this->getTableLocator()->get('bookings');
         $bookings = $bookingsTable->events();
 
         $json = json_encode($bookings);
