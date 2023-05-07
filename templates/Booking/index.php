@@ -223,6 +223,7 @@
                     // attach event listeners to the dialog buttons
                     var addButton = dialog.querySelector('#add-event');
                     addButton.addEventListener('click', function () {
+                        addButton.style.display = 'none';
                         // handle add event logic here
                         var form = document.createElement('form');
                         form.innerHTML = `
