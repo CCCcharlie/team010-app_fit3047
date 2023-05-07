@@ -14,6 +14,7 @@ use Cake\ORM\Entity;
  * @property string $service_desc
  * @property string $service_price
  * @property string $image_name
+ * @property bool $home
  */
 class Service extends Entity
 {
@@ -32,6 +33,7 @@ class Service extends Entity
         'service_desc' => true,
         'service_price' => true,
         'image_name' => true,
+        'home' => true,
     ];
 
     public function __toString()

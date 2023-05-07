@@ -131,7 +131,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 'password' => 'staff_password',
             ],
             'resolver' => [
-                'className' => 'Authentication.orm',
+                'className' => 'Authentication.Orm',
                 'userModel' => 'Staff',
             ]
         ]);

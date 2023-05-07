@@ -23,7 +23,6 @@
  * @var \Cake\Collection\CollectionInterface|string[] $customer
  * @var \Cake\Collection\CollectionInterface|string[] $staff
  * @var \Cake\Collection\CollectionInterface|string[] $services
- * @var $booked_dates
  */
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
@@ -44,25 +43,16 @@ $this->disableAutoLayout();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         Holistic Healing
-        <?= $this->fetch('title')  ?>
-        <?= debug($booked_dates);  ?>
-
+        <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
 
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 
-
-
-
-
-        <?= $this->Html->css(['cake','normalize.min', 'milligram.min', 'bootstrap','home']) ?>
+    <?= $this->Html->css(['cake','normalize.min', 'milligram.min', 'bootstrap','home']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -88,6 +78,20 @@ $this->disableAutoLayout();
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
+        <!-- Honestly, I dont know why echo "<br>" doesnt work here nor why the font size is so small.
+         so I resorted on using invisible character "ㅤ" for spaces instead of a break line-->
+
+        <?php if ($this->Identity->isLoggedIn()){
+            echo "ㅤㅤ";
+            echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
+            echo "ㅤ";
+            echo $this->Html->link(__('Admindex'), ['controller' => 'Services', 'action' => 'admindex']);
+        } else {
+            echo "ㅤ";
+            echo $this->Html->link(__('Login'), ['controller' => 'Staff', 'action' => 'login']);
+        }
+        ?>
+
     </div>
 </nav>
 <!--Welcome Page Goes Here-->
@@ -102,27 +106,25 @@ $this->disableAutoLayout();
 
 
     <div class="form-popup" class="booking form content" id="myForm">
-        <form  method="post" class="form-container" >
-            <button type="button" id="closeBtn" >X</button>
+        <form  method="post" class="form-container">
+            <button type="button" id="closeBtn" style="background-color: #ffc800; color: #fff; padding: 1px 10px; border: 1px solid #ffc800; border-radius: 9px; font-size: 20px; cursor: pointer;">X</button>
             <?= $this->Form->create($Booking) ?>
-        <fieldset class="fieldfont" id="booking-date">
-            <legend><?= __('Add Booking') ?></legend>
+        <fieldset class="fieldfont">
+            <legend><?= __('Add Booking')?></legend>
 
             <?php
-            echo $this->Form->control('booking_date',['class'=> 'fieldfont', 'id'=> 'booking-date']);
+            echo $this->Form->control('booking_date',['class'=> 'fieldfont']);
             echo $this->Form->control('booking_time',['class'=> 'fieldfont']);
             echo $this->Form->control('cust_id', ['options' => $customer,'class' => 'fieldfont']);
             echo $this->Form->control('staff_id', ['options' => $staff,'class' => 'fieldfont']);
             echo $this->Form->control('service_id', ['options' => $services,'class' => 'fieldfont']);
             ?>
         </fieldset>
-        <?= $this->Form->button(__('Submit')) ?>
+        <?= $this->Form->button(__('Submit'), [
+            'style' => 'background-color: #ffc800; color: #fff; padding: 1px 10px; border: 1px solid #ffc800; border-radius: 9px; font-size: 20px; cursor: pointer;',
+        ]) ?>
         <?= $this->Form->end() ?>
-
-
-
     </div>
-
 </header>
 
 
@@ -162,10 +164,12 @@ $this->disableAutoLayout();
             <div class="content">
                 <div class="container">
                     <div class="row">
-
                         <!-- align items stretch aligns the item to "--bs-card-height: 350px;"-->
                         <!-- LOOP HERE -->
-                        <?php $i = 0; foreach ($services as $service): $i++; if($i==4){break;} ?>
+                        <!-- Removed the 3 iteration -->
+                        <!-- $i = 0; foreach ($services as $service): $i++; if($i==4){break;}  -->
+
+                        <?php foreach ($services as $service):?>
                             <div class="col-xs-3 col-sm-4 d-flex align-items-stretch">
                                 <div class="card">
                                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
@@ -181,7 +185,6 @@ $this->disableAutoLayout();
                                         <h4 class="card-title">
                                             <a href="<?= $this->Url->build($viewURL) ?>">
                                                 <?= h($service->service_name) ?>
-
                                             </a>
                                         </h4>
                                         <!-- Description section -->
@@ -322,7 +325,7 @@ $this->disableAutoLayout();
                         <!-- Message input-->
 
                         <!--                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>-->
-                        <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message*', 'rows' => 4]) ?>
+                        <?= $this->Form->control('Message', ['required' => true, 'label' => 'Your Message*', 'type'=>'textarea', 'style' => 'height: 28.6rem;']) ?>
 
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>
@@ -352,7 +355,7 @@ $this->disableAutoLayout();
  <!--           <div class = text-center <a class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">SUBMIT</a> </div>-->
 <!--        Bandaid Style fix to stop the button from looking so pre-baked-->
     <?= $this->Form->button(__('SUBMIT'), [
-        'style' => 'background-color: #ffc800; color: #fff; padding: 2px 20px; border: 2px solid #ffc800; border-radius: 5px; font-size: 20px; cursor: pointer;',
+        'style' => 'background-color: #ffc800; width:10%; color: #fff; padding: 2px 20px; border: 2px solid #ffc800; border-radius: 5px; font-size: 20px; cursor: pointer;',
         'href' => '#contact'
     ]) ?>
     </form>
@@ -361,8 +364,6 @@ $this->disableAutoLayout();
 
     </div>
     <?= $this->Form->end() ?>
-
-
 </section>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -397,47 +398,7 @@ $this->disableAutoLayout();
         popup.style.display = "none";
     });
 
-
-
-
-
-
 </script>
-
-
-
-<!--check date-->
-<!-- 包括必要的CSS和JavaScript文件 -->
-
-
-
-<!-- 添加日期选择器的文本输入字段 -->
-<!--<input type="text" id="booking_date">-->
-<script>
-
-    $(function() {
-        // 初始化日期选择器
-
-        $('#booking-date').datepicker({
-            // 禁用已预订日期
-            debug($booked_dates);
-            exit;
-            beforeShowDay: function(date) {
-                var dateString = $.datepicker.formatDate('yy-mm-dd', date);
-                var bookedDates = <?php echo $booked_dates ?>;
-                if (bookedDates.indexOf(dateString) !== -1) {
-                    return [false, '', '该日期已经预订'];
-                } else {
-                    return [true, '', ''];
-                }
-            }
-        });
-    });
-
-</script>
-
-
-
 
 </body>
 </html>

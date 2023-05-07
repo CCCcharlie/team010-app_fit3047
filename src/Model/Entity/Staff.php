@@ -15,6 +15,9 @@ use Cake\ORM\Entity;
  * @property string $staff_position
  * @property string $staff_email
  * @property string $staff_password
+ * @property string|null $nonce
+ * @property \Cake\I18n\FrozenTime $nonce_expiry
+
  */
 class Staff extends Entity
 {
@@ -33,7 +36,18 @@ class Staff extends Entity
         'staff_position' => true,
         'staff_email' => true,
         'staff_password' => true,
+        'nonce' => true,
+        'expiry' => true,
+
     ];
+
+/**
+* Generate display field for User entity
+* @return string Display field
+*/
+    protected function _getStaffFullDisplay(): string {
+        return $this->staff_fname . ' ' . $this->staff_lname . ' (' . $this->staff_email . ')';
+    }
 
     protected function _setStaffPassword(string $password) : ?string
     {

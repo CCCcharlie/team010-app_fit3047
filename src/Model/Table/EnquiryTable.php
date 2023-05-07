@@ -91,9 +91,13 @@ class EnquiryTable extends Table
             ]);
         $validator
             ->scalar('Message')
-            ->maxLength('Message', 500)
             ->requirePresence('Message', 'create')
             ->notEmptyString('Message');
+
+        //Added validator for replied
+        $validator
+            ->boolean('replied')
+            ->notEmptyString('replied');
 
         return $validator;
     }

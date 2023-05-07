@@ -121,6 +121,31 @@ th {
     height: 50px;
     background-color: #FFFFFF;
 }
+.fc-daygrid-event {
+    z-index: 1;
+}
+
+.fc-row .fc-content-skeleton {
+    z-index: 0;
+}
+
+
+
+.dialog-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid black;
+}
 
 .top-nav-title a {
     font-size: 2.4rem;

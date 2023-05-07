@@ -103,4 +103,23 @@ class EnquiryController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function updateReplied($id = null) {
+        $this->request->allowMethod(['post', 'delete']);
+        $enquiry= $this->Enquiry->get($id);
+
+        // Flip the replied field value (should be a boolean)
+        $enquiry->replied = !$enquiry->replied;
+
+        if ($this->Enquiry->save($enquiry)) {
+            $this->Flash->success(__('The reply status of contact form has been updated.'));
+        } else {
+            $this->Flash->error(__('The contact form could not be updated. Please, try again.'));
+        }
+
+        // Instead of redirect to index page, redirect to where the user came from
+        // Remember the function is being called from both index listing and view page sidebar
+        return $this->redirect($this->referer());
+    }
+
 }

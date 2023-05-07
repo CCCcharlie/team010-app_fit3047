@@ -18,10 +18,27 @@ class BookingController extends AppController
      */
     public function index()
     {
+
+        $bookings = $this->Bookings->find()
+            ->contain(['Customers', 'Staffs', 'Services'])
+            ->select([
+                'booking_id',
+                'eventstart',
+                'eventend',
+                'cust_fname' => 'Customers.customer_fname',
+                'cust_lname' => 'Customers.customer_lname',
+                'staff_fname' => 'Staffs.staff_fname',
+                'staff_lname' => 'Staffs.staff_lname',
+                'service_name' => 'Services.service_name'
+            ])
+            ->toArray();
+
+        $this->set('bookings', $bookings);
         $this->paginate = [
             'contain' => ['Customer', 'Staff', 'Services'],
         ];
         $booking = $this->paginate($this->Booking);
+
 
         $this->set(compact('booking'));
     }
@@ -93,6 +110,18 @@ class BookingController extends AppController
         $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
         $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
         $this->set(compact('booking', 'customer', 'staff', 'services'));
+    }
+
+    public function events() {
+        $bookingsTable = $this->getTableLocator()->get('Bookings');
+        $bookings = $bookingsTable->events();
+
+        $json = json_encode($bookings);
+
+        $this->response = $this->response->withType('application/json');
+        $this->response->getBody()->write($json);
+
+        return $this->response;
     }
 
     /**

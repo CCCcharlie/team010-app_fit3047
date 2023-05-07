@@ -72,7 +72,9 @@ class StaffTable extends Table
             ->scalar('staff_position')
             ->maxLength('staff_position', 20)
             ->requirePresence('staff_position', 'create')
-            ->notEmptyString('staff_position');
+            ->notEmptyString('staff_position')
+            ->inList('staff_position', ['admin', 'staff', 'admin bookable', 'staff bookable'], 'Invalid position');
+
 
         $validator
             ->scalar('staff_email')
@@ -85,6 +87,30 @@ class StaffTable extends Table
             ->maxLength('staff_password', 65)
             ->requirePresence('staff_password', 'create')
             ->notEmptyString('staff_password');
+
+        return $validator;
+    }
+        /**
+     * Reset Password validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationResetPassword(Validator $validator): Validator {
+        $validator
+            ->scalar('staff_password')
+            ->requirePresence('staff_password', 'reset-password')
+            ->notEmptyString('staff_password');
+
+        // Validate retyped password
+        $validator
+            ->requirePresence('password_confirm', 'reset-password')
+            ->sameAs('password_confirm', 'staff_password', 'Both passwords must match');
+
+        $validator
+            ->uuid('nonce')
+            ->maxLength('nonce', 128)
+            ->allowEmptyString('nonce');
 
         return $validator;
     }
