@@ -109,6 +109,18 @@ class BookingController extends AppController
         $this->set(compact('booking', 'customer', 'staff', 'services'));
     }
 
+    public function events() {
+        $bookingsTable = $this->getTableLocator()->get('Bookings');
+        $bookings = $bookingsTable->events();
+
+        $json = json_encode($bookings);
+
+        $this->response = $this->response->withType('application/json');
+        $this->response->getBody()->write($json);
+
+        return $this->response;
+    }
+
     /**
      * Delete method
      *
