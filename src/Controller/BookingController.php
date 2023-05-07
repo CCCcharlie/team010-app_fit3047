@@ -18,10 +18,27 @@ class BookingController extends AppController
      */
     public function index()
     {
+
+        $bookings = $this->Bookings->find()
+            ->contain(['Customers', 'Staffs', 'Services'])
+            ->select([
+                'booking_id',
+                'eventstart',
+                'eventend',
+                'cust_fname' => 'Customers.customer_fname',
+                'cust_lname' => 'Customers.customer_lname',
+                'staff_fname' => 'Staffs.staff_fname',
+                'staff_lname' => 'Staffs.staff_lname',
+                'service_name' => 'Services.service_name'
+            ])
+            ->toArray();
+
+        $this->set('bookings', $bookings);
         $this->paginate = [
             'contain' => ['Customer', 'Staff', 'Services'],
         ];
         $booking = $this->paginate($this->Booking);
+
 
         $this->set(compact('booking'));
     }
