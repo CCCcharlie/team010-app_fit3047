@@ -79,7 +79,8 @@ class BookingTable extends Table
     // This should read the data
     public function events()
     {
-        $bookings = $this->Bookings->find('all', [
+
+        $bookings = $this->loadModel('Bookings')->find('all', [
             'contain' => ['Customers', 'Staff', 'Services'],
             'fields' => [
                 'booking_id', 'eventstart', 'eventend',
@@ -99,7 +100,6 @@ class BookingTable extends Table
 
         $json = json_encode($bookings);
 
-        $this->response = $this->response->withType('application/json');
         $this->response->getBody()->write($json);
 
         return $this->response;
