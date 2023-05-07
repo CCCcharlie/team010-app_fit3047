@@ -113,7 +113,9 @@
                     dialog.appendChild(form);
 
                     var titleLabel = document.createElement('label');
-                    titleLabel.textContent = 'Event Title*:';
+                    titleLabel.textContent = 'Event Title:';
+                    titleLabel.setAttribute('for', 'eventTitle');
+                    titleLabel.setAttribute('required', '');
                     form.appendChild(titleLabel);
 
                     var titleInput = document.createElement('input');
@@ -121,6 +123,7 @@
                     titleInput.setAttribute('id', 'eventTitle');
                     titleInput.setAttribute('name', 'eventTitle');
                     titleInput.setAttribute('value', info.event.title);
+                    titleInput.setAttribute('required', ''); // Should make field mandatory, not sure why it doesnt work.
                     form.appendChild(titleInput);
 
                     var startLabel = document.createElement('label');
@@ -131,6 +134,7 @@
                     startInput.setAttribute('type', 'datetime-local');
                     startInput.setAttribute('id', 'eventStart');
                     startInput.setAttribute('name', 'eventStart');
+                    startInput.setAttribute('required', '');
                     startInput.value = formatDate(info.event.start);
 
                     form.appendChild(startInput);
@@ -144,6 +148,7 @@
                     endInput.setAttribute('id', 'eventEnd');
                     endInput.setAttribute('name', 'eventEnd');
                     endInput.value = formatDate(info.event.end);
+                    endInput.setAttribute('required', '');
                     form.appendChild(endInput);
 
                     var urlLabel = document.createElement('label');
@@ -172,6 +177,13 @@
                         var start = new Date(startInput.value);
                         var end = new Date(endInput.value);
                         var url = urlInput.value;
+
+                        // Check if the event falls outside of business hours.
+                        if (start.getHours() < 9 || end.getHours() > 17 || start.getDay() === 6 || start.getDay() === 0) {
+                            // Display a warning message
+                            alert('Warning: This event falls outside of business hours or on a weekend. Are you sure you want to save it?');
+                        }
+
                         info.event.setProp('title', title);
                         info.event.setStart(start);
                         info.event.setEnd(end);
@@ -230,6 +242,20 @@
                             var eventStart = document.getElementById('eventStart').value;
                             var eventEnd = document.getElementById('eventEnd').value;
                             var eventUrl = document.getElementById('eventUrl').value;
+
+                            var start = new Date(eventStart);
+                            var end = new Date(eventEnd);
+                            var isWeekend = start.getDay() === 6 || start.getDay() === 0 || end.getDay() === 6 || end.getDay() === 0;
+                            var isBeforeHours = start.getHours() < 9 || end.getHours() < 9;
+                            var isAfterHours = start.getHours() > 17 || end.getHours() > 17;
+                            var isValid = !isWeekend && !isBeforeHours && !isAfterHours;
+
+                            if (!isValid) {
+                                // Show warning message
+                                alert('You are creating an event outside of business hours. Please edit this event if that was not your intention.');
+                                return;
+                            }
+
                             var newEvent = {
                                 title: eventTitle,
                                 start: eventStart,
