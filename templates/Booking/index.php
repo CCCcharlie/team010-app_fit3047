@@ -53,6 +53,7 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
+                events: '/bookings/events',
                 selectable: true,
                 headerToolbar: {
                     left: 'prev,next today',
