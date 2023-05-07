@@ -36,7 +36,17 @@
     </nav>
 
     <h2>BOOKINGS VIEWER</h2>
+
     <script>
+        function formatDate(date) {
+            var year = date.getFullYear();
+            var month = (date.getMonth() + 1).toString().padStart(2, '0');
+            var day = date.getDate().toString().padStart(2, '0');
+            var hours = date.getHours().toString().padStart(2, '0');
+            var minutes = date.getMinutes().toString().padStart(2, '0');
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var dialog;
@@ -89,6 +99,16 @@
                     dialogTitle.textContent = 'Edit/Delete Event';
                     dialog.appendChild(dialogTitle);
 
+                    // Add exit button
+                    var exitButton = document.createElement('button');
+                    exitButton.setAttribute('type', 'button');
+                    exitButton.textContent = 'X';
+                    exitButton.style.float = 'right';
+                    exitButton.addEventListener('click', function() {
+                        dialog.remove();
+                    });
+                    dialogTitle.appendChild(exitButton);
+
                     var form = document.createElement('form');
                     dialog.appendChild(form);
 
@@ -111,7 +131,8 @@
                     startInput.setAttribute('type', 'datetime-local');
                     startInput.setAttribute('id', 'eventStart');
                     startInput.setAttribute('name', 'eventStart');
-                    startInput.setAttribute('value', info.event.start.toISOString().slice(0, 16));
+                    startInput.value = formatDate(info.event.start);
+
                     form.appendChild(startInput);
 
                     var endLabel = document.createElement('label');
@@ -122,7 +143,7 @@
                     endInput.setAttribute('type', 'datetime-local');
                     endInput.setAttribute('id', 'eventEnd');
                     endInput.setAttribute('name', 'eventEnd');
-                    endInput.setAttribute('value', info.event.end.toISOString().slice(0, 16));
+                    endInput.value = formatDate(info.event.end);
                     form.appendChild(endInput);
 
                     var urlLabel = document.createElement('label');
