@@ -67,21 +67,19 @@
                 events: [
                     {
                         title: 'Healing Sesson - D-Lewis',
-                        start: '2023-05-12T12:00:00'
+                        start: '2023-05-12T12:00:00',
+                        end: '2023-05-12T13:00:00'
 
                     },
                     {
                         title: 'Healing Session - JBruh',
-                        start: '2023-05-12T14:30:00'
+                        start: '2023-05-12T14:30:00',
+                        end: '2023-05-12T15:11:00'
                     },
                     {
                         title: 'Staff Meeting',
-                        start: '2023-05-13T07:00:00'
-                    },
-                    {
-                        title: 'Click for example hyperlink',
-                        url: 'http://google.com/',
-                        start: '2023-05-28'
+                        start: '2023-05-13T07:00:00',
+                        end: '2023-05-13T13:11:00'
                     }
                 ],
                 eventClick: function(info) {
@@ -183,6 +181,20 @@
                             // Display a warning message
                             alert('Warning: This event falls outside of business hours or on a weekend. Are you sure you want to save it?');
                         }
+
+                        $.ajax({
+                            url: '/bookings/createOrUpdateBooking',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {event: event},
+                            success: function(response) {
+                                dialog.remove();
+                                calendar.refetchEvents();
+                            },
+                            error: function(xhr, status, error) {
+                                alert('Error saving event: ' + error);
+                            }
+                        });
 
                         info.event.setProp('title', title);
                         info.event.setStart(start);

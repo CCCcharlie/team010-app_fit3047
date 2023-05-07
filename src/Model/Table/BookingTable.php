@@ -58,6 +58,52 @@ class BookingTable extends Table
             'joinType' => 'INNER',
         ]);
     }
+    // This has been made to try and get the data booked and saved to the DB
+    public function createOrUpdateBooking($event) {
+        $booking = $this->newEntity();
+
+        $booking->Title = $event['title'];
+        $booking->Start_Date = $event['start']->format('Y-m-d H:i:s');
+        $booking->End_Date = $event['end']->format('Y-m-d H:i:s');
+        $booking->Url = $event['url'];
+
+        if (!empty($event['booking_id'])) {
+            // Update existing booking
+            $booking->booking_id = $event['booking_id'];
+            $booking = $this->patchEntity($booking, $event);
+        }
+
+        $this->save($booking);
+    }
+
+    // This should read the data
+    public function events()
+    {
+        $bookings = $this->Bookings->find('all', [
+            'contain' => ['Customers', 'Staff', 'Services'],
+            'fields' => [
+                'booking_id', 'eventstart', 'eventend',
+                'customer_fname', 'customer_lname',
+                'staff_fname', 'staff_lname',
+                'service_name'
+            ]
+        ])->map(function ($booking) {
+            $title = $booking['service_name'] . ' - Cust: ' . $booking['customer_fname'] . ' ' . $booking['customer_lname'] . ', ' . $booking['staff_fname'] . ' ' . $booking['staff_lname'];
+            return [
+                'id' => $booking['booking_id'],
+                'title' => $title,
+                'start' => $booking['eventstart']->toIso8601String(),
+                'end' => $booking['eventend']->toIso8601String()
+            ];
+        })->toArray();
+
+        $json = json_encode($bookings);
+
+        $this->response = $this->response->withType('application/json');
+        $this->response->getBody()->write($json);
+
+        return $this->response;
+    }
 
     /**
      * Default validation rules.
