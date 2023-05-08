@@ -49,7 +49,7 @@
                     echo $this->Form->control('Name');
                     echo $this->Form->control('Email');
                     echo $this->Form->control('Phone');
-                    echo $this->Form->control('Message');
+                    echo $this->Form->control('Message',['type'=>'textarea', 'style' => 'height: 15rem;']);
                 $this->Html->link(__('List Content Blocks'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>

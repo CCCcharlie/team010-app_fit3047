@@ -21,7 +21,17 @@
         <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
         <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
         <a target="_self" href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
+        <br>
         <a target="_self" href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
+        <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a>
+        <?= "|" ?>
+        <!-- To obtain the identity, use $identity = $this->request->getAttribute('authentication')->getIdentity(); to find the currently logged in entity
+to get the name or any value in the staff table, use the get and then the name of the attribute $identity->get('staff_fname')-->
+        <?php $identity = $this->request->getAttribute('authentication')->getIdentity();
+        //debug($identity->get('staff_fname'));
+        //exit();
+        ?>
+        <a target ="_self" title="Hi there">Hi <?php echo $identity->get('staff_fname')?> :)</a> <?= "|" ?>
         <a target="_self" href="<?= $this->Url->build('/staff/logout') ?>">Logout</a>
 
         <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
@@ -41,6 +51,11 @@
                     <th><?= $this->Paginator->sort('Email') ?></th>
                     <th><?= $this->Paginator->sort('Phone') ?></th>
                     <th><?= $this->Paginator->sort('Message') ?></th>
+                    
+                    <th><?= $this->Paginator->sort('replied') ?></th>
+                    <th><?= $this->Paginator->sort('Created') ?></th>
+
+
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -50,8 +65,23 @@
                     <td><?= h($enquiry->Name) ?></td>
                     <td><?= h($enquiry->Email) ?></td>
                     <td><?= h($enquiry->Phone) ?></td>
-                    <td><?= h($enquiry->Message) ?></td>
+                    <td style="word-break: break-all" ><?= h($enquiry->Message) ?></td>
+                    
+                    <td><?= $enquiry->replied ? "✅" : "❌" ?></td>
+                    <td><?= h($enquiry->created) ?></td>
                     <td class="actions">
+                        
+                        <?php
+                        //if true means it has been read, so show as mark as unread
+                        if ($enquiry->replied) {
+                            echo $this->Form->postLink(__('Mark as Unread'), ['action' => 'update_replied', $enquiry->enquiry_id], ['confirm' => __("Are you sure you want to mark this message as unread? \nFrom: {0} {1} ", $enquiry->Name, $enquiry->Email)]);
+                        } else {
+                            echo $this->Form->postLink(__('Mark as Replied'), ['action' => 'update_replied', $enquiry->enquiry_id], ['confirm' => __("Are you sure you want to mark this message as replied? \nFrom: {0} {1} ", $enquiry->Name, $enquiry->Email)]);
+                        }
+                        echo "<br>";
+                        echo "<hr>";
+                        ?>
+
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $enquiry->enquiry_id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $enquiry->enquiry_id], ['confirm' => __('Are you sure you want to delete # {0}? This change cannot be undone!', $enquiry->enquiry_id)]) ?>
                     </td>
