@@ -33,6 +33,8 @@ use Cake\View\Exception\MissingTemplateException;
 
  * @property \App\Model\Table\EnquiryTable $Enquiry
  *  @property \App\Model\Table\BookingTable $Booking
+ *  @property \App\Model\Table\CustomerTable $Customer
+
  * @method \App\Model\Entity\Enquiry[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
 
  */
@@ -92,10 +94,11 @@ class PagesController extends AppController
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
-        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
+//        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
         $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
-        $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
-        $this->set(compact('Booking', 'customer', 'staff', 'services'));
+        $service = $this->Booking->Services->find('list', ['limit' => 200])->all();
+
+        $this->set(compact('Booking', 'staff', 'service'));
 
 
         // Key-value pairs are much easier to use when retrieving content blocks
@@ -113,6 +116,8 @@ class PagesController extends AppController
 
         $this->set(compact('homePageContentBlocks', 'services'));
 
+
+
 //booking var
 
 
@@ -128,15 +133,15 @@ class PagesController extends AppController
         ])->toArray();
 
 
+//
+//        $booked_dates = array_map(function($date) {
+//
+//            return date( $date);
+//        }, $booked_dates);
 
-        $booked_dates = array_map(function($date) {
+        $toJson = json_encode($booked_dates);
 
-            return date( $date);
-        }, $booked_dates);
-
-
-
-        $this->set( compact($booked_dates));
+        $this->set(compact('toJson'));
 
 
     }

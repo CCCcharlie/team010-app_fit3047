@@ -45,10 +45,7 @@ class BookingTable extends Table
         $this->setDisplayField('booking_id');
         $this->setPrimaryKey('booking_id');
 
-        $this->belongsTo('Customer', [
-            'foreignKey' => 'cust_id',
-            'joinType' => 'INNER',
-        ]);
+
         $this->belongsTo('Staff', [
             'foreignKey' => 'staff_id',
             'joinType' => 'INNER',
@@ -118,8 +115,8 @@ class BookingTable extends Table
             ->notEmptyTime('booking_time');
 
         $validator
-            ->integer('cust_id')
-            ->notEmptyString('cust_id');
+            ->scalar('cust_email')
+            ->notEmptyString('cust_email');
 
         $validator
             ->integer('staff_id')
@@ -141,7 +138,7 @@ class BookingTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn('cust_id', 'Customer'), ['errorField' => 'cust_id']);
+//        $rules->add($rules->existsIn('cust_email', 'Customer'), ['errorField' => 'cust_email']);
         $rules->add($rules->existsIn('staff_id', 'Staff'), ['errorField' => 'staff_id']);
         $rules->add($rules->existsIn('service_id', 'Services'), ['errorField' => 'service_id']);
 

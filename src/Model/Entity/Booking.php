@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  * @property int $booking_id
  * @property \Cake\I18n\FrozenDate $booking_date
  * @property \Cake\I18n\Time $booking_time
- * @property int $cust_id
+ * @property  string cust_email
  * @property int $staff_id
  * @property int $service_id
  *
@@ -33,7 +33,7 @@ class Booking extends Entity
     protected $_accessible = [
         'booking_date' => true,
         'booking_time' => true,
-        'cust_id' => true,
+        'cust_email' => true,
         'staff_id' => true,
         'service_id' => true,
         'customer' => true,

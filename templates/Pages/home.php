@@ -17,12 +17,13 @@
 =======
  * @var string[] $globalContentBlocks
  * @var string[] $homePageContentBlocks
- * @var iterable<\App\Model\Entity\Service> $services
+ * @var iterable<\App\Model\Entity\Service> $service
  * @var iterable<\App\Model\Entity\Cb> $cb
   * @var \App\Model\Entity\Booking $Booking
  * @var \Cake\Collection\CollectionInterface|string[] $customer
  * @var \Cake\Collection\CollectionInterface|string[] $staff
  * @var \Cake\Collection\CollectionInterface|string[] $services
+
  */
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
@@ -32,6 +33,8 @@ use Cake\Error\Debugger;
 use Cake\Http\Exception\NotFoundException;
 
 $this->disableAutoLayout();
+
+
 
 ?>
 <!DOCTYPE html>
@@ -44,11 +47,17 @@ $this->disableAutoLayout();
     <title>
         Holistic Healing
         <?= $this->fetch('title') ?>
+
+
     </title>
     <?= $this->Html->meta('icon') ?>
 
 
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" type="text/css" />
+<!----dateselecter-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 
@@ -109,15 +118,19 @@ $this->disableAutoLayout();
         <form  method="post" class="form-container">
             <button type="button" id="closeBtn" style="background-color: #ffc800; color: #fff; padding: 1px 10px; border: 1px solid #ffc800; border-radius: 9px; font-size: 20px; cursor: pointer;">X</button>
             <?= $this->Form->create($Booking) ?>
-        <fieldset class="fieldfont">
+
+            <fieldset class="fieldfont">
+
             <legend><?= __('Add Booking')?></legend>
 
             <?php
-            echo $this->Form->control('booking_date',['class'=> 'fieldfont']);
+            echo $this->Form->control('booking_date',['class'=> 'fieldfont',"id"=>'booking_date']);
             echo $this->Form->control('booking_time',['class'=> 'fieldfont']);
-            echo $this->Form->control('cust_id', ['options' => $customer,'class' => 'fieldfont']);
+            echo $this->Form->control('cust_email');
             echo $this->Form->control('staff_id', ['options' => $staff,'class' => 'fieldfont']);
-            echo $this->Form->control('service_id', ['options' => $services,'class' => 'fieldfont']);
+            echo $this->Form->control('service_id', ['options' => $service,'class' => 'fieldfont']) ;
+//     debug($service->toList());
+
             ?>
         </fieldset>
         <?= $this->Form->button(__('Submit'), [
@@ -381,13 +394,15 @@ $this->disableAutoLayout();
 <script>
     function openForm() {
         document.getElementById("myForm").style.display = "block";
-        // console.log(document.getElementById("myForm"));
+
+
 
 
     }
 
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
+
     }
 
     var popup = document.getElementById("myForm");
@@ -399,7 +414,32 @@ $this->disableAutoLayout();
     });
 
 </script>
+<script>
 
+
+    $(function() {
+
+        // 初始化日期选择器
+        $('#booking_date').datepicker({
+
+
+            // 禁用已预订日期
+            beforeShowDay: function(date) {
+
+
+                var dateString = $.datepicker.formatDate('yy-mm-dd', date);
+                //var bookedDates = <?php //echo $booked_dates ?>//;
+                console.log("hello“);
+
+                if (bookedDates.indexOf(dateString) !== -1) {
+                    return [false, '', '该日期已经预订'];
+                } else {
+                    return [true, '', ''];
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>
 

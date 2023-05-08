@@ -18,10 +18,10 @@
         <div class="booking view content">
             <h3><?= h($booking->booking_id) ?></h3>
             <table>
-                <tr>
-                    <th><?= __('Customer') ?></th>
-                    <td><?= $booking->has('customer') ? $this->Html->link($booking->customer->cust_id, ['controller' => 'Customer', 'action' => 'view', $booking->customer->cust_id]) : '' ?></td>
-                </tr>
+<!--                <tr>-->
+<!--                    <th>--><?php //= __('Customer') ?><!--</th>-->
+<!--                    <td>--><?php //= $booking->has('customer') ? $this->Html->link($booking->customer->cust_id, ['controller' => 'Customer', 'action' => 'view', $booking->customer->cust_id]) : '' ?><!--</td>-->
+<!--                </tr>-->
                 <tr>
                     <th><?= __('Staff') ?></th>
                     <td><?= $booking->has('staff') ? $this->Html->link($booking->staff->staff_id, ['controller' => 'Staff', 'action' => 'view', $booking->staff->staff_id]) : '' ?></td>
@@ -41,6 +41,10 @@
                 <tr>
                     <th><?= __('Booking Time') ?></th>
                     <td><?= h($booking->booking_time) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Customer email') ?></th>
+                    <td><?= h($booking->cust_email) ?></td>
                 </tr>
             </table>
         </div>
