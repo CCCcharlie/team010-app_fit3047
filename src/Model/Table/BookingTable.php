@@ -74,27 +74,26 @@ class BookingTable extends Table
     }
 
     // This should read the data
-    public function events() {
-        $bookings = $this->find('all', [
-            'contain' => ['Customers', 'Staff', 'Services'],
-            'fields' => [
-                'booking_id', 'eventstart', 'eventend',
-                'customer_fname', 'customer_lname',
-                'staff_fname', 'staff_lname',
-                'service_name'
-            ]
-        ])->map(function ($booking) {
-            $title = $booking['service_name'] . ' - Cust: ' . $booking['customer_fname'] . ' ' . $booking['customer_lname'] . ', ' . $booking['staff_fname'] . ' ' . $booking['staff_lname'];
-            return [
-                'id' => $booking['booking_id'],
-                'title' => $title,
-                'start' => $booking['eventstart']->toIso8601String(),
-                'end' => $booking['eventend']->toIso8601String()
-            ];
-        })->toArray();
-
-        return $bookings;
-    }
+//    public function events() {
+//        $bookings = $this->find('all', [
+//            'contain' => ['Customer', 'Staff', 'Services'],
+//            'fields' => [
+//                'booking_id', 'eventstart', 'eventend',
+//                'customer_fname', 'customer_lname',
+//                'staff_fname', 'staff_lname',
+//                'service_name'
+//            ]
+//        ])->map(function ($booking) {
+//            $title = $booking['service_name'] . ' - Cust: ' . $booking['customer_fname'] . ' ' . $booking['customer_lname'] . ', ' . $booking['staff_fname'] . ' ' . $booking['staff_lname'];
+//            return [
+//                'id' => $booking['booking_id'],
+//                'title' => $title,
+//                'start' => $booking['eventstart']->toIso8601String(),
+//                'end' => $booking['eventend']->toIso8601String()
+//            ];
+//        })->toArray();
+//        return $bookings;
+//    }
 
     /**
      * Default validation rules.

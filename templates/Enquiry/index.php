@@ -10,12 +10,9 @@
         we must use $this->html->image instead of <img src=""> in this case for it to work -->
 
         <!-- <?php /*= "$this->Url->build('/')" */?> <- this line of code is for redirection, "/" is the root path-->
-        <a href="<?= $this->Url->build('/staff') ?>"> <?= $this->Html->image('holistichealinglogofull.png', ['alt' => 'Holistic healing logo', 'class' => 'logo']); ?>
-            <a href="<?= $this->Url->build('/staff') ?>"> Holistic Healings - Staff Page<span></a>
+        <a href="<?= $this->Url->build('/cb') ?>"> <?= $this->Html->image('holistichealinglogofull.png', ['alt' => 'Holistic healing logo', 'class' => 'logo']); ?>
+            <a href="<?= $this->Url->build('/cb') ?>"> Holistic Healings - Staff Page<span></a>
     </div>
-
-
-
     <div class="top-nav-links">
         <!--  target acts as where I want to display the href, _self is the default so it will update itself
          If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
@@ -40,7 +37,6 @@ to get the name or any value in the staff table, use the get and then the name o
         <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
     </div>
 </nav>
-
 <div class="enquiry index content">
 <!--    --><?php //= $this->Html->link(__('New Enquiry'), ['action' => 'add'], ['class' => 'button float-right']) ?>
 <!--    <h2>--><?php //= __('Customer Enquiries') ?><!--</h2>-->
@@ -55,8 +51,11 @@ to get the name or any value in the staff table, use the get and then the name o
                     <th><?= $this->Paginator->sort('Email') ?></th>
                     <th><?= $this->Paginator->sort('Phone') ?></th>
                     <th><?= $this->Paginator->sort('Message') ?></th>
+                    
                     <th><?= $this->Paginator->sort('replied') ?></th>
                     <th><?= $this->Paginator->sort('Created') ?></th>
+
+
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -66,14 +65,12 @@ to get the name or any value in the staff table, use the get and then the name o
                     <td><?= h($enquiry->Name) ?></td>
                     <td><?= h($enquiry->Email) ?></td>
                     <td><?= h($enquiry->Phone) ?></td>
-                    <!-- style="word-break: break-all"
-                     this one line is all it takes to display the text in one screen in the form, no need to scroll to the right -->
-                    <td style="word-break: break-all"><?= h($enquiry->Message) ?></td>
-
+                    <td style="word-break: break-all" ><?= h($enquiry->Message) ?></td>
+                    
                     <td><?= $enquiry->replied ? "✅" : "❌" ?></td>
                     <td><?= h($enquiry->created) ?></td>
-
                     <td class="actions">
+                        
                         <?php
                         //if true means it has been read, so show as mark as unread
                         if ($enquiry->replied) {
@@ -84,6 +81,7 @@ to get the name or any value in the staff table, use the get and then the name o
                         echo "<br>";
                         echo "<hr>";
                         ?>
+
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $enquiry->enquiry_id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $enquiry->enquiry_id], ['confirm' => __('Are you sure you want to delete # {0}? This change cannot be undone!', $enquiry->enquiry_id)]) ?>
                     </td>

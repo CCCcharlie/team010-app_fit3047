@@ -53,6 +53,7 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
+                events:  '<?= $this->Url->build(['controller' => 'Booking', 'action' => 'calendar', '_ext' => 'json'])?>',
                 selectable: true,
                 headerToolbar: {
                     left: 'prev,next today',
@@ -64,24 +65,6 @@
                     startTime: '09:00', // 9am
                     endTime: '17:00' // 5pm
                 },
-                events: [
-                    {
-                        title: 'Healing Sesson - D-Lewis',
-                        start: '2023-05-12T12:00:00',
-                        end: '2023-05-12T13:00:00'
-
-                    },
-                    {
-                        title: 'Healing Session - JBruh',
-                        start: '2023-05-12T14:30:00',
-                        end: '2023-05-12T15:11:00'
-                    },
-                    {
-                        title: 'Staff Meeting',
-                        start: '2023-05-13T07:00:00',
-                        end: '2023-05-13T13:11:00'
-                    }
-                ],
                 eventClick: function(info) {
                     var dialog = document.createElement('div');
                     dialog.classList.add('dialog');
@@ -300,53 +283,56 @@
 </head>
 <body>
 <div id='calendar'></div>
+
+
+
+<div class="booking index content">
+    <?= $this->Html->link(__('New Booking'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <h3><?= __('Booking') ?></h3>
+    <div class="table-responsive">
+        <table>
+            <thead>
+            <tr>
+                <th><?= $this->Paginator->sort('booking_id') ?></th>
+                <th><?= $this->Paginator->sort('eventstart') ?></th>
+                <th><?= $this->Paginator->sort('eventend') ?></th>
+                <th><?= $this->Paginator->sort('cust_id') ?></th>
+                <th><?= $this->Paginator->sort('staff_id') ?></th>
+                <th><?= $this->Paginator->sort('service_id') ?></th>
+                <th><?= $this->Paginator->sort('title') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($booking as $booking): ?>
+                <tr>
+                    <td><?= $this->Number->format($booking->booking_id) ?></td>
+                    <td><?= h($booking->eventend) ?></td>
+                    <td><?= h($booking->eventstart) ?></td>
+                    <td><?= $booking->has('customer') ? $this->Html->link($booking->customer->cust_id, ['controller' => 'Customer', 'action' => 'view', $booking->customer->cust_id]) : '' ?></td>
+                    <td><?= $booking->has('staff') ? $this->Html->link($booking->staff->staff_id, ['controller' => 'Staff', 'action' => 'view', $booking->staff->staff_id]) : '' ?></td>
+                    <td><?= $booking->has('service') ? $this->Html->link($booking->service->service_id, ['controller' => 'Services', 'action' => 'view', $booking->service->service_id]) : '' ?></td>
+                    <td class="actions">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $booking->booking_id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->booking_id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->booking_id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->booking_id)]) ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+    </div>
+</div>
+
 </body>
 </html>
-
-<!---->
-<!--<div class="booking index content">-->
-<!--    --><?php //= $this->Html->link(__('New Booking'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-<!--    <h3>--><?php //= __('Booking') ?><!--</h3>-->
-<!--    <div class="table-responsive">-->
-<!--        <table>-->
-<!--            <thead>-->
-<!--                <tr>-->
-<!--                    <th>--><?php //= $this->Paginator->sort('booking_id') ?><!--</th>-->
-<!--                    <th>--><?php //= $this->Paginator->sort('booking_date') ?><!--</th>-->
-<!--                    <th>--><?php //= $this->Paginator->sort('booking_time') ?><!--</th>-->
-<!--                    <th>--><?php //= $this->Paginator->sort('cust_id') ?><!--</th>-->
-<!--                    <th>--><?php //= $this->Paginator->sort('staff_id') ?><!--</th>-->
-<!--                    <th>--><?php //= $this->Paginator->sort('service_id') ?><!--</th>-->
-<!--                    <th class="actions">--><?php //= __('Actions') ?><!--</th>-->
-<!--                </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--                --><?php //foreach ($booking as $booking): ?>
-<!--                <tr>-->
-<!--                    <td>--><?php //= $this->Number->format($booking->booking_id) ?><!--</td>-->
-<!--                    <td>--><?php //= h($booking->booking_date) ?><!--</td>-->
-<!--                    <td>--><?php //= h($booking->booking_time) ?><!--</td>-->
-<!--                    <td>--><?php //= $booking->has('customer') ? $this->Html->link($booking->customer->cust_id, ['controller' => 'Customer', 'action' => 'view', $booking->customer->cust_id]) : '' ?><!--</td>-->
-<!--                    <td>--><?php //= $booking->has('staff') ? $this->Html->link($booking->staff->staff_id, ['controller' => 'Staff', 'action' => 'view', $booking->staff->staff_id]) : '' ?><!--</td>-->
-<!--                    <td>--><?php //= $booking->has('service') ? $this->Html->link($booking->service->service_id, ['controller' => 'Services', 'action' => 'view', $booking->service->service_id]) : '' ?><!--</td>-->
-<!--                    <td class="actions">-->
-<!--                        --><?php //= $this->Html->link(__('View'), ['action' => 'view', $booking->booking_id]) ?>
-<!--                        --><?php //= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->booking_id]) ?>
-<!--                        --><?php //= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->booking_id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->booking_id)]) ?>
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                --><?php //endforeach; ?>
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--    <div class="paginator">-->
-<!--        <ul class="pagination">-->
-<!--            --><?php //= $this->Paginator->first('<< ' . __('first')) ?>
-<!--            --><?php //= $this->Paginator->prev('< ' . __('previous')) ?>
-<!--            --><?php //= $this->Paginator->numbers() ?>
-<!--            --><?php //= $this->Paginator->next(__('next') . ' >') ?>
-<!--            --><?php //= $this->Paginator->last(__('last') . ' >>') ?>
-<!--        </ul>-->
-<!--        <p>--><?php //= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?><!--</p>-->
-<!--    </div>-->
-<!--</div>-->

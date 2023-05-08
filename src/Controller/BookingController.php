@@ -8,9 +8,19 @@ namespace App\Controller;
  *
  * @property \App\Model\Table\BookingTable $Booking
  * @method \App\Model\Entity\Booking[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+
  */
+use Cake\Routing\Router;
 class BookingController extends AppController
 {
+
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
+
     /**
      * Index method
      *
@@ -19,7 +29,7 @@ class BookingController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => [ 'Staff', 'Services'],
+            'contain' => ['Customer', 'Staff', 'Services'],
         ];
         $booking = $this->paginate($this->Booking);
 
@@ -28,6 +38,22 @@ class BookingController extends AppController
 
         $this->set(compact('booking'));
     }
+
+
+    public function calendar()
+    {
+        $this->paginate = [
+            'contain' => ['Customer', 'Staff', 'Services'],
+        ];
+        $booking = $this->paginate($this->Booking);
+
+
+
+
+        $this->set(compact('booking'));
+    }
+
+
     /**
      * View method
      *
@@ -38,7 +64,7 @@ class BookingController extends AppController
     public function view($id = null)
     {
         $booking = $this->Booking->get($id, [
-            'contain' => ['Staff', 'Services'],
+            'contain' => ['Customer', 'Staff', 'Services'],
         ]);
 
         $this->set(compact('booking'));
@@ -61,13 +87,10 @@ class BookingController extends AppController
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
-//        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
+        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
         $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
         $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
-        $this->set(compact('booking',  'staff', 'services'));
-
-        //check date
-
+        $this->set(compact('booking', 'customer', 'staff', 'services'));
     }
 
     /**
@@ -91,23 +114,23 @@ class BookingController extends AppController
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
-//        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
+        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
         $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
         $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
-        $this->set(compact('booking', 'staff', 'services'));
+        $this->set(compact('booking', 'customer', 'staff', 'services'));
     }
 
-    public function events() {
-        $bookingsTable = $this->getTableLocator()->get('Bookings');
-        $bookings = $bookingsTable->events();
-
-        $json = json_encode($bookings);
-
-        $this->response = $this->response->withType('application/json');
-        $this->response->getBody()->write($json);
-
-        return $this->response;
-    }
+//    public function events() {
+//        $bookingsTable = $this->getTableLocator()->get('booking');
+//        $bookings = $bookingsTable->events();
+//
+//        $json = json_encode($bookings);
+//
+//        $this->response = $this->response->withType('application/json');
+//        $this->response->getBody()->write($json);
+//
+//        return $this->response;
+//    }
 
     /**
      * Delete method

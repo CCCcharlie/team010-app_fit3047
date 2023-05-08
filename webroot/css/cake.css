@@ -129,8 +129,13 @@ th {
     z-index: 0;
 }
 
-
-
+.event-title {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+}
+/*I feel like I abuse the website when I add !important on everything*/
 .dialog-title {
     font-size: 20px;
     font-weight: bold;
