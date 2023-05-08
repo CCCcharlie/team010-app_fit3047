@@ -53,7 +53,7 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                events:  '<?= $this->Url->build(['controller' => 'Booking', 'action' => 'calendar', '_ext' => 'json'])?>', // WHY WONT YOU WORK GODDAMIT
+                events:  '<?= $this->Url->build(['controller' => 'Booking', 'action' => 'calendar', '_ext' => 'json'])?>',
                 selectable: true,
                 headerToolbar: {
                     left: 'prev,next today',
