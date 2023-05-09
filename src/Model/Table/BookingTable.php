@@ -150,10 +150,6 @@ class BookingTable extends Table
                         '/^(0[1-9]\d{8}|13\d{4}|1300\d{6}|1800\d{6})$/'
                     ],
                     'message' => 'Please enter a valid Australian phone number'
-                ],
-                'noDelimiters' => [
-                    'rule' => ['custom', '/^[^--;]+$/'],
-                    'message' => 'Your input contains invalid characters.'
                 ]
             ]);
         $validator
@@ -166,10 +162,6 @@ class BookingTable extends Table
                     'rule' => ['custom', '/@/'],
                     'message' => 'Your e-mail must contain the @ symbol.'
                 ],
-                'noDelimiters' => [
-                    'rule' => ['custom', '/^[^--;]+$/'],
-                    'message' => 'Your input contains invalid characters.'
-                ]
             ]);
 
         // This, probably won't work. I don't know enough of CakePHP D:
