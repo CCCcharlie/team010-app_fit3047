@@ -41,6 +41,14 @@ class Staff extends Entity
 
     ];
 
+    protected $_virtual = ['full_name'];
+
+    protected function _getFullName()
+    {
+        return $this->staff_fname . ' ' . $this->staff_lname;
+    }
+
+
 /**
 * Generate display field for User entity
 * @return string Display field

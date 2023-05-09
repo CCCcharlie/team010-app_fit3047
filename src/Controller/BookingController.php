@@ -88,7 +88,10 @@ class BookingController extends AppController
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
         $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
-        $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
+        $staff = $this->Booking->Staff->find('list', [
+            'limit' => 200,
+            'valueField' => 'full_name'
+        ])->all();
         $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
         $this->set(compact('booking', 'customer', 'staff', 'services'));
     }
