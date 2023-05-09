@@ -6,14 +6,8 @@
  * @var \Cake\Collection\CollectionInterface|string[] $staff
  * @var \Cake\Collection\CollectionInterface|string[] $services
  */
-?>
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Booking $booking
- * @var \Cake\Collection\CollectionInterface|string[] $staff
- * @var \Cake\Collection\CollectionInterface|string[] $services
- */
+$this->assign('title', 'Add Booking'); // add this line to set the page title
+$this->extend('../Layouts/admin');
 ?>
 <div class="row">
     <aside class="column">
@@ -36,7 +30,7 @@
                     'label' => 'Staff Member',
                     'options' => $staff->map(function ($staffMember) {
                         $name = $staffMember->staff_fname . ' ' . $staffMember->staff_lname;
-                        return ['value' => $staffMember->id, 'text' => $name];
+                        return ['value' => $staffMember->id, 'text' => "{$staffMember->id} - {$name}"];
                     })->toArray(),
                 ]);
                 echo $this->Form->control('service_id', ['options' => $services]);

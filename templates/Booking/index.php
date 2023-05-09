@@ -28,7 +28,17 @@
             <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
             <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
             <a target="_self" href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
+            <br>
             <a target="_self" href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
+            <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a>
+            <?= "|" ?>
+            <!-- To obtain the identity, use $identity = $this->request->getAttribute('authentication')->getIdentity(); to find the currently logged in entity
+    to get the name or any value in the staff table, use the get and then the name of the attribute $identity->get('staff_fname')-->
+            <?php $identity = $this->request->getAttribute('authentication')->getIdentity();
+            //debug($identity->get('staff_fname'));
+            //exit();
+            ?>
+            <a target ="_self" title="Hi there">Hi <?php echo $identity->get('staff_fname')?> :)</a> <?= "|" ?>
             <a target="_self" href="<?= $this->Url->build('/staff/logout') ?>">Logout</a>
 
             <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
@@ -36,6 +46,7 @@
     </nav>
 
     <h2>BOOKINGS VIEWER</h2>
+    <?= $this->Html->link(__('New Booking'), ['action' => 'add'], ['class' => 'button float-right']) ?> <br><br>
 
     <script>
         function formatDate(date) {
@@ -204,9 +215,9 @@
                     dialog = document.createElement('div');
                     dialog.classList.add('dialog');
                     dialog.innerHTML = `
-        <p>Select an action for the date/time: ${info.dateStr}</p>
-        <button id="add-event">Add Event</button>
-      `;
+  <p>Select an action for the date/time: ${info.dateStr}</p>
+  <button id="add-event">Add Event</button>
+`;
                     dialog.style.position = 'absolute';
                     dialog.style.top = info.jsEvent.clientY + 'px';
                     dialog.style.left = info.jsEvent.clientX + 'px';
@@ -215,56 +226,45 @@
                     dialog.style.border = '1px solid black';
                     document.body.appendChild(dialog);
 
-                    // attach event listeners to the dialog buttons
+// attach event listener to the "Add Event" button
                     var addButton = dialog.querySelector('#add-event');
                     addButton.addEventListener('click', function () {
                         addButton.style.display = 'none';
-                        // handle add event logic here
-                        var form = document.createElement('form');
-                        form.innerHTML = `
-    <label for="eventTitle">Event Title*:</label>
-    <input type="text" id="eventTitle" name="eventTitle"><br>
-    <label for="eventStart">Event Start*:</label>
-    <input type="datetime-local" id="eventStart" name="eventStart" value="${info.dateStr}T12:00"><br>
-    <label for="eventEnd">Event End*:</label>
-    <input type="datetime-local" id="eventEnd" name="eventEnd" value="${info.dateStr}T13:00"><br>
-    <label for="eventUrl">Event URL:</label>
-    <input type="url" id="eventUrl" name="eventUrl"><br>
-    <button type="submit">Add Event</button>
-  `;
-                        form.addEventListener('submit', function(event) {
-                            event.preventDefault();
-                            var eventTitle = document.getElementById('eventTitle').value;
-                            var eventStart = document.getElementById('eventStart').value;
-                            var eventEnd = document.getElementById('eventEnd').value;
-                            var eventUrl = document.getElementById('eventUrl').value;
 
-                            var start = new Date(eventStart);
-                            var end = new Date(eventEnd);
-                            var isWeekend = start.getDay() === 6 || start.getDay() === 0 || end.getDay() === 6 || end.getDay() === 0;
-                            var isBeforeHours = start.getHours() < 9 || end.getHours() < 9;
-                            var isAfterHours = start.getHours() > 17 || end.getHours() > 17;
-                            var isValid = !isWeekend && !isBeforeHours && !isAfterHours;
+                        // load the add.php form into the dialog using AJAX
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', 'add.php');
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                // replace the dialog content with the form HTML
+                                dialog.innerHTML = xhr.responseText;
 
-                            if (!isValid) {
-                                // Show warning message
-                                alert('You are creating an event outside of business hours. Please edit this event if that was not your intention.');
-                                return;
+                                // attach event listener to the form submit button
+                                var submitButton = dialog.querySelector('button[type="submit"]');
+                                submitButton.addEventListener('click', function (event) {
+                                    event.preventDefault();
+
+                                    // submit the form using AJAX
+                                    var formData = new FormData(dialog.querySelector('form'));
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('POST', 'add.php');
+                                    xhr.onload = function() {
+                                        if (xhr.status === 200) {
+                                            // add the new event to the calendar
+                                            var newEvent = JSON.parse(xhr.responseText);
+                                            calendar.addEvent(newEvent);
+                                            dialog.remove();
+                                        } else {
+                                            alert('Error adding event');
+                                        }
+                                    };
+                                    xhr.send(formData);
+                                });
+                            } else {
+                                alert('Error loading form');
                             }
-
-                            var newEvent = {
-                                title: eventTitle,
-                                start: eventStart,
-                                end: eventEnd,
-                                url: eventUrl
-                            };
-                            calendar.addEvent(newEvent);
-                            dialog.remove();
-                        });
-                        dialog.childNodes.forEach(function(child) {
-                            dialog.removeChild(child);
-                        });
-                        dialog.appendChild(form);
+                        };
+                        xhr.send();
                     });
                 }
             });
@@ -287,34 +287,32 @@
 
 
 <div class="booking index content">
-    <?= $this->Html->link(__('New Booking'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Booking') ?></h3>
+    <h2><?= __('Booking - List View') ?></h2>
     <div class="table-responsive">
         <table>
             <thead>
             <tr>
-                <th><?= $this->Paginator->sort('booking_id') ?></th>
-                <th><?= $this->Paginator->sort('eventstart') ?></th>
-                <th><?= $this->Paginator->sort('eventend') ?></th>
-                <th><?= $this->Paginator->sort('cust_id') ?></th>
-                <th><?= $this->Paginator->sort('staff_id') ?></th>
-                <th><?= $this->Paginator->sort('service_id') ?></th>
-                <th><?= $this->Paginator->sort('title') ?></th>
+                <th><?= $this->Paginator->sort('service_name', 'Booked Service') ?></th>
+                <th><?= $this->Paginator->sort('eventstart', 'Event Start Time') ?></th>
+                <th><?= $this->Paginator->sort('service_duration', 'Booking Duration') ?></th>
+                <th><?= $this->Paginator->sort('booking_end_time', 'Event End Time') ?></th>
+                <th><?= $this->Paginator->sort('cust_fname', 'Booked Customer') ?></th>
+                <th><?= $this->Paginator->sort('staff_fname', 'Assigned Staff') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             </thead>
             <tbody>
             <?php foreach ($booking as $booking): ?>
                 <tr>
-                    <td><?= $this->Number->format($booking->booking_id) ?></td>
-                    <td><?= h($booking->eventend) ?></td>
+                    <td><?= h($booking->service->service_name) ?></td>
                     <td><?= h($booking->eventstart) ?></td>
-                    <td><?= $booking->has('customer') ? $this->Html->link($booking->customer->cust_id, ['controller' => 'Customer', 'action' => 'view', $booking->customer->cust_id]) : '' ?></td>
-                    <td><?= $booking->has('staff') ? $this->Html->link($booking->staff->staff_id, ['controller' => 'Staff', 'action' => 'view', $booking->staff->staff_id]) : '' ?></td>
-                    <td><?= $booking->has('service') ? $this->Html->link($booking->service->service_id, ['controller' => 'Services', 'action' => 'view', $booking->service->service_id]) : '' ?></td>
+                    <td><?= h($booking->service->service_duration . ' minutes') ?></td>
+                    <td><?= h(date('n/j/y, g:i A', strtotime($booking->eventstart . ' +' . $booking->service->service_duration . ' minutes'))) ?></td>
+                    <td><?= h($booking->customer->cust_fname . ' ' . $booking->customer->cust_lname) ?></td>
+                    <td><?= h($booking->staff->staff_fname . ' ' . $booking->staff->staff_lname) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $booking->booking_id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->booking_id]) ?>
+<!--                        --><?php //= $this->Html->link(__('View'), ['action' => 'view', $booking->booking_id]) ?>
+<!--                        --><?php //= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->booking_id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->booking_id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->booking_id)]) ?>
                     </td>
                 </tr>
