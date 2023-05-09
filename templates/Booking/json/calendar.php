@@ -1,19 +1,23 @@
 <?php
 $data = [];
 foreach ($booking as $booking) {
-    $serviceDuration = $booking->service->service_duration;
+    $service_name = $booking->service->service_name;
+    $customer_name = substr($booking->customer->cust_fname, 0, 1) . '. ' . $booking->customer->cust_lname;
+    $staff_name = substr($booking->staff->staff_fname, 0,1) . '. ' . $booking->staff->staff_lname;
+    $title = $service_name . ' - ' . $customer_name . ' served by ' . $staff_name;
+    $service_duration = $booking->service->service_duration; // fetch service duration
+
+
     $eventStart = new DateTime($booking->eventstart, new DateTimeZone('UTC'));
     $eventEnd = clone $eventStart;
-    $eventEnd->add(new DateInterval('PT' . $serviceDuration . 'M'));
-
-    $staffName = substr($booking->staff->fname, 0, 1) . '. ' . $booking->staff->lname;
-    $customerName = $booking->customer->fname . ' ' . $booking->customer->lname;
-    $serviceName = $booking->service->service_name;
+    $eventEnd->add(new DateInterval('PT' . $service_duration . 'M')); // add service duration to event end time
 
     $item = [
-        'title' => $serviceName . ' - ' . $customerName . ' with ' . $staffName,
+        'title' => $title,
         'start' => $eventStart->format('Y-m-d\TH:i:s'),
         'end' => $eventEnd->format('Y-m-d\TH:i:s'),
+        'timeZone' => 'UTC', // Specify the time zone explicitly prevents fullcalender from converting
+        'className' => 'event-title',
     ];
     $data[] = $item;
 }
