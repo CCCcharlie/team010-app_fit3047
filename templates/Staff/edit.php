@@ -45,12 +45,8 @@
                     'staff_bookable' => 'staff bookable'
                 ]);
                 echo $this->Form->control('staff_email', ['label' => 'Staff E-Mail*']);
-                echo $this->Form->control('staff_password', [
-                    'label' => 'Your Password*',
-                    'default' => '',
-                    'value' => ''
-                ]);
                 ?>
+                <?= $this->Html->link("I forgot my password/Reset Password", ['action' => 'forgetpassword']) ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
