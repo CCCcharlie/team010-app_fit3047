@@ -127,10 +127,19 @@ class BookingTable extends Table
             ->notEmptyString('cust_lname');
 
         $validator
-            ->scalar('cust_phone')
+            ->integer('cust_phone')
             ->maxLength('cust_phone', 10)
             ->requirePresence('cust_phone', 'create')
-            ->notEmptyString('cust_phone');
+            ->notEmptyString('cust_phone')
+            ->add('cust_phone', [
+                'validFormat' => [
+                    'rule' => [
+                        'custom', // Only allowing AUS Phone numbers because all personas are AUS Based.
+                        '/^(0[1-9]\d{8}|13\d{4}|1300\d{6}|1800\d{6})$/'
+                    ],
+                    'message' => 'Please enter a valid Australian phone number'
+                ]
+            ]);
 
         $validator
             ->scalar('cust_email')

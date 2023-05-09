@@ -28,6 +28,7 @@
             <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
             <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
             <a target="_self" href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
+            <a target="_self" href="<?= $this->Url->build('/booking') ?>">Bookings</a>
             <br>
             <a target="_self" href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
             <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a>
@@ -216,7 +217,7 @@
                     dialog.classList.add('dialog');
                     dialog.innerHTML = `
   <p>Select an action for the date/time: ${info.dateStr}</p>
-  <a href="booking/add"><button>Add Event</button></a>
+  <button id="add-event">Add Event</button>
 `;
                     dialog.style.position = 'absolute';
                     dialog.style.top = info.jsEvent.clientY + 'px';
@@ -226,46 +227,46 @@
                     dialog.style.border = '1px solid black';
                     document.body.appendChild(dialog);
 
-//  Was supposed to pop out add.php via Ajax and XML, lot of time, but could not get it working. If you can, I'll buy you a cookie - Alex.
-//                     var addButton = dialog.querySelector('#add-event');
-                    // addButton.addEventListener('click', function () {
-                    //     addButton.style.display = 'none';
-                    //
-                    //     // load the add.php form into the dialog using AJAX
-                    //     var xhr = new XMLHttpRequest();
-                    //     xhr.open('GET', 'add.php');
-                    //     xhr.onload = function() {
-                    //         if (xhr.status === 200) {
-                    //             // replace the dialog content with the form HTML
-                    //             dialog.innerHTML = xhr.responseText;
-                    //
-                    //             // attach event listener to the form submit button
-                    //             var submitButton = dialog.querySelector('button[type="submit"]');
-                    //             submitButton.addEventListener('click', function (event) {
-                    //                 event.preventDefault();
-                    //
-                    //                 // submit the form using AJAX
-                    //                 var formData = new FormData(dialog.querySelector('form'));
-                    //                 var xhr = new XMLHttpRequest();
-                    //                 xhr.open('POST', 'add.php');
-                    //                 xhr.onload = function() {
-                    //                     if (xhr.status === 200) {
-                    //                         // add the new event to the calendar
-                    //                         var newEvent = JSON.parse(xhr.responseText);
-                    //                         calendar.addEvent(newEvent);
-                    //                         dialog.remove();
-                    //                     } else {
-                    //                         alert('Error adding event');
-                    //                     }
-                    //                 };
-                    //                 xhr.send(formData);
-                    //             });
-                    //         } else {
-                    //             alert('Error loading form');
-                    //         }
-                    //     };
-                    //     xhr.send();
-                    // });
+// attach event listener to the "Add Event" button
+                    var addButton = dialog.querySelector('#add-event');
+                    addButton.addEventListener('click', function () {
+                        addButton.style.display = 'none';
+
+                        // load the add.php form into the dialog using AJAX
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', 'add.php');
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                // replace the dialog content with the form HTML
+                                dialog.innerHTML = xhr.responseText;
+
+                                // attach event listener to the form submit button
+                                var submitButton = dialog.querySelector('button[type="submit"]');
+                                submitButton.addEventListener('click', function (event) {
+                                    event.preventDefault();
+
+                                    // submit the form using AJAX
+                                    var formData = new FormData(dialog.querySelector('form'));
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('POST', 'add.php');
+                                    xhr.onload = function() {
+                                        if (xhr.status === 200) {
+                                            // add the new event to the calendar
+                                            var newEvent = JSON.parse(xhr.responseText);
+                                            calendar.addEvent(newEvent);
+                                            dialog.remove();
+                                        } else {
+                                            alert('Error adding event');
+                                        }
+                                    };
+                                    xhr.send(formData);
+                                });
+                            } else {
+                                alert('Error loading form');
+                            }
+                        };
+                        xhr.send();
+                    });
                 }
             });
 
@@ -305,14 +306,14 @@
             <?php foreach ($booking as $booking): ?>
                 <tr>
                     <td><?= h($booking->service->service_name) ?></td>
-                    <td><?= h(date('j/n/y g:i A', $booking->eventstart->toUnixString())) ?></td>
+                    <td><?= h($booking->eventstart) ?></td>
                     <td><?= h($booking->service->service_duration . ' minutes') ?></td>
-                    <td><?= h(date('j/n/y, g:i A', strtotime($booking->eventstart . ' +' . $booking->service->service_duration . ' minutes'))) ?></td>
+                    <td><?= h(date('n/j/y, g:i A', strtotime($booking->eventstart . ' +' . $booking->service->service_duration . ' minutes'))) ?></td>
                     <td><?= h($booking->cust_fname . ' ' . $booking->cust_lname) ?></td>
                     <td><?= h($booking->staff->staff_fname . ' ' . $booking->staff->staff_lname) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('Contact Customer'), ['action' => 'view', $booking->booking_id]) ?>
-                        <!--                        --><?php //= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->booking_id]) ?>
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $booking->booking_id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->booking_id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->booking_id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->booking_id)]) ?>
                     </td>
                 </tr>
