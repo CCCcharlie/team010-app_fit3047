@@ -11,7 +11,6 @@ use Cake\Validation\Validator;
 /**
  * Booking Model
  *
- * @property \App\Model\Table\CustomerTable&\Cake\ORM\Association\BelongsTo $Customer
  * @property \App\Model\Table\StaffTable&\Cake\ORM\Association\BelongsTo $Staff
  * @property \App\Model\Table\ServicesTable&\Cake\ORM\Association\BelongsTo $Services
  *
@@ -45,10 +44,6 @@ class BookingTable extends Table
         $this->setDisplayField('booking_id');
         $this->setPrimaryKey('booking_id');
 
-        $this->belongsTo('Customer', [
-            'foreignKey' => 'cust_id',
-            'joinType' => 'INNER',
-        ]);
         $this->belongsTo('Staff', [
             'foreignKey' => 'staff_id',
             'joinType' => 'INNER',
@@ -58,6 +53,7 @@ class BookingTable extends Table
             'joinType' => 'INNER',
         ]);
     }
+
     // This has been made to try and get the data booked and saved to the DB
     public function createOrUpdateBooking($event) {
         $booking = $this->newEntity();
@@ -107,19 +103,9 @@ class BookingTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->date('booking_date')
-            ->requirePresence('booking_date', 'create')
-            ->notEmptyDate('booking_date');
-
-        $validator
-            ->time('booking_time')
-            ->requirePresence('booking_time', 'create')
-            ->notEmptyTime('booking_time');
-
-        $validator
-            ->integer('cust_id')
-            ->notEmptyString('cust_id');
-
+            ->dateTime('eventstart')
+            ->requirePresence('eventstart', 'create')
+            ->notEmptyDateTime('eventstart');
         $validator
             ->integer('staff_id')
             ->notEmptyString('staff_id');
@@ -128,8 +114,32 @@ class BookingTable extends Table
             ->integer('service_id')
             ->notEmptyString('service_id');
 
+        $validator
+            ->scalar('cust_fname')
+            ->maxLength('cust_fname', 64)
+            ->requirePresence('cust_fname', 'create')
+            ->notEmptyString('cust_fname');
+
+        $validator
+            ->scalar('cust_lname')
+            ->maxLength('cust_lname', 64)
+            ->requirePresence('cust_lname', 'create')
+            ->notEmptyString('cust_lname');
+
+        $validator
+            ->scalar('cust_phone')
+            ->maxLength('cust_phone', 10)
+            ->requirePresence('cust_phone', 'create')
+            ->notEmptyString('cust_phone');
+
+        $validator
+            ->scalar('cust_email')
+            ->maxLength('cust_email', 320)
+            ->requirePresence('cust_email', 'create')
+            ->notEmptyString('cust_email');
+
         return $validator;
-    }
+}
 
     /**
      * Returns a rules checker object that will be used for validating
@@ -140,7 +150,6 @@ class BookingTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn('cust_id', 'Customer'), ['errorField' => 'cust_id']);
         $rules->add($rules->existsIn('staff_id', 'Staff'), ['errorField' => 'staff_id']);
         $rules->add($rules->existsIn('service_id', 'Services'), ['errorField' => 'service_id']);
 
