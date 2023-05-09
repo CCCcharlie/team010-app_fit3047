@@ -217,7 +217,7 @@
                     dialog.classList.add('dialog');
                     dialog.innerHTML = `
   <p>Select an action for the date/time: ${info.dateStr}</p>
-  <button id="add-event">Add Event</button>
+  <a href="add.php"><button>Add Event</button></a>
 `;
                     dialog.style.position = 'absolute';
                     dialog.style.top = info.jsEvent.clientY + 'px';
@@ -227,46 +227,46 @@
                     dialog.style.border = '1px solid black';
                     document.body.appendChild(dialog);
 
-// attach event listener to the "Add Event" button
-                    var addButton = dialog.querySelector('#add-event');
-                    addButton.addEventListener('click', function () {
-                        addButton.style.display = 'none';
-
-                        // load the add.php form into the dialog using AJAX
-                        var xhr = new XMLHttpRequest();
-                        xhr.open('GET', 'add.php');
-                        xhr.onload = function() {
-                            if (xhr.status === 200) {
-                                // replace the dialog content with the form HTML
-                                dialog.innerHTML = xhr.responseText;
-
-                                // attach event listener to the form submit button
-                                var submitButton = dialog.querySelector('button[type="submit"]');
-                                submitButton.addEventListener('click', function (event) {
-                                    event.preventDefault();
-
-                                    // submit the form using AJAX
-                                    var formData = new FormData(dialog.querySelector('form'));
-                                    var xhr = new XMLHttpRequest();
-                                    xhr.open('POST', 'add.php');
-                                    xhr.onload = function() {
-                                        if (xhr.status === 200) {
-                                            // add the new event to the calendar
-                                            var newEvent = JSON.parse(xhr.responseText);
-                                            calendar.addEvent(newEvent);
-                                            dialog.remove();
-                                        } else {
-                                            alert('Error adding event');
-                                        }
-                                    };
-                                    xhr.send(formData);
-                                });
-                            } else {
-                                alert('Error loading form');
-                            }
-                        };
-                        xhr.send();
-                    });
+// Supposed to have add.php pop out as a window within the page. Didn't work, if you can get it working I'll toss you a cookie.
+//                     var addButton = dialog.querySelector('#add-event');
+//                     addButton.addEventListener('click', function () {
+//                         addButton.style.display = 'none';
+//
+//                         // load the add.php form into the dialog using AJAX
+//                         var xhr = new XMLHttpRequest();
+//                         xhr.open('GET', 'add.php');
+//                         xhr.onload = function() {
+//                             if (xhr.status === 200) {
+//                                 // replace the dialog content with the form HTML
+//                                 dialog.innerHTML = xhr.responseText;
+//
+//                                 // attach event listener to the form submit button
+//                                 var submitButton = dialog.querySelector('button[type="submit"]');
+//                                 submitButton.addEventListener('click', function (event) {
+//                                     event.preventDefault();
+//
+//                                     // submit the form using AJAX
+//                                     var formData = new FormData(dialog.querySelector('form'));
+//                                     var xhr = new XMLHttpRequest();
+//                                     xhr.open('POST', 'add.php');
+//                                     xhr.onload = function() {
+//                                         if (xhr.status === 200) {
+//                                             // add the new event to the calendar
+//                                             var newEvent = JSON.parse(xhr.responseText);
+//                                             calendar.addEvent(newEvent);
+//                                             dialog.remove();
+//                                         } else {
+//                                             alert('Error adding event');
+//                                         }
+//                                     };
+//                                     xhr.send(formData);
+//                                 });
+//                             } else {
+//                                 alert('Error loading form');
+//                             }
+//                         };
+//                         xhr.send();
+//                     });
                 }
             });
 
@@ -306,7 +306,7 @@
             <?php foreach ($booking as $booking): ?>
                 <tr>
                     <td><?= h($booking->service->service_name) ?></td>
-                    <td><?= h($booking->eventstart) ?></td>
+                    <td><?= h(date('j/n/y g:i A', $booking->eventstart->toUnixString())) ?></td>
                     <td><?= h($booking->service->service_duration . ' minutes') ?></td>
                     <td><?= h(date('n/j/y, g:i A', strtotime($booking->eventstart . ' +' . $booking->service->service_duration . ' minutes'))) ?></td>
                     <td><?= h($booking->cust_fname . ' ' . $booking->cust_lname) ?></td>
