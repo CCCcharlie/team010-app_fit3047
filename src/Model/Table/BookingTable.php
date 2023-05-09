@@ -118,13 +118,25 @@ class BookingTable extends Table
             ->scalar('cust_fname')
             ->maxLength('cust_fname', 64)
             ->requirePresence('cust_fname', 'create')
-            ->notEmptyString('cust_fname');
+            ->notEmptyString('cust_fname')
+            ->add('cust_fname', [
+                'noDelimiters' => [
+                    'rule' => ['custom', '/^[^--;]+$/'],
+                    'message' => 'Your input contains invalid characters.'
+                ]
+            ]);
 
         $validator
             ->scalar('cust_lname')
             ->maxLength('cust_lname', 64)
             ->requirePresence('cust_lname', 'create')
-            ->notEmptyString('cust_lname');
+            ->notEmptyString('cust_lname')
+            ->add('cust_lname', [
+                'noDelimiters' => [
+                    'rule' => ['custom', '/^[^--;]+$/'],
+                    'message' => 'Your input contains invalid characters.'
+                ]
+            ]);
 
         $validator
             ->integer('cust_phone')
@@ -138,14 +150,27 @@ class BookingTable extends Table
                         '/^(0[1-9]\d{8}|13\d{4}|1300\d{6}|1800\d{6})$/'
                     ],
                     'message' => 'Please enter a valid Australian phone number'
+                ],
+                'noDelimiters' => [
+                    'rule' => ['custom', '/^[^--;]+$/'],
+                    'message' => 'Your input contains invalid characters.'
                 ]
             ]);
-
         $validator
             ->scalar('cust_email')
             ->maxLength('cust_email', 320)
             ->requirePresence('cust_email', 'create')
-            ->notEmptyString('cust_email');
+            ->notEmptyString('cust_email')
+            ->add('cust_email', [
+                'emailContainsAt' => [
+                    'rule' => ['custom', '/@/'],
+                    'message' => 'Your e-mail must contain the @ symbol.'
+                ],
+                'noDelimiters' => [
+                    'rule' => ['custom', '/^[^--;]+$/'],
+                    'message' => 'Your input contains invalid characters.'
+                ]
+            ]);
 
         // This, probably won't work. I don't know enough of CakePHP D:
         $validator

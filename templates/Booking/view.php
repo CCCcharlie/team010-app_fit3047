@@ -46,8 +46,8 @@ to get the name or any value in the staff table, use the get and then the name o
             <h4 class="heading"><?= __('Actions') ?></h4>
 
             <?= $this->Html->link(__('Return to Booking page'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('Edit Booking'), ['action' => 'edit', $booking->booking_id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Booking'), ['action' => 'delete', $booking->booking_id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->booking_id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Edit Associated Booking'), ['action' => 'edit', $booking->booking_id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Delete Associated Booking'), ['action' => 'delete', $booking->booking_id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->booking_id), 'class' => 'side-nav-item']) ?>
 <!--            --><?php //= $this->Html->link(__('New Booking'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>

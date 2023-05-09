@@ -27,7 +27,7 @@
                     echo $this->Form->control('eventstart');
                     echo $this->Form->control('staff_id', ['options' => $staff]);
                     echo $this->Form->control('service_id', ['options' => $services]);
-                    echo $this->Form->control('cust_fname');
+                    echo $this->Form->control('cust_fname', );
                     echo $this->Form->control('cust_lname');
                     echo $this->Form->control('cust_phone');
                     echo $this->Form->control('cust_email');
