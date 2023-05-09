@@ -23,6 +23,7 @@
  * @var \Cake\Collection\CollectionInterface|string[] $customer
  * @var \Cake\Collection\CollectionInterface|string[] $staff
  * @var \Cake\Collection\CollectionInterface|string[] $services
+ * @var  \Cake\Collection\CollectionInterface|string[] $toJson
 
  */
 use Cake\Cache\Cache;
@@ -33,10 +34,13 @@ use Cake\Error\Debugger;
 use Cake\Http\Exception\NotFoundException;
 
 $this->disableAutoLayout();
-
+$globaltime = $toJson;
 
 
 ?>
+
+
+<?php //debug($toJson)?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,7 +129,7 @@ $this->disableAutoLayout();
 
             <?php
             echo $this->Form->control('booking_date',['class'=> 'fieldfont',"id"=>'booking_date']);
-            echo $this->Form->control('booking_time',['class'=> 'fieldfont']);
+            echo $this->Form->control('booking_time',['class'=> 'fieldfont',"id"=>'booking_time']);
             echo $this->Form->control('cust_email');
             echo $this->Form->control('staff_id', ['options' => $staff,'class' => 'fieldfont']);
             echo $this->Form->control('service_id', ['options' => $service,'class' => 'fieldfont']) ;
@@ -398,7 +402,9 @@ $this->disableAutoLayout();
 
 
 
+
     }
+
 
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
@@ -409,37 +415,59 @@ $this->disableAutoLayout();
     var closeBtn = document.getElementById("closeBtn");
 
     closeBtn.addEventListener("click", function() {
-        console.log(document.getElementById("myForm"));
+        //var timedb=<?// echo $toJson ?>
+        // console.log(document.getElementById("timedb"));
         popup.style.display = "none";
+
     });
 
 </script>
+
 <script>
+<?php //debug($toJson)?>
 
 
-    $(function() {
-
-        // 初始化日期选择器
-        $('#booking_date').datepicker({
+    // get the time input element
+    const timeInputs = document.querySelectorAll('input[type="time"]');
 
 
-            // 禁用已预订日期
-            beforeShowDay: function(date) {
+
+    // assign listener
+    timeInputs.forEach(input => {
+        input.addEventListener('change', (event) => {
+            const selectedTime = event.target.value;
+            //var timedb=<?// echo $toJson ?>
+            //    console.log(document.getElementById("timedb"));
 
 
-                var dateString = $.datepicker.formatDate('yy-mm-dd', date);
-                //var bookedDates = <?php //echo $booked_dates ?>//;
-                console.log("hello“);
 
-                if (bookedDates.indexOf(dateString) !== -1) {
-                    return [false, '', '该日期已经预订'];
+
+
+            // 禁用其他与被选中时间相同的选项
+            timeInputs.forEach(input => {
+                if (input.value === selectedTime && toString(selectedTime) in(<?= $toJson ?>) ) {
+                    document.getElementById('booking_time').disabled = true;
+                    console.log('selectedTime');
+
+
                 } else {
-                    return [true, '', ''];
+                    input.disabled = false;
+//                    <?php //=debug('test')?>//;
+                    console.log(selectedTime);
+                    console.log(<?= $toJson ?>);
+
                 }
-            }
+                console.log('test3');
+
+            });
+
+
         });
     });
+
+
 </script>
+
 </body>
 </html>
 

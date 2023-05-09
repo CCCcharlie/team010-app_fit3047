@@ -121,12 +121,12 @@ class PagesController extends AppController
 //booking var
 
 
-        $booked_dates = $this->Booking->find('list', [
+        $booked_time = $this->Booking->find('list', [
             'keyField' => 'id',
             'valueField' => function ($booking) {
 
 
-                return $booking->booking_date->format('Y-m-d');
+                return $booking->booking_time;
 
             }
 
@@ -139,7 +139,8 @@ class PagesController extends AppController
 //            return date( $date);
 //        }, $booked_dates);
 
-        $toJson = json_encode($booked_dates);
+        $toJson = json_encode($booked_time);
+//        $toJson = $booked_time;
 
         $this->set(compact('toJson'));
 
