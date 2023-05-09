@@ -308,7 +308,7 @@
                     <td><?= h($booking->eventstart) ?></td>
                     <td><?= h($booking->service->service_duration . ' minutes') ?></td>
                     <td><?= h(date('n/j/y, g:i A', strtotime($booking->eventstart . ' +' . $booking->service->service_duration . ' minutes'))) ?></td>
-                    <td><?= h($booking->customer->cust_fname . ' ' . $booking->customer->cust_lname) ?></td>
+                    <td><?= h($booking->cust_fname . ' ' . $booking->cust_lname) ?></td>
                     <td><?= h($booking->staff->staff_fname . ' ' . $booking->staff->staff_lname) ?></td>
                     <td class="actions">
 <!--                        --><?php //= $this->Html->link(__('View'), ['action' => 'view', $booking->booking_id]) ?>
