@@ -11,6 +11,7 @@ namespace App\Controller;
 
  */
 use Cake\Routing\Router;
+use Cake\Validation\Validation;
 class BookingController extends AppController
 {
 

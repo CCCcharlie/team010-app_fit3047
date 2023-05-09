@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * Booking Entity
  *
  * @property int $booking_id
- * @property \Cake\I18n\FrozenTime $eventstart
+ * @property \Cake\I18n\FrozenDateTime $eventstart
  * @property int $staff_id
  * @property int $service_id
  * @property string $cust_fname

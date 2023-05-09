@@ -35,10 +35,10 @@
                 echo $this->Form->control('cust_lname', ['label' => 'Customer Last Name']);
                 echo $this->Form->control('cust_phone', ['label' => 'Customer Phone No']);
                 echo $this->Form->control('cust_email', ['label' => 'Customer E-mail']);
-
+                __('Booking Information');
                 echo $this->Form->control('staff_id', ['options' => $staff]);
                 echo $this->Form->control('service_id', ['options' => $services]);
-                echo $this->Form->control('eventstart');
+                echo $this->Form->control('eventstart', ['label' => 'Booking Time']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
