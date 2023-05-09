@@ -64,7 +64,9 @@
                 echo $this->Form->control('service_id', [
                 'label' => 'Pick from our many great services',
                 'options' => $services]);
-                echo $this->Form->control('eventstart', ['label' => 'Booking Time']);
+                echo $this->Form->control('eventstart', [
+                'label' => 'Booking Time',
+                'timeFormat' => 'h:mm a']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
