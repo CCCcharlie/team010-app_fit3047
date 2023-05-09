@@ -26,6 +26,7 @@ $cakeDescription = 'Holistic Healing - Site Editor';
         <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
         <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
         <a target="_self" href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
+        <a target="_self" href="<?= $this->Url->build('/booking') ?>">Bookings</a>
         <br>
         <a target="_self" href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
         <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a>

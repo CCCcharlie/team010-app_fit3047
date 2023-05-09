@@ -85,7 +85,7 @@ $this->disableAutoLayout();
             echo "ㅤㅤ";
             echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
             echo "ㅤ";
-            echo $this->Html->link(__('Admindex'), ['controller' => 'Services', 'action' => 'admindex']);
+            echo $this->Html->link(__('Staff Page'), ['controller' => 'Staff', 'action' => 'index']);
         } else {
             echo "ㅤ";
         }
@@ -405,7 +405,7 @@ $this->disableAutoLayout();
         echo "ㅤㅤ";
         echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
         echo "ㅤ";
-        echo $this->Html->link(__('Admindex'), ['controller' => 'Services', 'action' => 'admindex']);
+        echo $this->Html->link(__('Staff Page'), ['controller' => 'Staff', 'action' => 'index']);
     } else {
         echo "ㅤ";
         echo $this->Html->link(__('Staff Login'), ['controller' => 'Staff', 'action' => 'login']);
