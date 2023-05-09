@@ -26,7 +26,7 @@ class StaffController extends AppController
         parent::beforeFilter($event);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
-        $this->Authentication->addUnauthenticatedActions(['login', 'add','forgetpassword','resetpassword']);
+        $this->Authentication->addUnauthenticatedActions(['login','forgetpassword','resetpassword']);
     }
     public function login()
     {
@@ -168,11 +168,11 @@ class StaffController extends AppController
             // Also clear the nonce-related fields on successful password resets
             $staff->nonce = null;
             $staff->nonce_expiry = null;
-            
+
             if ($this->Staff->save($staff)) {
                 $this->Flash->success(__('Your password has been successfully reset. Please login with new password. '));
                 return $this->redirect(['action' => 'login']);
-            } 
+            }
             $this->Flash->error(__('The password cannot be reset. Please try again.'));
         }
 
