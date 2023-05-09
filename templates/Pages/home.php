@@ -98,7 +98,7 @@ $this->disableAutoLayout();
     <div class="container">
         <div class="masthead-heading"><?= $homePageContentBlocks['welcome_header'] ?></div>
         <div class="masthead-heading-desc"> <?= $homePageContentBlocks['welcome_description'] ?></div>
-        <a class=" btn btn-primary btn-l text-uppercase btn-sizing-hp" onclick="openForm()">Book now</a>
+        <a class=" btn btn-primary btn-l text-uppercase btn-sizing-hp" href="/booking/add">Book now</a>
 <!--        <button class="open-button btn btn-primary btn-l text-uppercase btn-sizing-hp" onclick="openForm()">Open Form</button>-->
 
     </div>
