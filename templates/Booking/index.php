@@ -89,7 +89,7 @@
                     document.body.appendChild(dialog);
 
                     var dialogTitle = document.createElement('h2');
-                    dialogTitle.textContent = 'Edit/Delete Event';
+                    dialogTitle.textContent = 'Event Details';
                     dialog.appendChild(dialogTitle);
 
                     // Add exit button
@@ -117,6 +117,7 @@
                     titleInput.setAttribute('name', 'eventTitle');
                     titleInput.setAttribute('value', info.event.title);
                     titleInput.setAttribute('required', ''); // Should make field mandatory, not sure why it doesnt work.
+                    titleInput.disabled = true; // disable editing
                     form.appendChild(titleInput);
 
                     var startLabel = document.createElement('label');
@@ -128,6 +129,7 @@
                     startInput.setAttribute('id', 'eventStart');
                     startInput.setAttribute('name', 'eventStart');
                     startInput.setAttribute('required', '');
+                    startInput.disabled = true; // disable editing
                     startInput.value = formatDate(info.event.start);
 
                     form.appendChild(startInput);
@@ -142,34 +144,38 @@
                     endInput.setAttribute('name', 'eventEnd');
                     endInput.value = formatDate(info.event.end);
                     endInput.setAttribute('required', '');
+                    endInput.disabled = true; // disable editing
                     form.appendChild(endInput);
 
-                    var urlLabel = document.createElement('label');
-                    urlLabel.textContent = 'Event URL:';
-                    form.appendChild(urlLabel);
+                    // var urlLabel = document.createElement('label');
+                    // urlLabel.textContent = 'Event URL:';
+                    // form.appendChild(urlLabel);
+                    //
+                    // var urlInput = document.createElement('input');
+                    // urlInput.setAttribute('type', 'url');
+                    // urlInput.setAttribute('id', 'eventUrl');
+                    // urlInput.setAttribute('name', 'eventUrl');
+                    // urlInput.setAttribute('value', info.event.url || '');
+                    // form.appendChild(urlInput);
+                    //
+                    // var editButton = document.createElement('button');
+                    // editButton.setAttribute('type', 'button');
+                    // editButton.textContent = 'Edit Event';
+                    // form.appendChild(editButton);
+                    //
+                    // var deleteButton = document.createElement('button');
+                    // deleteButton.setAttribute('type', 'button');
+                    // deleteButton.textContent = 'Delete Event';
+                    // form.appendChild(deleteButton);
 
-                    var urlInput = document.createElement('input');
-                    urlInput.setAttribute('type', 'url');
-                    urlInput.setAttribute('id', 'eventUrl');
-                    urlInput.setAttribute('name', 'eventUrl');
-                    urlInput.setAttribute('value', info.event.url || '');
-                    form.appendChild(urlInput);
 
-                    var editButton = document.createElement('button');
-                    editButton.setAttribute('type', 'button');
-                    editButton.textContent = 'Edit Event';
-                    form.appendChild(editButton);
-
-                    var deleteButton = document.createElement('button');
-                    deleteButton.setAttribute('type', 'button');
-                    deleteButton.textContent = 'Delete Event';
-                    form.appendChild(deleteButton);
+                    // For some reason, if I comment this out the whole calendar breaks.
 
                     editButton.addEventListener('click', function() {
                         var title = titleInput.value;
                         var start = new Date(startInput.value);
                         var end = new Date(endInput.value);
-                        var url = urlInput.value;
+                        // var url = urlInput.value;
 
                         // Check if the event falls outside of business hours.
                         if (start.getHours() < 9 || end.getHours() > 17 || start.getDay() === 6 || start.getDay() === 0) {
