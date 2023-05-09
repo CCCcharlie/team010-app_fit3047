@@ -17,7 +17,6 @@ use Cake\ORM\Entity;
  * @property string $cust_phone
  * @property string $cust_email
  *
- * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Staff $staff
  * @property \App\Model\Entity\Service $service
  */
@@ -40,7 +39,6 @@ class Booking extends Entity
         'cust_lname' => true,
         'cust_phone' => true,
         'cust_email' => true,
-        'customer' => true,
         'staff' => true,
         'service' => true,
     ];

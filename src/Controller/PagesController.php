@@ -92,10 +92,9 @@ class PagesController extends AppController
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
-        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
         $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
         $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
-        $this->set(compact('Booking', 'customer', 'staff', 'services'));
+        $this->set(compact('Booking',  'staff', 'services'));
 
 
         // Key-value pairs are much easier to use when retrieving content blocks

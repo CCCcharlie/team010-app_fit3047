@@ -29,7 +29,7 @@ class BookingController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Customer', 'Staff', 'Services'],
+            'contain' => ['Staff', 'Services'],
         ];
         $booking = $this->paginate($this->Booking);
 
@@ -43,7 +43,7 @@ class BookingController extends AppController
     public function calendar()
     {
         $this->paginate = [
-            'contain' => ['Customer', 'Staff', 'Services'],
+            'contain' => ['Staff', 'Services'],
         ];
         $booking = $this->paginate($this->Booking);
 
@@ -64,7 +64,7 @@ class BookingController extends AppController
     public function view($id = null)
     {
         $booking = $this->Booking->get($id, [
-            'contain' => ['Customer', 'Staff', 'Services'],
+            'contain' => ['Staff', 'Services'],
         ]);
 
         $this->set(compact('booking'));
@@ -80,7 +80,6 @@ class BookingController extends AppController
         $booking = $this->Booking->newEmptyEntity();
         if ($this->request->is('post')) {
             $booking = $this->Booking->patchEntity($booking, $this->request->getData(), [
-                'associated' => ['Customer'],
             ]);
             if ($this->Booking->save($booking)) {
                 $this->Flash->success(__('The booking has been saved.'));
@@ -89,7 +88,6 @@ class BookingController extends AppController
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
-        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
         $staff = $this->Booking->Staff->find('list', [
             'limit' => 200,
             'valueField' => 'full_name'
@@ -98,7 +96,7 @@ class BookingController extends AppController
         'limit' => 200,
         'valueField' => 'full_name'
         ])->all();
-        $this->set(compact('booking', 'customer', 'staff', 'services'));
+        $this->set(compact('booking', 'staff', 'services'));
     }
 
     /**
@@ -122,10 +120,9 @@ class BookingController extends AppController
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
-        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
         $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
         $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
-        $this->set(compact('booking', 'customer', 'staff', 'services'));
+        $this->set(compact('booking', 'staff', 'services'));
     }
 
 //    public function events() {
