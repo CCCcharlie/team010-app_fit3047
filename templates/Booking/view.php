@@ -17,7 +17,7 @@
     <div class="top-nav-links">
         <!--  target acts as where I want to display the href, _self is the default so it will update itself
          If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
-         to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
+         to do anything substantial  more info here: https: //www.w3schools.com/tags/att_a_target.asp -->
 
         <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
         <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
