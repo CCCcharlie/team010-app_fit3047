@@ -36,8 +36,14 @@ class Service extends Entity
         'home' => true,
     ];
 
+    protected $_virtual = ['full_name'];
+
+    protected function _getFullName()
+    {
+        return $this->service_name . ' - Duration:  ' . $this->service_duration . ' minutes';
+    }
     public function __toString()
     {
-        return $this->service_name; // 假设服务名称存储在 "name" 属性中
+        return $this->service_name;
     }
 }

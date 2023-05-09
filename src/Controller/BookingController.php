@@ -79,7 +79,9 @@ class BookingController extends AppController
     {
         $booking = $this->Booking->newEmptyEntity();
         if ($this->request->is('post')) {
-            $booking = $this->Booking->patchEntity($booking, $this->request->getData());
+            $booking = $this->Booking->patchEntity($booking, $this->request->getData(), [
+                'associated' => ['Customer'],
+            ]);
             if ($this->Booking->save($booking)) {
                 $this->Flash->success(__('The booking has been saved.'));
 
@@ -92,7 +94,10 @@ class BookingController extends AppController
             'limit' => 200,
             'valueField' => 'full_name'
         ])->all();
-        $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
+        $services = $this->Booking->Services->find('list', [
+        'limit' => 200,
+        'valueField' => 'full_name'
+        ])->all();
         $this->set(compact('booking', 'customer', 'staff', 'services'));
     }
 

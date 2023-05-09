@@ -25,9 +25,7 @@
                     echo $this->Form->control('cust_fname');
                     echo $this->Form->control('cust_lname');
                     echo $this->Form->control('cust_phone');
-                    echo $this->Form->control('cust_startdate');
                     echo $this->Form->control('cust_email');
-                    echo $this->Form->control('cust_password');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

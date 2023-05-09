@@ -68,21 +68,11 @@ class CustomerTable extends Table
             ->notEmptyString('cust_phone');
 
         $validator
-            ->date('cust_startdate')
-            ->requirePresence('cust_startdate', 'create')
-            ->notEmptyDate('cust_startdate');
-
-        $validator
             ->scalar('cust_email')
             ->maxLength('cust_email', 320)
             ->requirePresence('cust_email', 'create')
             ->notEmptyString('cust_email');
 
-        $validator
-            ->scalar('cust_password')
-            ->maxLength('cust_password', 65)
-            ->requirePresence('cust_password', 'create')
-            ->notEmptyString('cust_password');
 
         return $validator;
     }

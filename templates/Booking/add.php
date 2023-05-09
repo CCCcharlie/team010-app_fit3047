@@ -27,12 +27,22 @@
             <?= $this->Form->create($booking) ?>
             <fieldset>
                 <legend><?= __('Add Booking') ?></legend>
+
+                <!-- Customer Information -->
+                <h4><?= __('Customer Information') ?></h4>
                 <?php
-                echo $this->Form->control('cust_email', ['label' => 'Customer Email']);
-                echo $this->Form->control('cust_fname', ['label' => 'First Name']);
-                echo $this->Form->control('cust_lname', ['label' => 'Last Name']);
+                echo $this->Form->control('Customer.cust_fname', ['label' => 'Customer First Name']);
+                echo $this->Form->control('Customer.cust_lname', ['label' => 'Customer Last Name']);
+                echo $this->Form->control('Customer.cust_phone', ['label' => 'Customer Phone No']);
+                echo $this->Form->control('Customer.cust_email', ['label' => 'Customer E-mail']);
+                ?>
+
+                <!-- Booking Information -->
+                <h4><?= __('Booking Information') ?></h4>
+                <?php
                 echo $this->Form->control('staff_id', ['options' => $staff]);
                 echo $this->Form->control('service_id', ['options' => $services]);
+                echo $this->Form->control('eventstart');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
