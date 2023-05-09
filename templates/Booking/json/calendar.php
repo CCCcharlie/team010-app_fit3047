@@ -1,21 +1,19 @@
 <?php
 $data = [];
 foreach ($booking as $booking) {
-    $service_name = $booking->service->service_name;
-    $customer_name = substr($booking->customer->cust_fname, 0, 1) . '. ' . $booking->customer->cust_lname;
-    $staff_name = substr($booking->staff->staff_fname, 0,1) . '. ' . $booking->staff->staff_lname;
-    $title = $service_name . ' - ' . $customer_name . ' served by' . $staff_name;
-
-
+    $serviceDuration = $booking->service->service_duration;
     $eventStart = new DateTime($booking->eventstart, new DateTimeZone('UTC'));
-    $eventEnd = new DateTime($booking->eventend, new DateTimeZone('UTC'));
+    $eventEnd = clone $eventStart;
+    $eventEnd->add(new DateInterval('PT' . $serviceDuration . 'M'));
+
+    $staffName = substr($booking->staff->fname, 0, 1) . '. ' . $booking->staff->lname;
+    $customerName = $booking->customer->fname . ' ' . $booking->customer->lname;
+    $serviceName = $booking->service->service_name;
 
     $item = [
-        'title' => $title,
+        'title' => $serviceName . ' - ' . $customerName . ' with ' . $staffName,
         'start' => $eventStart->format('Y-m-d\TH:i:s'),
         'end' => $eventEnd->format('Y-m-d\TH:i:s'),
-        'timeZone' => 'UTC', // Specify the time zone explicitly prevents fullcalender from converting
-        'className' => 'event-title',
     ];
     $data[] = $item;
 }
