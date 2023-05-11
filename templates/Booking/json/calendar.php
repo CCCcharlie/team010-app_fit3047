@@ -2,7 +2,7 @@
 $data = [];
 foreach ($booking as $booking) {
     $service_name = $booking->service->service_name;
-    $customer_name = substr($booking->customer->cust_fname, 0, 1) . '. ' . $booking->customer->cust_lname;
+    $customer_name = substr($booking->cust_fname, 0, 1) . '. ' . $booking->cust_lname;
     $staff_name = substr($booking->staff->staff_fname, 0,1) . '. ' . $booking->staff->staff_lname;
     $title = $service_name . ' - ' . $customer_name . ' served by ' . $staff_name;
     $service_duration = $booking->service->service_duration; // fetch service duration

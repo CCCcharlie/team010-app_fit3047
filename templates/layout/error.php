@@ -36,6 +36,7 @@
         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
         <?= $this->Html->link(__('Back'), 'javascript:history.back()') ?>
+        <?= $this->Html->link(__('Take me to Home page'), '/') ?>
     </div>
 </body>
 </html>

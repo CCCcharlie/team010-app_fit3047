@@ -2,7 +2,6 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Booking $booking
- * @var string[]|\Cake\Collection\CollectionInterface $customer
  * @var string[]|\Cake\Collection\CollectionInterface $staff
  * @var string[]|\Cake\Collection\CollectionInterface $services
  */
@@ -25,11 +24,13 @@
             <fieldset>
                 <legend><?= __('Edit Booking') ?></legend>
                 <?php
-                    echo $this->Form->control('booking_date');
-                    echo $this->Form->control('booking_time');
-                    echo $this->Form->control('cust_email');
-                    echo $this->Form->control('staff_id', ['options' => $staff]);
+                    echo $this->Form->control('eventstart', ['label' => 'Starting date & time']);
+                    echo $this->Form->control('staff_id', ['options' => $staff, 'label' => 'Staff Name']);
                     echo $this->Form->control('service_id', ['options' => $services]);
+                    echo $this->Form->control('cust_fname', ['label' => 'Customer First Name'] );
+                    echo $this->Form->control('cust_lname', ['label' => 'Customer Last Name']);
+                    echo $this->Form->control('cust_phone', ['label' => 'Customer Phone']);
+                    echo $this->Form->control('cust_email', ['label' => 'Customer Email']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

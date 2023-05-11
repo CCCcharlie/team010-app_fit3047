@@ -21,6 +21,7 @@
         <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
         <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
         <a target="_self" href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
+        <a target="_self" href="<?= $this->Url->build('/booking') ?>">Bookings</a>
         <br>
         <a target="_self" href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
         <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a>
@@ -51,7 +52,7 @@ to get the name or any value in the staff table, use the get and then the name o
                     <th><?= $this->Paginator->sort('Email') ?></th>
                     <th><?= $this->Paginator->sort('Phone') ?></th>
                     <th><?= $this->Paginator->sort('Message') ?></th>
-                    
+
                     <th><?= $this->Paginator->sort('replied') ?></th>
                     <th><?= $this->Paginator->sort('Created') ?></th>
 
@@ -66,11 +67,11 @@ to get the name or any value in the staff table, use the get and then the name o
                     <td><?= h($enquiry->Email) ?></td>
                     <td><?= h($enquiry->Phone) ?></td>
                     <td style="word-break: break-all" ><?= h($enquiry->Message) ?></td>
-                    
+
                     <td><?= $enquiry->replied ? "✅" : "❌" ?></td>
                     <td><?= h($enquiry->created) ?></td>
                     <td class="actions">
-                        
+
                         <?php
                         //if true means it has been read, so show as mark as unread
                         if ($enquiry->replied) {

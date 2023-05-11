@@ -17,14 +17,12 @@
 =======
  * @var string[] $globalContentBlocks
  * @var string[] $homePageContentBlocks
- * @var iterable<\App\Model\Entity\Service> $service
+ * @var iterable<\App\Model\Entity\Service> $services
  * @var iterable<\App\Model\Entity\Cb> $cb
   * @var \App\Model\Entity\Booking $Booking
  * @var \Cake\Collection\CollectionInterface|string[] $customer
  * @var \Cake\Collection\CollectionInterface|string[] $staff
  * @var \Cake\Collection\CollectionInterface|string[] $services
- * @var  \Cake\Collection\CollectionInterface|string[] $toJson
-
  */
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
@@ -34,13 +32,8 @@ use Cake\Error\Debugger;
 use Cake\Http\Exception\NotFoundException;
 
 $this->disableAutoLayout();
-$globaltime = $toJson;
-
 
 ?>
-
-
-<?php //debug($toJson)?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,17 +44,11 @@ $globaltime = $toJson;
     <title>
         Holistic Healing
         <?= $this->fetch('title') ?>
-
-
     </title>
     <?= $this->Html->meta('icon') ?>
 
 
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" type="text/css" />
-<!----dateselecter-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 
@@ -98,10 +85,9 @@ $globaltime = $toJson;
             echo "ㅤㅤ";
             echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
             echo "ㅤ";
-            echo $this->Html->link(__('Admindex'), ['controller' => 'Services', 'action' => 'admindex']);
+            echo $this->Html->link(__('Staff Page'), ['controller' => 'Staff', 'action' => 'index']);
         } else {
             echo "ㅤ";
-            echo $this->Html->link(__('Login'), ['controller' => 'Staff', 'action' => 'login']);
         }
         ?>
 
@@ -112,7 +98,7 @@ $globaltime = $toJson;
     <div class="container">
         <div class="masthead-heading"><?= $homePageContentBlocks['welcome_header'] ?></div>
         <div class="masthead-heading-desc"> <?= $homePageContentBlocks['welcome_description'] ?></div>
-        <a class=" btn btn-primary btn-l text-uppercase btn-sizing-hp" onclick="openForm()">Book now</a>
+        <a class=" btn btn-primary btn-l text-uppercase btn-sizing-hp" href="/booking/add">Book now</a>
 <!--        <button class="open-button btn btn-primary btn-l text-uppercase btn-sizing-hp" onclick="openForm()">Open Form</button>-->
 
     </div>
@@ -122,19 +108,15 @@ $globaltime = $toJson;
         <form  method="post" class="form-container">
             <button type="button" id="closeBtn" style="background-color: #ffc800; color: #fff; padding: 1px 10px; border: 1px solid #ffc800; border-radius: 9px; font-size: 20px; cursor: pointer;">X</button>
             <?= $this->Form->create($Booking) ?>
-
-            <fieldset class="fieldfont">
-
+        <fieldset class="fieldfont">
             <legend><?= __('Add Booking')?></legend>
 
             <?php
-            echo $this->Form->control('booking_date',['class'=> 'fieldfont',"id"=>'booking_date']);
-            echo $this->Form->control('booking_time',['class'=> 'fieldfont',"id"=>'booking_time']);
-            echo $this->Form->control('cust_email');
+            echo $this->Form->control('booking_date',['class'=> 'fieldfont']);
+            echo $this->Form->control('booking_time',['class'=> 'fieldfont']);
+            echo $this->Form->control('cust_id', ['options' => $customer,'class' => 'fieldfont']);
             echo $this->Form->control('staff_id', ['options' => $staff,'class' => 'fieldfont']);
-            echo $this->Form->control('service_id', ['options' => $service,'class' => 'fieldfont']) ;
-//     debug($service->toList());
-
+            echo $this->Form->control('service_id', ['options' => $services,'class' => 'fieldfont']);
             ?>
         </fieldset>
         <?= $this->Form->button(__('Submit'), [
@@ -191,7 +173,7 @@ $globaltime = $toJson;
                                 <div class="card">
                                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                                     when clicked-->
-                                    <!-- <?php $viewURL = "#contact"?> -->
+                                    <!-- <?php $viewURL = "booking/add"?> -->
 
                                     <!-- Image section -->
                                     <a class="service-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fill: fill">
@@ -398,76 +380,38 @@ $globaltime = $toJson;
 <script>
     function openForm() {
         document.getElementById("myForm").style.display = "block";
-
-
-
+        // console.log(document.getElementById("myForm"));
 
 
     }
 
-
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
-
     }
 
     var popup = document.getElementById("myForm");
     var closeBtn = document.getElementById("closeBtn");
 
     closeBtn.addEventListener("click", function() {
-        //var timedb=<?// echo $toJson ?>
-        // console.log(document.getElementById("timedb"));
+        console.log(document.getElementById("myForm"));
         popup.style.display = "none";
-
     });
 
 </script>
+<footer class="footer">
 
-<script>
-<?php //debug($toJson)?>
-
-
-    // get the time input element
-    const timeInputs = document.querySelectorAll('input[type="time"]');
-
-
-
-    // assign listener
-    timeInputs.forEach(input => {
-        input.addEventListener('change', (event) => {
-            const selectedTime = event.target.value;
-            //var timedb=<?// echo $toJson ?>
-            //    console.log(document.getElementById("timedb"));
-
-
-
-
-
-            // 禁用其他与被选中时间相同的选项
-            timeInputs.forEach(input => {
-                if (input.value === selectedTime && toString(selectedTime) in(<?= $toJson ?>) ) {
-                    document.getElementById('booking_time').disabled = true;
-                    console.log('selectedTime');
-
-
-                } else {
-                    input.disabled = false;
-//                    <?php //=debug('test')?>//;
-                    console.log(selectedTime);
-                    console.log(<?= $toJson ?>);
-
-                }
-                console.log('test3');
-
-            });
-
-
-        });
-    });
-
-
-</script>
-
+    <p>&copy; <script>document.write(new Date().getFullYear())</script>  Copyright Holisitic Healings</p>
+    <?php if ($this->Identity->isLoggedIn()){
+        echo "ㅤㅤ";
+        echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
+        echo "ㅤ";
+        echo $this->Html->link(__('Staff Page'), ['controller' => 'Staff', 'action' => 'index']);
+    } else {
+        echo "ㅤ";
+        echo $this->Html->link(__('Staff Login'), ['controller' => 'Staff', 'action' => 'login']);
+    }
+    ?>
+</footer>
 </body>
 </html>
 

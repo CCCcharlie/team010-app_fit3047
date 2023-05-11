@@ -13,21 +13,17 @@
     <!-- START CENTERED WHITE CONTAINER -->
     <table role="presentation" class="main">
         <!-- START MAIN CONTENT AREA -->
-        <tr>
-            <td class="wrapper">
-
-                            <h3>Reset your account password</h3>
+                            <h3>Holistic Healing Staff Portal - Reset your account password</h3>
                             <p>Hi <?= h($first_name) ?>, </p>
                             <p>Thank you for your request to reset the password of your account on <b>Holistic Healing</b>. </p>
-                            <p></p>
+                            <br>
                             <p>To reset your account password, use the button below to access the reset password page: </p>
 
-                            <td><a href="<?= $this->Url->build(['controller' => 'Staff', 'action' => 'resetpassword', $nonce], ['fullBase' => true]) ?>" target="_blank">Reset account password</a></td>
+                            <a href="<?= $this->Url->build(['controller' => 'Staff', 'action' => 'resetpassword', $nonce], ['fullBase' => true]) ?>" target="_blank">Reset account password</a> <br>
 
-                            <p>or use the following link: <br>
+                            <p>or use the following link: <br><br>
                        <?= $this->Html->link($this->Url->build(['controller' => 'Staff', 'action' => 'resetpassword', $nonce], ['fullBase' => true]), ['controller' => 'Staff', 'action' => 'resetpassword', $nonce], ['fullBase' => true, 'style' => 'word-break:break-all']) ?></p>
-            </td>
-        </tr>
+
         <!-- END MAIN CONTENT AREA -->
     </table>
     <!-- END CENTERED WHITE CONTAINER -->

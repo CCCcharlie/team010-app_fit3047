@@ -11,7 +11,6 @@ use Cake\Validation\Validator;
 /**
  * Booking Model
  *
- * @property \App\Model\Table\CustomerTable&\Cake\ORM\Association\BelongsTo $Customer
  * @property \App\Model\Table\StaffTable&\Cake\ORM\Association\BelongsTo $Staff
  * @property \App\Model\Table\ServicesTable&\Cake\ORM\Association\BelongsTo $Services
  *
@@ -45,7 +44,6 @@ class BookingTable extends Table
         $this->setDisplayField('booking_id');
         $this->setPrimaryKey('booking_id');
 
-
         $this->belongsTo('Staff', [
             'foreignKey' => 'staff_id',
             'joinType' => 'INNER',
@@ -55,6 +53,7 @@ class BookingTable extends Table
             'joinType' => 'INNER',
         ]);
     }
+
     // This has been made to try and get the data booked and saved to the DB
     public function createOrUpdateBooking($event) {
         $booking = $this->newEntity();
@@ -104,19 +103,9 @@ class BookingTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->date('booking_date')
-            ->requirePresence('booking_date', 'create')
-            ->notEmptyDate('booking_date');
-
-        $validator
-            ->time('booking_time')
-            ->requirePresence('booking_time', 'create')
-            ->notEmptyTime('booking_time');
-
-        $validator
-            ->scalar('cust_email')
-            ->notEmptyString('cust_email');
-
+            ->dateTime('eventstart')
+            ->requirePresence('eventstart', 'create')
+            ->notEmptyDateTime('eventstart');
         $validator
             ->integer('staff_id')
             ->notEmptyString('staff_id');
@@ -125,11 +114,88 @@ class BookingTable extends Table
             ->integer('service_id')
             ->notEmptyString('service_id');
 
-        return $validator;
-    }
+        $validator
+            ->scalar('cust_fname')
+            ->maxLength('cust_fname', 64)
+            ->requirePresence('cust_fname', 'create')
+            ->notEmptyString('cust_fname')
+            ->add('cust_fname', [
+                'noDelimiters' => [
+                    'rule' => ['custom', '/^[^--;]+$/'],
+                    'message' => 'Your input contains invalid characters.'
+                ]
+            ]);
 
+        $validator
+            ->scalar('cust_lname')
+            ->maxLength('cust_lname', 64)
+            ->requirePresence('cust_lname', 'create')
+            ->notEmptyString('cust_lname')
+            ->add('cust_lname', [
+                'noDelimiters' => [
+                    'rule' => ['custom', '/^[^--;]+$/'],
+                    'message' => 'Your input contains invalid characters.'
+                ]
+            ]);
+
+        $validator
+            ->integer('cust_phone')
+            ->maxLength('cust_phone', 10)
+            ->requirePresence('cust_phone', 'create')
+            ->notEmptyString('cust_phone')
+            ->add('cust_phone', [
+                'validFormat' => [
+                    'rule' => [
+                        'custom', // Only allowing AUS Phone numbers because all personas are AUS Based.
+                        '/^(0[1-9]\d{8}|13\d{4}|1300\d{6}|1800\d{6})$/'
+                    ],
+                    'message' => 'Please enter a valid Australian phone number'
+                ]
+            ]);
+        $validator
+            ->scalar('cust_email')
+            ->maxLength('cust_email', 320)
+            ->requirePresence('cust_email', 'create')
+            ->notEmptyString('cust_email')
+            ->add('cust_email', [
+                'emailContainsAt' => [
+                    'rule' => ['custom', '/@/'],
+                    'message' => 'Your e-mail must contain the @ symbol.'
+                ],
+            ]);
+
+        // This, probably won't work. I don't know enough of CakePHP D:
+        $validator
+            ->add('eventstart', 'valid', [
+                'rule' => 'datetime',
+                'message' => 'Please enter a valid date and time'
+            ]);
+//            ->add('eventstart', 'checkBookingTime', [
+//                'rule' => 'validateBookingTime',
+//                'message' => 'This staff member is already booked during this time frame'
+//            ]);
+
+        return $validator;
+}
+
+// For anyone reading this, it's abit of a hail mary. But see what I can do. - Alex.
+    public function validateBookingTime($value, $context)
+    {
+        $booking = $this->newEntity($context['data']);
+        $booking->set('eventend', date('Y-m-d H:i:s', strtotime($booking->eventstart . ' + ' . $booking->service->service_duration . ' minutes')));
+
+        $existingBooking = $this->find()
+            ->where([
+                'staff_id' => $booking->staff_id,
+                'eventstart <=' => $booking->eventend,
+                'eventend >=' => $booking->eventstart,
+            ])
+            ->first();
+
+        return empty($existingBooking);
+    }
     /**
-     * Returns a rules checker object that will be used for validating
+     *Returns a rules checker object that will be used for validating
      * application integrity.
      *
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
@@ -137,7 +203,6 @@ class BookingTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-//        $rules->add($rules->existsIn('cust_email', 'Customer'), ['errorField' => 'cust_email']);
         $rules->add($rules->existsIn('staff_id', 'Staff'), ['errorField' => 'staff_id']);
         $rules->add($rules->existsIn('service_id', 'Services'), ['errorField' => 'service_id']);
 

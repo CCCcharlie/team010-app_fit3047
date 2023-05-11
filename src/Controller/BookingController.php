@@ -11,6 +11,7 @@ namespace App\Controller;
 
  */
 use Cake\Routing\Router;
+use Cake\Validation\Validation;
 class BookingController extends AppController
 {
 
@@ -21,6 +22,14 @@ class BookingController extends AppController
         $this->loadComponent('RequestHandler');
     }
 
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        // Configure the login action to not require authentication, preventing
+        // the infinite redirect loop issue
+        $this->Authentication->addUnauthenticatedActions(['add']);
+    }
+
     /**
      * Index method
      *
@@ -29,7 +38,7 @@ class BookingController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Customer', 'Staff', 'Services'],
+            'contain' => ['Staff', 'Services'],
         ];
         $booking = $this->paginate($this->Booking);
 
@@ -43,7 +52,7 @@ class BookingController extends AppController
     public function calendar()
     {
         $this->paginate = [
-            'contain' => ['Customer', 'Staff', 'Services'],
+            'contain' => ['Staff', 'Services'],
         ];
         $booking = $this->paginate($this->Booking);
 
@@ -64,7 +73,7 @@ class BookingController extends AppController
     public function view($id = null)
     {
         $booking = $this->Booking->get($id, [
-            'contain' => ['Customer', 'Staff', 'Services'],
+            'contain' => ['Staff', 'Services'],
         ]);
 
         $this->set(compact('booking'));
@@ -79,18 +88,24 @@ class BookingController extends AppController
     {
         $booking = $this->Booking->newEmptyEntity();
         if ($this->request->is('post')) {
-            $booking = $this->Booking->patchEntity($booking, $this->request->getData());
+            $booking = $this->Booking->patchEntity($booking, $this->request->getData(), [
+            ]);
             if ($this->Booking->save($booking)) {
                 $this->Flash->success(__('The booking has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'add']);
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
-        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
-        $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
-        $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
-        $this->set(compact('booking', 'customer', 'staff', 'services'));
+        $staff = $this->Booking->Staff->find('list', [
+            'limit' => 200,
+            'valueField' => 'full_name'
+        ])->all();
+        $services = $this->Booking->Services->find('list', [
+        'limit' => 200,
+        'valueField' => 'full_name'
+        ])->all();
+        $this->set(compact('booking', 'staff', 'services'));
     }
 
     /**
@@ -114,10 +129,15 @@ class BookingController extends AppController
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
-        $customer = $this->Booking->Customer->find('list', ['limit' => 200])->all();
-        $staff = $this->Booking->Staff->find('list', ['limit' => 200])->all();
-        $services = $this->Booking->Services->find('list', ['limit' => 200])->all();
-        $this->set(compact('booking', 'customer', 'staff', 'services'));
+        $staff = $this->Booking->Staff->find('list', [
+            'limit' => 200,
+            'valueField' => 'full_name'
+        ])->all();
+        $services = $this->Booking->Services->find('list', [
+            'limit' => 200,
+            'valueField' => 'full_name'
+        ])->all();
+        $this->set(compact('booking', 'staff', 'services'));
     }
 
 //    public function events() {

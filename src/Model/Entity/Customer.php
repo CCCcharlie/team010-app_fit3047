@@ -12,9 +12,7 @@ use Cake\ORM\Entity;
  * @property string $cust_fname
  * @property string $cust_lname
  * @property int $cust_phone
- * @property \Cake\I18n\FrozenDate $cust_startdate
  * @property string $cust_email
- * @property string $cust_password
  */
 class Customer extends Entity
 {

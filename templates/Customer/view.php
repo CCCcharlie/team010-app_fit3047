@@ -31,10 +31,6 @@
                     <td><?= h($customer->cust_email) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Cust Password') ?></th>
-                    <td><?= h($customer->cust_password) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Cust Id') ?></th>
                     <td><?= $this->Number->format($customer->cust_id) ?></td>
                 </tr>
@@ -42,10 +38,7 @@
                     <th><?= __('Cust Phone') ?></th>
                     <td><?= $this->Number->format($customer->cust_phone) ?></td>
                 </tr>
-                <tr>
-                    <th><?= __('Cust Startdate') ?></th>
-                    <td><?= h($customer->cust_startdate) ?></td>
-                </tr>
+
             </table>
         </div>
     </div>
