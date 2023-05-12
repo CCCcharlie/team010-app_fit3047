@@ -52,10 +52,10 @@
                 <!-- Customer Information -->
                 <h4><?= __('Customer Information') ?></h4>
                 <?php
-                echo $this->Form->control('cust_fname', ['label' => 'Customer First Name']);
-                echo $this->Form->control('cust_lname', ['label' => 'Customer Last Name']);
-                echo $this->Form->control('cust_phone', ['label' => 'Customer Phone No']);
-                echo $this->Form->control('cust_email', ['label' => 'Customer E-mail']);
+                echo $this->Form->control('cust_fname', ['label' => 'First Name']);
+                echo $this->Form->control('cust_lname', ['label' => 'Last Name']);
+                echo $this->Form->control('cust_phone', ['label' => 'Phone No']);
+                echo $this->Form->control('cust_email', ['label' => 'E-mail']);
                 __('Booking Information');
                 echo $this->Form->control('staff_id', [
                     'label' => 'Pick from our available staff',
