@@ -107,6 +107,7 @@ class BookingTable extends Table
             ->integer('staff_id')
             ->notEmptyString('staff_id');
 
+
         $validator
             ->integer('service_id')
             ->notEmptyString('service_id');
@@ -173,51 +174,72 @@ class BookingTable extends Table
                 ]
             ]);
 
-        $validator
-            ->add('eventstart', [
-                'noPastBookings' => [
-                    'rule' => function ($value, $context) {
-                        $eventstart = new \DateTime($value);
-                        $now = new \DateTime();
-                        return $eventstart >= $now;
-                    },
-                    'message' => 'Bookings cannot be entered in the past.'
-                ],
-                'noEventEndAfter5pm' => [
-                    'rule' => function ($value, $context) {
-                        $eventstart = new \DateTime($context['data']['eventstart']);
-                        $serviceId = $context['data']['service_id'];
-                        $serviceDuration = $this->Services->get($serviceId)->service_duration;
-                        $eventEnd = clone $eventstart;
-                        $eventEnd->add(new \DateInterval('PT' . $serviceDuration . 'M'));
-                        return $eventEnd <= $eventstart->setTime(17, 0, 0);
-                    },
-                    'message' => 'Holistic Healing is closed at 5PM, please reschedule your event '
-                ]
-            ])
-            ->dateTime('eventstart')
-            ->requirePresence('eventstart', 'create')
-            ->notEmptyDateTime('eventstart');
+            $validator
+                ->add('eventstart', [
+                    'noPastBookings' => [
+                        'rule' => function ($value, $context) {
+                            $eventstart = new \DateTime($value);
+                            $now = new \DateTime();
+                            return $eventstart >= $now;
+                        },
+                        'message' => 'Bookings cannot be entered in the past.'
+                    ],
+                    'noEventEndAfter5pm' => [
+                        'rule' => function ($value, $context) {
+                            $eventstart = new \DateTime($context['data']['eventstart']);
+                            $serviceId = $context['data']['service_id'];
+                            $serviceDuration = $this->Services->get($serviceId)->service_duration;
+                            $eventEnd = clone $eventstart;
+                            $eventEnd->add(new \DateInterval('PT' . $serviceDuration . 'M'));
+                            return $eventEnd <= $eventstart->setTime(17, 0, 0);
+                        },
+                        'message' => 'Holistic Healing is closed at 5PM, please reschedule your event '
+                    ],
+                    'noDoubleBooking' => [
+                        'rule' => function ($value, $context) {
+                            $eventstart = new \DateTime($value);
+                            $serviceId = $context['data']['service_id'];
+                            $serviceDuration = $this->Services->get($serviceId)->service_duration;
+                            $eventEnd = clone $eventstart;
+                            $eventEnd->add(new \DateInterval('PT' . $serviceDuration . 'M'));
+
+                            // Checks if staff member is already booked during this time
+                            $existingBooking = $this->find()
+                                ->where([
+                                    'staff_id' => $context['data']['staff_id'],
+                                    'eventstart <=' => $eventEnd->format('Y-m-d H:i:s'),
+                                    'eventstart >=' => $eventstart->format('Y-m-d H:i:s')
+                                ])
+                                ->first();
+
+                            return !$existingBooking;
+                        },
+                        'message' => 'This staff member is already booked during this time. Please choose a different staff member.'
+                    ]
+                ])
+                ->dateTime('eventstart')
+                ->requirePresence('eventstart', 'create')
+                ->notEmptyDateTime('eventstart');
 
         return $validator;
-    }
+        }
 
 
-// For anyone reading this, it's abit of a hail mary. But see what I can do. - Alex.
-    public function validateBookingTime($value, $context)
-    {
-        $booking = $this->newEntity($context['data']);
-        $booking->set('eventend', date('Y-m-d H:i:s', strtotime($booking->eventstart . ' + ' . $booking->service->service_duration . ' minutes')));
+    // For anyone reading this, it's abit of a hail mary. But see what I can do. - Alex.
+        public function validateBookingTime($value, $context)
+        {
+            $booking = $this->newEntity($context['data']);
+            $booking->set('eventend', date('Y-m-d H:i:s', strtotime($booking->eventstart . ' + ' . $booking->service->service_duration . ' minutes')));
 
-        $existingBooking = $this->find()
-            ->where([
-                'staff_id' => $booking->staff_id,
-                'eventstart <=' => $booking->eventend,
-                'eventend >=' => $booking->eventstart,
-            ])
-            ->first();
+            $existingBooking = $this->find()
+                ->where([
+                    'staff_id' => $booking->staff_id,
+                    'eventstart <=' => $booking->eventend,
+                    'eventend >=' => $booking->eventstart,
+                ])
+                ->first();
 
-        return empty($existingBooking);
+            return empty($existingBooking);
     }
     /**
      *Returns a rules checker object that will be used for validating
