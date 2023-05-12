@@ -73,7 +73,7 @@
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
                 businessHours: {
-                    daysOfWeek: [1, 2, 3, 4, 5], // Monday - Friday
+                         daysOfWeek: [1, 2, 3, 4, 5], // Monday - Friday
                     startTime: '09:00', // 9am
                     endTime: '17:00' // 5pm
                 },
@@ -223,7 +223,7 @@
                     dialog.classList.add('dialog');
                     dialog.innerHTML = `
   <p>Select an action for the date/time: ${info.dateStr}</p>
-  <a href="add.php"><button>Add Event</button></a>
+  <a href="booking/add"><button>Add Event</button></a>
 `;
                     dialog.style.position = 'absolute';
                     dialog.style.top = info.jsEvent.clientY + 'px';
