@@ -46,9 +46,9 @@
             echo $this->Html->link(__('Staff Overview'), ['controller' => 'Staff', 'action' => 'index']);
             echo " | " ;
             echo $this->Html->link(__('Home Page'), ['controller' => 'Pages', 'action' => 'home']);
-            echo " | " ;
-            echo "> Hi there <" . $identity->get('staff_fname');
-            echo " | " ;
+            echo " | > " ;
+            echo "Hi " . $identity->get('staff_fname');
+            echo " < | " ;
             echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'home']);
         } else {
             echo "ㅤ";
