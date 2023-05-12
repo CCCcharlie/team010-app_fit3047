@@ -110,9 +110,9 @@
         });
 
         var datepicker = flatpickr("#datepicker", {  onChange: function(dates) {
-                 console.log(dates.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss"))
+                 console.log()
                 console.log(disabledTimes)
-                if ((<?=$toJson?>).indexOf(dates.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss")==-1)){
+                if ((<?=$toJson?>).indexOf(dates==-1)){
                     console.log('dates');
 
                 }
