@@ -49,7 +49,7 @@
             echo " | > " ;
             echo "Hi " . $identity->get('staff_fname');
             echo " < | " ;
-            echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'home']);
+            echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
         } else {
             echo "ㅤ";
         }
