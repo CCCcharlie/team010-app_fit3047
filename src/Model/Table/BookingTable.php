@@ -174,9 +174,6 @@ class BookingTable extends Table
             ]);
 
         $validator
-            ->dateTime('eventstart')
-            ->requirePresence('eventstart', 'create')
-            ->notEmptyDateTime('eventstart')
             ->add('eventstart', [
                 'noPastBookings' => [
                     'rule' => function ($value, $context) {
@@ -185,28 +182,22 @@ class BookingTable extends Table
                         return $eventstart >= $now;
                     },
                     'message' => 'Bookings cannot be entered in the past.'
+                ],
+                'noEventEndAfter5pm' => [
+                    'rule' => function ($value, $context) {
+                        $eventstart = new \DateTime($context['data']['eventstart']);
+                        $serviceId = $context['data']['service_id'];
+                        $serviceDuration = $this->Services->get($serviceId)->service_duration;
+                        $eventEnd = clone $eventstart;
+                        $eventEnd->add(new \DateInterval('PT' . $serviceDuration . 'M'));
+                        return $eventEnd <= $eventstart->setTime(17, 0, 0);
+                    },
+                    'message' => 'Holistic Healing is closed at 5PM, please reschedule your event '
                 ]
             ])
-            ->add('eventend', [
-                'noBookingsAfter5PM' => [
-                    'rule' => function ($value, $context) {
-                        $service_duration = TableRegistry::getTableLocator()->get('Services')->find()
-                            ->select(['service_duration'])
-                            ->where(['id' => $context['data']['service_id']])
-                            ->first()
-                            ->service_duration;
-
-                        $eventstart = new \DateTime($context['data']['eventstart']);
-                        $service_duration = new \DateInterval('PT' . $service_duration . 'M');
-                        $eventend = clone $eventstart;
-                        $eventend->add($service_duration);
-                        $dayEnd = new \DateTime('5PM');
-                        $dayEnd->setTimezone($eventstart->getTimezone());
-                        return $eventend <= $dayEnd;
-                    },
-                    'message' => 'Bookings cannot finish after 5PM.'
-                ]
-            ]);
+            ->dateTime('eventstart')
+            ->requirePresence('eventstart', 'create')
+            ->notEmptyDateTime('eventstart');
 
         return $validator;
     }
