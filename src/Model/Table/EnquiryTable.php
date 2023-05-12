@@ -68,7 +68,7 @@ class EnquiryTable extends Table
             ->add('Email', [
                 'validEmail' => [
                     'rule' => 'email',
-                    'message' => 'Please enter a valid email address'
+                    'message' => 'Please enter a valid email address. Eg. test@holistichealings.com'
                 ],
                 'emailContainsAt' => [
                     'rule' => ['custom', '/@/'],
@@ -86,7 +86,7 @@ class EnquiryTable extends Table
                         'custom', // Only allowing AUS Phone numbers because all personas are AUS Based.
                         '/^(0[1-9]\d{8}|13\d{4}|1300\d{6}|1800\d{6})$/'
                     ],
-                    'message' => 'Please enter a valid Australian phone number'
+                    'message' => 'Please enter a valid Australian phone number. Eg 0412345678'
                 ]
             ]);
         $validator

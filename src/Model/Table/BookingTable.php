@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\TableRegistry;
 
 /**
  * Booking Model
@@ -103,10 +104,6 @@ class BookingTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->dateTime('eventstart')
-            ->requirePresence('eventstart', 'create')
-            ->notEmptyDateTime('eventstart');
-        $validator
             ->integer('staff_id')
             ->notEmptyString('staff_id');
 
@@ -120,9 +117,9 @@ class BookingTable extends Table
             ->requirePresence('cust_fname', 'create')
             ->notEmptyString('cust_fname')
             ->add('cust_fname', [
-                'noDelimiters' => [
-                    'rule' => ['custom', '/^[^--;]+$/'],
-                    'message' => 'Your input contains invalid characters.'
+                'validCharacters' => [
+                    'rule' => ['custom', '/^[a-zA-Z]+(?:[-\'\s]{1}[a-zA-Z]+)*$/'],
+                    'message' => 'Please enter a valid name. Names cannot have multiple "-", or apostrophes in a row. Names cannot have numbers. '
                 ]
             ]);
 
@@ -132,9 +129,9 @@ class BookingTable extends Table
             ->requirePresence('cust_lname', 'create')
             ->notEmptyString('cust_lname')
             ->add('cust_lname', [
-                'noDelimiters' => [
-                    'rule' => ['custom', '/^[^--;]+$/'],
-                    'message' => 'Your input contains invalid characters.'
+                'validCharacters' => [
+                    'rule' => ['custom', '/^[a-zA-Z]+(?:[-\'\s]{1}[a-zA-Z]+)*$/'],
+                    'message' => 'Please enter a valid name. Names cannot have multiple "-", or apostrophes in a row. Names cannot have numbers. '
                 ]
             ]);
 
@@ -158,25 +155,62 @@ class BookingTable extends Table
             ->requirePresence('cust_email', 'create')
             ->notEmptyString('cust_email')
             ->add('cust_email', [
+                'validEmail' => [
+                    'rule' => 'email',
+                    'message' => 'Please enter a valid email address. Eg. test@holistichealings.com'
+                ],
                 'emailContainsAt' => [
                     'rule' => ['custom', '/@/'],
                     'message' => 'Your e-mail must contain the @ symbol.'
                 ],
+                'noConsecutiveDelimiters' => [
+                    'rule' => ['custom', '/^(?!.*(\.\.|\@\@)).*$/'],
+                    'message' => 'Your e-mail address cannot contain consecutive delimiters (e.g. ".." or "@@").'
+                ],
+                'noSpecialCharacters' => [
+                    'rule' => ['custom', '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
+                    'message' => 'Your e-mail address can only contain letters, digits, hyphens, underscores, dots, and at symbols.'
+                ]
             ]);
 
-        // This, probably won't work. I don't know enough of CakePHP D:
         $validator
-            ->add('eventstart', 'valid', [
-                'rule' => 'datetime',
-                'message' => 'Please enter a valid date and time'
+            ->dateTime('eventstart')
+            ->requirePresence('eventstart', 'create')
+            ->notEmptyDateTime('eventstart')
+            ->add('eventstart', [
+                'noPastBookings' => [
+                    'rule' => function ($value, $context) {
+                        $eventstart = new \DateTime($value);
+                        $now = new \DateTime();
+                        return $eventstart >= $now;
+                    },
+                    'message' => 'Bookings cannot be entered in the past.'
+                ]
+            ])
+            ->add('eventend', [
+                'noBookingsAfter5PM' => [
+                    'rule' => function ($value, $context) {
+                        $service_duration = TableRegistry::getTableLocator()->get('Services')->find()
+                            ->select(['service_duration'])
+                            ->where(['id' => $context['data']['service_id']])
+                            ->first()
+                            ->service_duration;
+
+                        $eventstart = new \DateTime($context['data']['eventstart']);
+                        $service_duration = new \DateInterval('PT' . $service_duration . 'M');
+                        $eventend = clone $eventstart;
+                        $eventend->add($service_duration);
+                        $dayEnd = new \DateTime('5PM');
+                        $dayEnd->setTimezone($eventstart->getTimezone());
+                        return $eventend <= $dayEnd;
+                    },
+                    'message' => 'Bookings cannot finish after 5PM.'
+                ]
             ]);
-//            ->add('eventstart', 'checkBookingTime', [
-//                'rule' => 'validateBookingTime',
-//                'message' => 'This staff member is already booked during this time frame'
-//            ]);
 
         return $validator;
-}
+    }
+
 
 // For anyone reading this, it's abit of a hail mary. But see what I can do. - Alex.
     public function validateBookingTime($value, $context)

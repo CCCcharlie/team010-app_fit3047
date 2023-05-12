@@ -44,6 +44,7 @@ $("[id^=carousel-thumbs]").carousel({
 $("[id^=carousel]").carousel({
     interval: false
 });
+
 // No longer needed.
 // $(".carousel-pause").click(function () {
 //     var id = $(this).attr("href");
