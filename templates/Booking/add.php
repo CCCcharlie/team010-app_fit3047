@@ -31,6 +31,29 @@
 
         <a target="_self" href="<?= $this->Url->build('/') ?>">To Home Page!</a>
 
+        <?php if ($this->Identity->isLoggedIn()){
+            $identity = $this->request->getAttribute('authentication')->getIdentity();
+
+            echo "<br>";
+            echo $this->Html->link(__('Site Editor'), ['controller' => 'Cb', 'action' => 'index']);
+            echo " | " ;
+            echo $this->Html->link(__('Customer Enquiry'), ['controller' => 'Enquiry', 'action' => 'index']);
+            echo " | " ;
+            echo $this->Html->link(__('Service List'), ['controller' => 'Services', 'action' => 'index']);
+            echo " | " ;
+            echo $this->Html->link(__('Bookings'), ['controller' => 'Booking', 'action' => 'index']);
+            echo "<br>";
+            echo $this->Html->link(__('Staff Overview'), ['controller' => 'Staff', 'action' => 'index']);
+            echo " | " ;
+            echo $this->Html->link(__('Home Page'), ['controller' => 'Pages', 'action' => 'home']);
+            echo " | " ;
+            echo "Hi there " . $identity->get('staff_fname');
+            echo " | " ;
+            echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'home']);
+        } else {
+            echo "ㅤ";
+        }
+        ?>
         <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
     </div>
 </nav>
