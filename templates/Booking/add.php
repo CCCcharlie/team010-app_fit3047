@@ -14,9 +14,25 @@
  * @var \Cake\Collection\CollectionInterface|string[] $staff
  * @var \Cake\Collection\CollectionInterface|string[] $services
  */
+
+
+
 ?>
+
+
 <nav class="top-nav">
     <div class="top-nav-title">
+<!--        datepicker-->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+
         <!--  In order to show the image from webroot/img/cake.icon.png,
         we must use $this->html->image instead of <img src=""> in this case for it to work -->
 
@@ -41,6 +57,7 @@
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Html->link(__('To services page'), ['controller'=>'services'], ['action' => 'index']) ?>
+
         </div>
     </aside>
     <div class="column-responsive column-80">
@@ -66,11 +83,49 @@
                 'options' => $services]);
                 echo $this->Form->control('eventstart', [
                 'label' => 'Booking Time',
+                'id'=>'datepicker',
                 'timeFormat' => 'h:mm a']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
+
         </div>
     </div>
+
+
+    <script>
+
+        //disable time period
+        var disabledTimeSlots =<?=$toJson?>,
+            disabledTimes = [];
+
+
+        // Convert string to array and create objects with 'from' and 'to' properties
+        disabledTimeSlots.forEach(function(timeSlot) {
+            disabledTimes.push({
+                from: timeSlot,
+                to: timeSlot
+            });
+        });
+
+        var datepicker = flatpickr("#datepicker", {  onChange: function(dates) {
+                 console.log(dates.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss"))
+                console.log(disabledTimes)
+                if ((<?=$toJson?>).indexOf(dates.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss")==-1)){
+                    console.log('dates');
+
+                }
+            },
+            enableTime: true, // enable time picker
+            dateFormat: "Y-m-d H:i", // set date and time format
+            minDate: "today", // set minimum date to today
+            maxDate: new Date().fp_incr(30), // set maximum date to 30 days from today
+            minTime: "9:00",
+            maxTime: "22:00",//timepicker
+
+
+        });
+
+    </script>
 </div>

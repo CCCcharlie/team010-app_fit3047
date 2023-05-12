@@ -20,7 +20,34 @@ class BookingController extends AppController
     {
         parent::initialize();
         $this->loadComponent('RequestHandler');
+
+
+
+        //bookingvar passing
+
+
+        $booked_time=$this->Booking->find('list',[
+            'keyField'=>'id',
+            'valueField'=>function($booking){
+
+
+                return$booking->eventstart;
+
+            }
+
+        ])->toArray();
+
+
+
+        $toJson=json_encode($booked_time);
+//$toJson=$booked_time;
+
+        $this->set(compact('toJson'));
+
     }
+
+
+
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
@@ -171,4 +198,5 @@ class BookingController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
 }
