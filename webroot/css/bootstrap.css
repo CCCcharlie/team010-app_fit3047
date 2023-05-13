@@ -7088,7 +7088,7 @@ position: relative;
 }
 
 .d-block {
-    max-height: 50vw !important;
+    max-height: 30vw !important;
     display: block;
 }
 .d-grid {
@@ -11485,7 +11485,6 @@ img, svg{vertical-align: central;}
     }
 .about-heading-img{
     position: relative;
-    display: block;
     max-width: 100%;
     height: auto;
     z-index: 0;
@@ -11533,7 +11532,7 @@ img, svg{vertical-align: central;}
 }
 
 .img-fluid1 {
-    max-width: 95%;
+    max-width: 65%;
     height: 60%;
 }
 

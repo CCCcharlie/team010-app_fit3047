@@ -94,7 +94,13 @@ $this->disableAutoLayout();
     </div>
 </nav>
 <!--Welcome Page Goes Here-->
-<header class="masthead" style="background-image: url(<?= $this->Html->image('gallery/' . $homePageContentBlocks['welcome_image']) ?>">
+<?php
+//BRUH, why didnt i just manually create the URL and then palce it inside masthead? well thats what i did and now it works :D
+$welcomeImageUrl = "../img/gallery/" . $homePageContentBlocks['welcome_image'];
+debug($welcomeImageUrl);
+
+?>
+<header class="masthead" style="background-image: url(<?=$welcomeImageUrl ?>)">
     <div class="container">
         <div class="masthead-heading"><?= $homePageContentBlocks['welcome_header'] ?></div>
         <div class="masthead-heading-desc"> <?= $homePageContentBlocks['welcome_description'] ?></div>
@@ -135,7 +141,7 @@ $this->disableAutoLayout();
 
     <div class="container">
         <!-- For cakephp, need to use $this->html->image instead of src to display the image-->
-        <img class="img-fluid1 about-heading-img mb-3 mb-lg-0" src="img\gallery\<?=$homePageContentBlocks['about_image']?>" alt="About Background Image" />
+        <img class="img-fluid1 about-heading-img mb-3 mb-lg-0" style="width:741px" style="height:495px" src="img\gallery\<?=$homePageContentBlocks['about_image']?>" alt="About Background Image" />
         <div class="about-heading-content">
             <div class="row1">
                 <div class="col-xl-9 col-lg-10 mx-auto">
