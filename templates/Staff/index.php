@@ -41,7 +41,6 @@ to get the name or any value in the staff table, use the get and then the name o
         <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
     </div>
 
-    <div class="cb index content">
 
 
 
