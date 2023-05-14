@@ -133,6 +133,10 @@ class BookingController extends AppController
         'valueField' => 'full_name'
         ])->all();
         $this->set(compact('booking', 'staff', 'services'));
+
+
+
+
     }
 
     /**
@@ -164,7 +168,10 @@ class BookingController extends AppController
             'limit' => 200,
             'valueField' => 'full_name'
         ])->all();
+
+
         $this->set(compact('booking', 'staff', 'services'));
+
     }
 
 //    public function events() {
@@ -199,4 +206,9 @@ class BookingController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+
+
+
 }
+
+

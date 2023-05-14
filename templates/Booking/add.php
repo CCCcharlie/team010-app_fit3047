@@ -11,12 +11,15 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Booking $booking
+ * @var iterable<\App\Model\Entity\Service> $services
  * @var \Cake\Collection\CollectionInterface|string[] $staff
  * @var \Cake\Collection\CollectionInterface|string[] $services
+ *
  */
 
+debug($services->image_name);
 
-
+debug($services->toList());
 ?>
 
 
@@ -103,10 +106,16 @@
                 ]);
                 echo $this->Form->control('service_id', [
                 'label' => 'Pick from our many great services',
+                    'id'=>"selectOption",
+                    'onchange'=>"renderImage(this.value)",
                 'options' => $services]);
+
+                echo' <img id="myImg" src="compman.gif" width="107" height="98"/> ';
+
                 echo $this->Form->control('eventstart', [
                 'label' => 'Booking Time',
                 'id'=>'datepicker',
+
                 'timeFormat' => 'h:mm a']);
                 ?>
             </fieldset>
@@ -132,14 +141,7 @@
             });
         });
 
-        var datepicker = flatpickr("#datepicker", {  onChange: function(dates) {
-                 console.log()
-                console.log(disabledTimes)
-                if ((<?=$toJson?>).indexOf(dates==-1)){
-                    console.log('dates');
-
-                }
-            },
+        var datepicker = flatpickr("#datepicker", {
             enableTime: true, // enable time picker
             dateFormat: "Y-m-d H:i", // set date and time format
             minDate: "today", // set minimum date to today
@@ -150,5 +152,32 @@
 
         });
 
+
     </script>
+
+    <script>        // show ima to services
+
+
+        function renderImage() {
+            var selected = document.getElementById("selectOption");
+            var imgUrl = "";
+            if (selected.value == 2) {
+                imgUrl = "../img/user-img/YogaImage.PNG";
+            } else if (selected.value == 3) {
+                imgUrl = "../img/user-img/Counselling.PNG";
+            } else if (selected.value == 4) {
+                imgUrl = "../img/user-img/ArtTherapy.PNG";
+            }
+            else if (selected.value == 5) {
+                imgUrl = "../img/user-img/Danceimage.PNG";
+            }
+            else {
+                imgUrl = "";
+            }
+
+            document.getElementById("myImg").src = imgUrl;
+
+        }
+    </script>
+
 </div>

@@ -33,6 +33,8 @@ use Cake\Http\Exception\NotFoundException;
 
 $this->disableAutoLayout();
 
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -176,8 +178,9 @@ $this->disableAutoLayout();
                                     <!-- <?php $viewURL = "booking/add"?> -->
 
                                     <!-- Image section -->
-                                    <a class="service-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fill: fill">
-                                        <?= @$this->Html->image($service->image_name) ?>
+                                    <a class="service-img" href="<?= $this->Url->build($viewURL) ?>"  style="object-fill: fill">
+                                        <?= @$this->Html->image($service->image_name)  ?>
+
                                     </a>
                                     <div class="card-content">
                                         <!-- Title section -->
