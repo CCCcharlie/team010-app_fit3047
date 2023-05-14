@@ -17,9 +17,9 @@
  *
  */
 
-debug($services->image_name);
-
-debug($services->toList());
+//debug($services->image_name);
+//
+//debug($services->toList());
 ?>
 
 
@@ -119,7 +119,8 @@ debug($services->toList());
                 'timeFormat' => 'h:mm a']);
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Submit'),[        'style' => 'background-color: #ffc800'
+            ]) ?>
             <?= $this->Form->end() ?>
 
         </div>
@@ -172,7 +173,7 @@ debug($services->toList());
                 imgUrl = "../img/user-img/Danceimage.PNG";
             }
             else {
-                imgUrl = "";
+                imgUrl = "../img/user-img/YogaImage.PNG";
             }
 
             document.getElementById("myImg").src = imgUrl;
