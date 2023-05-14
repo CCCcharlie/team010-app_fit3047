@@ -39,24 +39,23 @@
                     <td><?= h($cb->content_description) ?></td>
                 </tr>
                 </table>
-                <br>
 
 <!--                --><?php //echo $this->Form->control('content_description', ['type'=>'textarea', 'style' => 'height: 10rem;']); ?>
 
-                <!-- Displays the content of the previous value (which is your current value here)-->
-<!--                <table>-->
-<!--                    <tr>-->
-<!--                        <th>--><?php //= __('Previous Value') ?><!--</th>-->
-<!--                        <td>--><?php //if(!$cb->previous_value){
-//                            echo h("No previous value");
-//
-//                                } else {
-//                            echo h($cb->previous_value);
-//                                }
-//                            ?>
-<!--                        </td>-->
-<!--                    </tr>-->
-<!--                </table>-->
+                 <!-- Displays the content of the previous value (which is your current value here) -->
+                <table>
+                    <tr>
+                        <th><?= __('Previous Value') ?></th>
+                        <td><?php if(!$cb->previous_value){
+                            echo h("No previous value");
+
+                                } else {
+                            echo h($cb->previous_value);
+                                }
+                            ?>
+                        </td>
+                    </tr>
+                </table>
                 <br>
 
 
@@ -66,7 +65,7 @@
 //  content_value and content_image is simply the name of the field, not content_value in database
 //  therefore I can add another validator rule for name content_value for texts and content_image for images
                     if ($cb->content_type == "text") {
-                        echo $this->Form->control('content_value');
+                        echo $this->Form->control('content_value', ['type'=>'textarea', 'style'=>'height: 20rem' ]);
                     }else {
                         echo $this->Form->control('content_image',['type'=>'file']);
                     }

@@ -85,7 +85,7 @@ to get the name or any value in the staff table, use the get and then the name o
         </div>
 
         <?= $this->Html->link(__('Add a New Service'), ['action' => 'add'], ['class' => 'button']) ?>
-        <?= $this->Html->link(__('What customers see'), ['action' => 'index'], ['class' =>  'button']) ?>
+        <?= $this->Html->link(__('Service List - Customer side'), ['action' => 'index'], ['class' =>  'button']) ?>
 
         <!-- Essentially tells index.php to use bootstrap.css -->
         <?= $this->Html->css(['cake','bootstrap'])?>
@@ -122,11 +122,11 @@ to get the name or any value in the staff table, use the get and then the name o
                                         <?= h($service->service_desc) ?> <br>
                                         Duration:  <?= h($service->service_duration) ?> Minutes |
                                         Cost: $<?= h($service->service_price) ?> | <br>
-                                        Shown in home page? <?= $service->home ? "✅" : "❌" ?>
 
 
                                     <br><br><p style="font-size:150%; color:darkred">Admin Controls:  </p>
                                     <p style="font-size:150%">
+                                    <p style="color: black"> Shown in home page? <?= $service->home ? "✅" : "❌" ?> </p>
                                         <?php
                                         //if true means it that it is shown in home page, so show as hide in home page
                                         if ($service->home) {
