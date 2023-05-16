@@ -37,6 +37,38 @@ $cakeDescription = 'Holistic Healing - Service Showcase View';
         <a href="<?= $this->Url->build('/') ?>"> <?= $this->Html->image('holistichealinglogo.png', ['alt' => 'Holistic healing logo']); ?>
             <a href="<?= $this->Url->build('/') ?>">Holistic<span> Healings</a>
     </div>
+    <div class="top-nav-links">
+        <!--  target acts as where I want to display the href, _self is the default so it will update itself
+         If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
+         to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
+
+        <a target="_self" href="<?= $this->Url->build('/') ?>">To Home Page!</a>
+
+        <?php if ($this->Identity->isLoggedIn()){
+            $identity = $this->request->getAttribute('authentication')->getIdentity();
+
+            echo "<br>";
+            echo $this->Html->link(__('Site Editor'), ['controller' => 'Cb', 'action' => 'index']);
+            echo " | " ;
+            echo $this->Html->link(__('Customer Enquiry'), ['controller' => 'Enquiry', 'action' => 'index']);
+            echo " | " ;
+            echo $this->Html->link(__('Service List'), ['controller' => 'Services', 'action' => 'index']);
+            echo " | " ;
+            echo $this->Html->link(__('Bookings'), ['controller' => 'Booking', 'action' => 'index']);
+            echo "<br>";
+            echo $this->Html->link(__('Staff Overview'), ['controller' => 'Staff', 'action' => 'index']);
+            echo " | " ;
+            echo $this->Html->link(__('Home Page'), ['controller' => 'Pages', 'action' => 'home']);
+            echo " | > " ;
+            echo "Hi " . $identity->get('staff_fname');
+            echo " < | " ;
+            echo $this->Html->link(__('Logout'), ['controller' => 'Staff', 'action' => 'logout']);
+        } else {
+            echo "ㅤ";
+        }
+        ?>
+        <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
+    </div>
 </nav>
 <main class="main">
         <div class="container">
@@ -44,20 +76,20 @@ $cakeDescription = 'Holistic Healing - Service Showcase View';
             <?= $this->fetch('content') ?>
 
 
-    <div class="row">
-        <aside class="column">
-            <div class="side-nav">
-    <!--            <h4 class="heading">--><?php //= __('Actions') ?><!--</h4>-->
-    <!--            --><?php //= $this->Html->link(__('Edit Service'), ['action' => 'edit', $service->service_id], ['class' => 'side-nav-item']) ?>
-    <!--            --><?php //= $this->Form->postLink(__('Delete Service'), ['action' => 'delete', $service->service_id], ['confirm' => __('Are you sure you want to delete # {0}?', $service->service_id), 'class' => 'side-nav-item']) ?>
-    <!--            --><?php //= $this->Html->link(__('List Services'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-    <!--            --><?php //= $this->Html->link(__('New Service'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-            </div>
-        </aside>
+    <div class="Collumn">
+<!--        <aside class="column">-->
+<!--            <div class="side-nav">-->
+<!--                <h4 class="heading">--><?php //= __('Actions') ?><!--</h4>-->
+<!--                --><?php //= $this->Html->link(__('Edit Service'), ['action' => 'edit', $service->service_id], ['class' => 'side-nav-item']) ?>
+<!--                --><?php //= $this->Form->postLink(__('Delete Service'), ['action' => 'delete', $service->service_id], ['confirm' => __('Are you sure you want to delete # {0}?', $service->service_id), 'class' => 'side-nav-item']) ?>
+<!--                --><?php //= $this->Html->link(__('List Services'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+<!--                --><?php //= $this->Html->link(__('New Service'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+<!--            </div>-->
+<!--        </aside>-->
         <div class="column-responsive column-80">
             <div class="services view content">
-                <a class="btn float-right" href="<?= $this->Url->build('/services/admindex') ?>">Return to services</a>
-                <h3><?= h($service->service_id) ?></h3>
+                <a class="btn float-right" href="<?= $this->Url->build('/services') ?>">See all services</a>
+                <h2><?= h($service->service_name) ?></h2>
                 <table>
                     <tr>
                         <th><?= __('Service Name') ?></th>
@@ -68,16 +100,16 @@ $cakeDescription = 'Holistic Healing - Service Showcase View';
                         <td style="word-break: break-all"><?= h($service->service_desc) ?></td>
                     </tr>
                     <tr>
-                        <th><?= __('Image: ') ?></th>
-                        <td><?= @$this->Html->image($service->image_name) ?></td>
-                    </tr>
-                    <tr>
                         <th><?= __('Service Price') ?></th>
                         <td><?= $this->Number->format($service->service_price)." $" ?></td>
                     </tr>
                     <tr>
                         <th><?= __('Service Duration') ?></th>
                         <td><?= h($service->service_duration). " Minutes" ?></td>
+                    </tr>
+                    <tr>
+                        <th><?= __('Image: ') ?></th>
+                        <td><?= @$this->Html->image($service->image_name) ?></td>
                     </tr>
                 </table>
             </div>
