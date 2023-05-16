@@ -54,7 +54,7 @@ class BookingController extends AppController
         parent::beforeFilter($event);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
-        $this->Authentication->addUnauthenticatedActions(['add']);
+        $this->Authentication->addUnauthenticatedActions(['add', 'confirm']);
     }
 
     /**
@@ -120,7 +120,9 @@ class BookingController extends AppController
             if ($this->Booking->save($booking)) {
                 $this->Flash->success(__('The booking has been saved.'));
 
-                return $this->redirect(['action' => 'add']);
+//                debug($booking);
+//                exit();
+                return $this->redirect(['action' => 'confirm', $booking->booking_id]);
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
@@ -156,7 +158,7 @@ class BookingController extends AppController
             if ($this->Booking->save($booking)) {
                 $this->Flash->success(__('The booking has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'booking']);
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
@@ -207,6 +209,15 @@ class BookingController extends AppController
     }
 
 
+
+    public function confirm($id = null)
+    {
+        $booking = $this->Booking->get($id, [
+            'contain' => ['Staff', 'Services'],
+        ]);
+
+        $this->set(compact('booking'));
+    }
 
 
 }
