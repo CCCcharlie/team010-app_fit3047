@@ -55,41 +55,53 @@ to get the name or any value in the staff table, use the get and then the name o
         <div class="booking view content">
             <h1><?= h($booking->cust_fname . ' ' . $booking->cust_lname) ?></h1>
             <table>
-<!--                <tr>-->
-<!--                    <th>--><?php //= __('Customer') ?><!--</th>-->
-<!--                    <td>--><?php //= $booking->has('customer') ? $this->Html->link($booking->customer->cust_id, ['controller' => 'Customer', 'action' => 'view', $booking->customer->cust_id]) : '' ?><!--</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th>--><?php //= __('Staff') ?><!--</th>-->
-<!--                    <td>--><?php //= $booking->has('staff') ? $this->Html->link($booking->staff->staff_id, ['controller' => 'Staff', 'action' => 'view', $booking->staff->staff_id]) : '' ?><!--</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th>--><?php //= __('Service') ?><!--</th>-->
-<!--                    <td>--><?php //= $booking->has('service') ? $this->Html->link($booking->service->service_id, ['controller' => 'Services', 'action' => 'view', $booking->service->service_id]) : '' ?><!--</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th>--><?php //= __('Booking Id') ?><!--</th>-->
-<!--                    <td>--><?php //= $this->Number->format($booking->booking_id) ?><!--</td>-->
-<!--                </tr>-->
+                <!--                <tr>-->
+                <!--                    <th>--><?php //= __('Customer') ?><!--</th>-->
+                <!--                    <td>--><?php //= $booking->has('customer') ? $this->Html->link($booking->customer->cust_id, ['controller' => 'Customer', 'action' => 'view', $booking->customer->cust_id]) : '' ?><!--</td>-->
+                <!--                </tr>-->
+                <!--                <tr>-->
+                <!--                    <th>--><?php //= __('Staff') ?><!--</th>-->
+                <!--                    <td>--><?php //= $booking->has('staff') ? $this->Html->link($booking->staff->staff_id, ['controller' => 'Staff', 'action' => 'view', $booking->staff->staff_id]) : '' ?><!--</td>-->
+                <!--                </tr>-->
+                <!--                <tr>-->
+                <!--                    <th>--><?php //= __('Service') ?><!--</th>-->
+                <!--                    <td>--><?php //= $booking->has('service') ? $this->Html->link($booking->service->service_id, ['controller' => 'Services', 'action' => 'view', $booking->service->service_id]) : '' ?><!--</td>-->
+                <!--                </tr>-->
+                <!--                <tr>-->
+                <!--                    <th>--><?php //= __('Booking Id') ?><!--</th>-->
+                <!--                    <td>--><?php //= $this->Number->format($booking->booking_id) ?><!--</td>-->
+                <!--                </tr>-->
                 <tr>
-                    <th><?= __('Customer First Name') ?></th>
-                    <td><?= h($booking->cust_fname) ?></td>
+                    <th><?= __('Booking ID') ?></th>
+                    <td><?= h($booking->booking_id) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Customer Last Name') ?></th>
-                    <td><?= h($booking->cust_lname) ?></td>
+                    <th><?= __('Name') ?></th>
+                    <td><?= h($booking->cust_fname . ' ' . $booking->cust_lname) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Customer Phone Name') ?></th>
+                    <th><?= __('Phone') ?></th>
                     <td><?= h($booking->cust_phone) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Customer Email Name') ?></th>
+                    <th><?= __('Email') ?></th>
                     <td><?= h($booking->cust_email) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Staff Name:') ?></th>
                     <td><?= h($booking->staff->staff_fname . ' ' . $booking->staff->staff_lname) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Booking start:') ?></th>
+                    <td><?= h(date('j/n/y g:i A', $booking->eventstart->toUnixString())) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Booking Duration:') ?></th>
+                    <td><?= h($booking->service->service_duration . ' minutes') ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Booking End Time:') ?></th>
+                    <td><?= h(date('n/j/y, g:i A', strtotime($booking->eventstart . ' +' . $booking->service->service_duration . ' minutes'))) ?></td>
                 </tr>
             </table>
         </div>
