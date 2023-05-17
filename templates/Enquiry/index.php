@@ -26,10 +26,10 @@
             </button>
             <div class="dropdown-content">
 
-                <a target="_self"  href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a> |
-                <a target="_self"  href="<?= $this->Url->build('/services/admindex') ?>">Service List</a> |
-                <a target="_self"  href="<?= $this->Url->build('/booking') ?>">Bookings</a> |
-                <a target="_self"  href="<?= $this->Url->build('/staff') ?>">Staff Overview</a> |
+                <a target="_self"  href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
+                <a target="_self"  href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
+                <a target="_self"  href="<?= $this->Url->build('/booking') ?>">Bookings</a>
+                <a target="_self"  href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
             </div>
         </div>
 
