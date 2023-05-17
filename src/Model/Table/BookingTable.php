@@ -215,6 +215,14 @@ class BookingTable extends Table
                             return !$existingBooking;
                         },
                         'message' => 'This staff member is already booked during this time. Please choose a different staff member.'
+                    ],
+                    'noEventStartBefore9am' => [
+                        'rule' => function ($value, $context) {
+                            $eventstart = new \DateTime($value);
+                            $nine_am = new \DateTime('09:00:00');
+                            return $eventstart >= $nine_am;
+                        },
+                        'message' => 'Event start time cannot be before 9am.'
                     ]
                 ])
                 ->dateTime('eventstart')
