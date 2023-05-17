@@ -72,9 +72,7 @@ to get the name or any value in the staff table, use the get and then the name o
                      echo $this->Form->label('staff_position', 'Staff Position*');
                     echo $this->Form->select('staff_position',  [
                     'admin' => 'admin',
-                    'staff' => 'staff',
-                    'admin_bookable' => 'admin bookable',
-                    'staff_bookable' => 'staff bookable'
+                    'staff' => 'staff'
                 ]);
                     echo $this->Form->control('staff_email', ['label' => 'Staff E-Mail*']);
                     echo $this->Form->control('staff_password', ['label' => 'Your Password*']);
