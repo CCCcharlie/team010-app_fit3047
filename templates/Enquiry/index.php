@@ -18,13 +18,22 @@
          If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
          to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
 
-        <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a> |
-        <a target="_self" href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a> |
-        <a target="_self" href="<?= $this->Url->build('/services/admindex') ?>">Service List</a> |
-        <a target="_self" href="<?= $this->Url->build('/booking') ?>">Bookings</a> |
-        <br>
-        <a target="_self" href="<?= $this->Url->build('/staff') ?>">Staff Overview</a> |
         <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a> |
+        <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a> |
+        <div class="dropdown ">
+            <button class="dropbtn">Dropdown  <i class="arrow down"></i>
+
+            </button>
+            <div class="dropdown-content">
+
+                <a target="_self"  href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a> |
+                <a target="_self"  href="<?= $this->Url->build('/services/admindex') ?>">Service List</a> |
+                <a target="_self"  href="<?= $this->Url->build('/booking') ?>">Bookings</a> |
+                <a target="_self"  href="<?= $this->Url->build('/staff') ?>">Staff Overview</a> |
+            </div>
+        </div>
+
+        <br>
         <!-- To obtain the identity, use $identity = $this->request->getAttribute('authentication')->getIdentity(); to find the currently logged in entity
 to get the name or any value in the staff table, use the get and then the name of the attribute $identity->get('staff_fname')-->
         <?php $identity = $this->request->getAttribute('authentication')->getIdentity();
