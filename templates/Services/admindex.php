@@ -147,6 +147,7 @@ to get the name or any value in the staff table, use the get and then the name o
                                         echo "<br>";
                                         echo "<hr>";
                                         ?>
+                                        <?= $this->Html->link(__('View'), ['action' => 'view', $service->service_id]) ?>
                                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $service->service_id], ['confirm' => __('Are you sure you want to delete this service: {0}? Changes are irreverisble.', $service->service_name)]) ?>
                                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $service->service_id]) ?></p>
 
