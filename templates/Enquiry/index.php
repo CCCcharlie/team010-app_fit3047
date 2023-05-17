@@ -21,7 +21,7 @@
         <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a> |
         <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a> |
         <div class="dropdown ">
-            <button class="dropbtn">Dropdown  <i class="arrow down"></i>
+            <button class="dropbtn"> ☰ <i class="arrow down"></i>
 
             </button>
             <div class="dropdown-content">

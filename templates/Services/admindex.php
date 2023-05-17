@@ -48,7 +48,7 @@ error_reporting(0);
          to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
 
         <div class="dropdown ">
-            <button class="dropbtn">Dropdown  <i class="arrow down"></i>
+            <button class="dropbtn"> ☰ <i class="arrow down"></i>
 
             </button>
             <div class="dropdown-content">
