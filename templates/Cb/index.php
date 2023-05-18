@@ -91,7 +91,7 @@ $cakeDescription = 'Holistic Healing - Site Editor';
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('hint') ?> aka. The Object You're Editing.</th>
+                    <th><?= $this->Paginator->sort('hint') ?> aka. The Content You're Editing.</th>
                     <th><?= $this->Paginator->sort('content_type') ?></th>
                     <th><?= $this->Paginator->sort('content_description') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
