@@ -27,7 +27,7 @@ $cakeDescription = 'Holistic Healing - Site Editor';
 
             <!--        https://www.w3schools.com/howto/howto_css_dropdown.asp-->
             <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a> |
-            <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a> |
+            <a target="_self"  href="<?= $this->Url->build('/booking') ?>">Bookings</a> |
             <div class="dropdown ">
                 <button class="dropbtn"> ☰ <i class="arrow down"></i>
 
@@ -36,8 +36,8 @@ $cakeDescription = 'Holistic Healing - Site Editor';
 
                     <a target="_self"  href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiries</a>
                     <a target="_self"  href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
-                    <a target="_self"  href="<?= $this->Url->build('/booking') ?>">Bookings</a>
                     <a target="_self"  href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
+                    <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
                 </div>
             </div>
 
