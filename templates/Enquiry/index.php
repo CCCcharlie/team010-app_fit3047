@@ -50,7 +50,6 @@ to get the name or any value in the staff table, use the get and then the name o
 <!--    --><?php //= $this->Html->link(__('New Enquiry'), ['action' => 'add'], ['class' => 'button float-right']) ?>
 <!--    <h2>--><?php //= __('Customer Enquiries') ?><!--</h2>-->
     <p>Here you can see all your enquiries.</p><br>
-    <p>Click 'Edit Enquiry' to edit your enquiry. (eg. If you notice an error in the details.)</p>
     <p>Click 'Delete Enquiry' to delete an enquiry. (eg. If you notice a spam/duplicate enquiry.)</p>
     <div class="table-responsive">
         <table>
@@ -91,7 +90,6 @@ to get the name or any value in the staff table, use the get and then the name o
                         echo "<hr>";
                         ?>
 
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $enquiry->enquiry_id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $enquiry->enquiry_id], ['confirm' => __('Are you sure you want to delete # {0}? This change cannot be undone!', $enquiry->enquiry_id)]) ?>
                     </td>
                 </tr>
