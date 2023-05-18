@@ -323,7 +323,7 @@
                     <td><?= h($booking->service->service_name) ?></td>
                     <td><?= h(date('j/n/y g:i A', $booking->eventstart->toUnixString())) ?></td>
                     <td><?= h($booking->service->service_duration . ' minutes') ?></td>
-                    <td><?= h(date('n/j/y, g:i A', strtotime($booking->eventstart . ' +' . $booking->service->service_duration . ' minutes'))) ?></td>
+                    <td><?= h(date('j/n/y, g:i A', strtotime($booking->eventstart . ' +' . $booking->service->service_duration . ' minutes'))) ?></td>
                     <td><?= h($booking->cust_fname . ' ' . $booking->cust_lname) ?></td>
                     <td><?= h($booking->staff->staff_fname . ' ' . $booking->staff->staff_lname) ?></td>
                     <td class="actions">
