@@ -47,21 +47,20 @@ error_reporting(0);
          If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
          to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
 
+        <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a> |
+        <a target="_self"  href="<?= $this->Url->build('/booking') ?>">Bookings</a> |
         <div class="dropdown ">
-            <button class="dropbtn">Dropdown  <i class="arrow down"></i>
+            <button class="dropbtn"> ☰ <i class="arrow down"></i>
 
             </button>
             <div class="dropdown-content">
 
-                <a target="_self"  href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
+                <a target="_self"  href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiries</a>
                 <a target="_self"  href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
-                <a target="_self"  href="<?= $this->Url->build('/booking') ?>">Bookings</a>
                 <a target="_self"  href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
+                <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
             </div>
         </div>
-        <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a> |
-        <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a> |
-
         <br>
         <!-- To obtain the identity, use $identity = $this->request->getAttribute('authentication')->getIdentity(); to find the currently logged in entity
 to get the name or any value in the staff table, use the get and then the name of the attribute $identity->get('staff_fname')-->
@@ -147,6 +146,7 @@ to get the name or any value in the staff table, use the get and then the name o
                                         echo "<br>";
                                         echo "<hr>";
                                         ?>
+                                        <?= $this->Html->link(__('View'), ['action' => 'view', $service->service_id]) ?>
                                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $service->service_id], ['confirm' => __('Are you sure you want to delete this service: {0}? Changes are irreverisble.', $service->service_name)]) ?>
                                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $service->service_id]) ?></p>
 

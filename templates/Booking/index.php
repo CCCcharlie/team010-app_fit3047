@@ -25,21 +25,20 @@
              If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
              to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
 
-
+            <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a> |
+            <a target="_self"  href="<?= $this->Url->build('/booking') ?>">Bookings</a> |
             <div class="dropdown ">
-                <button class="dropbtn">Dropdown  <i class="arrow down"></i>
+                <button class="dropbtn"> ☰ <i class="arrow down"></i>
 
                 </button>
                 <div class="dropdown-content">
 
-                    <a target="_self"  href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiry</a>
+                    <a target="_self"  href="<?= $this->Url->build('/enquiry') ?>">Customer Enquiries</a>
                     <a target="_self"  href="<?= $this->Url->build('/services/admindex') ?>">Service List</a>
-                    <a target="_self"  href="<?= $this->Url->build('/booking') ?>">Bookings</a>
                     <a target="_self"  href="<?= $this->Url->build('/staff') ?>">Staff Overview</a>
+                    <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a>
                 </div>
             </div>
-            <a target="_self" href="<?= $this->Url->build('/') ?>">Home Page</a> |
-            <a target="_self" href="<?= $this->Url->build('/cb') ?>">Site Editor</a> |
 
             <br>
             <!-- To obtain the identity, use $identity = $this->request->getAttribute('authentication')->getIdentity(); to find the currently logged in entity
@@ -324,7 +323,7 @@
                     <td><?= h($booking->service->service_name) ?></td>
                     <td><?= h(date('j/n/y g:i A', $booking->eventstart->toUnixString())) ?></td>
                     <td><?= h($booking->service->service_duration . ' minutes') ?></td>
-                    <td><?= h(date('n/j/y, g:i A', strtotime($booking->eventstart . ' +' . $booking->service->service_duration . ' minutes'))) ?></td>
+                    <td><?= h(date('j/n/y, g:i A', strtotime($booking->eventstart . ' +' . $booking->service->service_duration . ' minutes'))) ?></td>
                     <td><?= h($booking->cust_fname . ' ' . $booking->cust_lname) ?></td>
                     <td><?= h($booking->staff->staff_fname . ' ' . $booking->staff->staff_lname) ?></td>
                     <td class="actions">
