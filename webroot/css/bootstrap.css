@@ -3649,9 +3649,10 @@ position: relative;
 }
 
 .nav-link {
+    font-size: 2rem;
   display: block;
   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-  font-size: var(--bs-nav-link-font-size);
+  /*font-size: var(--bs-nav-link-font-size);*/
   font-weight: var(--bs-nav-link-font-weight);
   color: var(--bs-nav-link-color);
   text-decoration: none;
@@ -3660,6 +3661,7 @@ position: relative;
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
     transition: none;
+
   }
 }
 .nav-link:hover, .nav-link:focus {
@@ -3811,7 +3813,7 @@ position: relative;
 .navbar-nav {
   --bs-nav-link-padding-x: 0;
   --bs-nav-link-padding-y: 0.5rem;
-  --bs-nav-link-font-weight: ;
+  --bs-nav-link-font-weight: 2rem;
   --bs-nav-link-color: var(--bs-navbar-color);
   --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
   --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);
@@ -10942,6 +10944,7 @@ p {
 
 .page-section h2.section-heading, .page-section .section-heading.h2 {
   font-size: 4rem;  font-style: normal;
+
   margin-top: 0;
   margin-bottom: 1rem;
     font-family: "Glacial Indifference", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";  margin-bottom: 4rem;
@@ -11003,7 +11006,7 @@ p {
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #ffc800;
   letter-spacing: 0.0625em;
 }
@@ -11512,6 +11515,7 @@ img, svg{vertical-align: central;}
     text-transform: inherit;
 }
 .section-heading .section-heading-upper {
+
     display: block;
     font-size: 5rem;
     font-weight: 800;

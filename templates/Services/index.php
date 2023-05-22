@@ -39,6 +39,11 @@ $cakeDescription = 'Holistic Healing - All Services';
         <!-- <?php /*= "$this->Url->build('/')" */?> <- this line of code is for redirection, "/" is the root path-->
         <a href="<?= $this->Url->build('/') ?>"> <?= $this->Html->image('holistichealinglogofull.png', ['alt' => 'Holistic healing logo', 'class' => 'logo']); ?>
             <a href="<?= $this->Url->build('/') ?>">Holistic<span> Healings</a>
+
+    </div>
+    <div class="top-nav-links">
+        <a target="_self" href="<?= $this->Url->build('/booking/add') ?>">Make a Bookings</a>
+        <a target="_self" href="<?= $this->Url->build('/') ?>">To Home Page!</a>
     </div>
     </div>
 </nav>
