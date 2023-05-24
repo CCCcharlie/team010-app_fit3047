@@ -4243,6 +4243,11 @@ position: relative;
     object-fit: fill;
 }
 
+.service-img img{
+    height: 100%;
+    width: 100%;
+}
+
 .card-img{
     height: 250px;
     z-index: 25;

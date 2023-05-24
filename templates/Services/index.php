@@ -88,7 +88,7 @@ $cakeDescription = 'Holistic Healing - All Services';
                     <?php $viewURL = "booking/add"?>
 
                     <!-- Image section -->
-                    <a class="card-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fit: fill">
+                    <a class="service-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fit: fill">
                           <?= @$this->Html->image($service->image_name) ?>
                     </a>
                     <div class="card-content">

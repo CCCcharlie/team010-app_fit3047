@@ -181,7 +181,7 @@ debug($welcomeImageUrl);
                                 <div class="card">
                                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                                     when clicked-->
-                                    <!-- <?php $viewURL = "services/view/" . $service->service_id?> -->
+                                    <!-- <?php $viewURL = "booking/add" ?>-->
 
                                     <!-- Image section -->
                                     <a class="service-img" href="<?= $this->Url->build($viewURL) ?>"  style="object-fill: fill">
