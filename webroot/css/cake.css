@@ -1,4 +1,6 @@
 /* Miligram overrides */
+
+
 body {
     font-family: "Quicksand", sans-serif;
     font-weight: 400;
@@ -112,6 +114,8 @@ th {
     white-space: nowrap;
 }
 
+/* Calendar */
+
 /* Nav bar */
 .top-nav {
     display: flex;
@@ -124,6 +128,7 @@ th {
     transition: height 0.3s ease-in-out;
     background-color: white;
 }
+
 
 .top-nav.collapsed {
     height: 50px;

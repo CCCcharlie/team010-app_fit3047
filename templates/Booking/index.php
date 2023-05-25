@@ -86,75 +86,76 @@
                     startTime: '09:00', // 9am
                     endTime: '17:00' // 5pm
                 },
-                eventClick: function(info) {
-                    var dialog = document.createElement('div');
-                    dialog.classList.add('dialog');
-                    dialog.style.position = 'absolute';
-                    dialog.style.top = info.jsEvent.clientY + 'px';
-                    dialog.style.left = info.jsEvent.clientX + 'px';
-                    dialog.style.background = 'white';
-                    dialog.style.padding = '10px';
-                    dialog.style.border = '1px solid black';
-                    document.body.appendChild(dialog);
-
-                    var dialogTitle = document.createElement('h2');
-                    dialogTitle.textContent = 'Event Details';
-                    dialog.appendChild(dialogTitle);
-
-                    // Add exit button
-                    var exitButton = document.createElement('button');
-                    exitButton.setAttribute('type', 'button');
-                    exitButton.textContent = 'X';
-                    exitButton.style.float = 'right';
-                    exitButton.addEventListener('click', function() {
-                        dialog.remove();
-                    });
-                    dialogTitle.appendChild(exitButton);
-
-                    var form = document.createElement('form');
-                    dialog.appendChild(form);
-
-                    var titleLabel = document.createElement('label');
-                    titleLabel.textContent = 'Event Title:';
-                    titleLabel.setAttribute('for', 'eventTitle');
-                    titleLabel.setAttribute('required', '');
-                    form.appendChild(titleLabel);
-
-                    var titleInput = document.createElement('input');
-                    titleInput.setAttribute('type', 'text');
-                    titleInput.setAttribute('id', 'eventTitle');
-                    titleInput.setAttribute('name', 'eventTitle');
-                    titleInput.setAttribute('value', info.event.title);
-                    titleInput.setAttribute('required', ''); // Should make field mandatory, not sure why it doesnt work.
-                    titleInput.disabled = true; // disable editing
-                    form.appendChild(titleInput);
-
-                    var startLabel = document.createElement('label');
-                    startLabel.textContent = 'Event Start*:';
-                    form.appendChild(startLabel);
-
-                    var startInput = document.createElement('input');
-                    startInput.setAttribute('type', 'datetime-local');
-                    startInput.setAttribute('id', 'eventStart');
-                    startInput.setAttribute('name', 'eventStart');
-                    startInput.setAttribute('required', '');
-                    startInput.disabled = true; // disable editing
-                    startInput.value = formatDate(info.event.start);
-
-                    form.appendChild(startInput);
-
-                    var endLabel = document.createElement('label');
-                    endLabel.textContent = 'Event End*:';
-                    form.appendChild(endLabel);
-
-                    var endInput = document.createElement('input');
-                    endInput.setAttribute('type', 'datetime-local');
-                    endInput.setAttribute('id', 'eventEnd');
-                    endInput.setAttribute('name', 'eventEnd');
-                    endInput.value = formatDate(info.event.end);
-                    endInput.setAttribute('required', '');
-                    endInput.disabled = true; // disable editing
-                    form.appendChild(endInput);
+                // This feature here is the eventclick feature. Now just hidden because confusing and doesn't edit the events anymore.
+                // eventClick: function(info) {
+                //     var dialog = document.createElement('div');
+                //     dialog.classList.add('dialog');
+                //     dialog.style.position = 'absolute';
+                //     dialog.style.top = info.jsEvent.clientY + 'px';
+                //     dialog.style.left = info.jsEvent.clientX + 'px';
+                //     dialog.style.background = 'white';
+                //     dialog.style.padding = '10px';
+                //     dialog.style.border = '1px solid black';
+                //     document.body.appendChild(dialog);
+                //
+                //     var dialogTitle = document.createElement('h2');
+                //     dialogTitle.textContent = 'Event Details';
+                //     dialog.appendChild(dialogTitle);
+                //
+                //     // Add exit button
+                //     var exitButton = document.createElement('button');
+                //     exitButton.setAttribute('type', 'button');
+                //     exitButton.textContent = 'X';
+                //     exitButton.style.float = 'right';
+                //     exitButton.addEventListener('click', function() {
+                //         dialog.remove();
+                //     });
+                //     dialogTitle.appendChild(exitButton);
+                //
+                //     var form = document.createElement('form');
+                //     dialog.appendChild(form);
+                //
+                //     var titleLabel = document.createElement('label');
+                //     titleLabel.textContent = 'Event Title:';
+                //     titleLabel.setAttribute('for', 'eventTitle');
+                //     titleLabel.setAttribute('required', '');
+                //     form.appendChild(titleLabel);
+                //
+                //     var titleInput = document.createElement('input');
+                //     titleInput.setAttribute('type', 'text');
+                //     titleInput.setAttribute('id', 'eventTitle');
+                //     titleInput.setAttribute('name', 'eventTitle');
+                //     titleInput.setAttribute('value', info.event.title);
+                //     titleInput.setAttribute('required', ''); // Should make field mandatory, not sure why it doesnt work.
+                //     titleInput.disabled = true; // disable editing
+                //     form.appendChild(titleInput);
+                //
+                //     var startLabel = document.createElement('label');
+                //     startLabel.textContent = 'Event Start*:';
+                //     form.appendChild(startLabel);
+                //
+                //     var startInput = document.createElement('input');
+                //     startInput.setAttribute('type', 'datetime-local');
+                //     startInput.setAttribute('id', 'eventStart');
+                //     startInput.setAttribute('name', 'eventStart');
+                //     startInput.setAttribute('required', '');
+                //     startInput.disabled = true; // disable editing
+                //     startInput.value = formatDate(info.event.start);
+                //
+                //     form.appendChild(startInput);
+                //
+                //     var endLabel = document.createElement('label');
+                //     endLabel.textContent = 'Event End*:';
+                //     form.appendChild(endLabel);
+                //
+                //     var endInput = document.createElement('input');
+                //     endInput.setAttribute('type', 'datetime-local');
+                //     endInput.setAttribute('id', 'eventEnd');
+                //     endInput.setAttribute('name', 'eventEnd');
+                //     endInput.value = formatDate(info.event.end);
+                //     endInput.setAttribute('required', '');
+                //     endInput.disabled = true; // disable editing
+                //     form.appendChild(endInput);
 
                     // var urlLabel = document.createElement('label');
                     // urlLabel.textContent = 'Event URL:';
@@ -178,48 +179,48 @@
                     // form.appendChild(deleteButton);
 
 
-                    // For some reason, if I comment this out the whole calendar breaks.
-
-                    editButton.addEventListener('click', function() {
-                        var title = titleInput.value;
-                        var start = new Date(startInput.value);
-                        var end = new Date(endInput.value);
-                        // var url = urlInput.value;
-
-                        // Check if the event falls outside of business hours.
-                        if (start.getHours() < 9 || end.getHours() > 17 || start.getDay() === 6 || start.getDay() === 0) {
-                            // Display a warning message
-                            alert('Warning: This event falls outside of business hours or on a weekend. Are you sure you want to save it?');
-                        }
-
-                        $.ajax({
-                            url: '/bookings/createOrUpdateBooking',
-                            type: 'POST',
-                            dataType: 'json',
-                            data: {event: event},
-                            success: function(response) {
-                                dialog.remove();
-                                calendar.refetchEvents();
-                            },
-                            error: function(xhr, status, error) {
-                                alert('Error saving event: ' + error);
-                            }
-                        });
-
-                        info.event.setProp('title', title);
-                        info.event.setStart(start);
-                        info.event.setEnd(end);
-                        info.event.setProp('url', url);
-                        dialog.remove();
-                    });
-
-                    deleteButton.addEventListener('click', function() {
-                        info.event.remove();
-                        dialog.remove();
-                    });
-
-
-                },
+                //     // For some reason, if I comment this out the whole calendar breaks.
+                //
+                //     editButton.addEventListener('click', function() {
+                //         var title = titleInput.value;
+                //         var start = new Date(startInput.value);
+                //         var end = new Date(endInput.value);
+                //         // var url = urlInput.value;
+                //
+                //         // Check if the event falls outside of business hours.
+                //         if (start.getHours() < 9 || end.getHours() > 17 || start.getDay() === 6 || start.getDay() === 0) {
+                //             // Display a warning message
+                //             alert('Warning: This event falls outside of business hours or on a weekend. Are you sure you want to save it?');
+                //         }
+                //
+                //         $.ajax({
+                //             url: '/bookings/createOrUpdateBooking',
+                //             type: 'POST',
+                //             dataType: 'json',
+                //             data: {event: event},
+                //             success: function(response) {
+                //                 dialog.remove();
+                //                 calendar.refetchEvents();
+                //             },
+                //             error: function(xhr, status, error) {
+                //                 alert('Error saving event: ' + error);
+                //             }
+                //         });
+                //
+                //         info.event.setProp('title', title);
+                //         info.event.setStart(start);
+                //         info.event.setEnd(end);
+                //         info.event.setProp('url', url);
+                //         dialog.remove();
+                //     });
+                //
+                //     deleteButton.addEventListener('click', function() {
+                //         info.event.remove();
+                //         dialog.remove();
+                //     });
+                //
+                //
+                // },
                 dateClick: function(info) {
                     // removes any existing dialog boxes
                     if (dialog) {
@@ -329,7 +330,7 @@
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $booking->booking_id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->booking_id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->booking_id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->booking_id)]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->booking_id], ['confirm' => __('Are you sure you want to delete this booking? Changes are irreversible', )]) ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
