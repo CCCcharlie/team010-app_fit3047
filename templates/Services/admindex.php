@@ -110,13 +110,13 @@ to get the name or any value in the staff table, use the get and then the name o
                     <!-- LOOP HERE -->
                     <?php foreach ($services as $service): ?>
                         <div class="col-xs-3 col-sm-4 d-flex align-items-stretch">
-                            <div class="card">
+                            <div class="card" style="height: 600px">
                                 <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                                 when clicked-->
                                 <?php $viewURL = "/services/admindex" ?>
 
                                 <!-- Image section -->
-                                <a class="card-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fit: fill">
+                                <a class="service-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fit: fill" >
                                     <?= @$this->Html->image($service->image_name) ?>
                                 </a>
                                 <div class="card-content">

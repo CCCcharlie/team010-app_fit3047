@@ -41,6 +41,7 @@ $cakeDescription = 'Holistic Healing - Service Showcase View';
 
 
     <div class="top-nav-links">
+
         <!--  target acts as where I want to display the href, _self is the default so it will update itself
          If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
          to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
@@ -100,7 +101,8 @@ to get the name or any value in the staff table, use the get and then the name o
 <!--        </aside>-->
         <div class="column-responsive column-80">
             <div class="services view content">
-                <a class="btn float-right" href="<?= $this->Url->build('/services') ?>">See all services</a>
+                <a class="btn float-right" style="margin:10px;" href="<?= $this->Url->build('/services') ?>">See all services </a>
+                <a class="btn float-right" style="margin:10px;" href="<?= $this->Url->build('/booking/add') ?>" >Make a booking  </a>
                 <h2><?= h($service->service_name) ?></h2>
                 <table>
                     <tr>
