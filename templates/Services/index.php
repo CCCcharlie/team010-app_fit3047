@@ -85,7 +85,7 @@ $cakeDescription = 'Holistic Healing - All Services';
                 <div class="card">
                     <!-- $viewURL acts as a temporary variable to store the path of each created card so it can redirect
                     when clicked-->
-                    <?php $viewURL = "booking/add"?>
+                    <?php $viewURL = "services/view/" . $service->service_id?>
 
                     <!-- Image section -->
                     <a class="service-img" href="<?= $this->Url->build($viewURL) ?>" style="object-fit: fill">
