@@ -42,14 +42,11 @@ $cakeDescription = 'Holistic Healing - All Services';
 
     </div>
     <div class="top-nav-links">
-        <a target="_self" href="<?= $this->Url->build('/booking/add') ?>">Make a Bookings</a>
-        <a target="_self" href="<?= $this->Url->build('/') ?>">To Home Page!</a>
-    </div>
-    <div class="top-nav-links">
         <!--  target acts as where I want to display the href, _self is the default so it will update itself
          If _blank then it will appear as a new page when clicked, there are others like _parent and _top it does not seem
          to do anything substantial  more info here: https://www.w3schools.com/tags/att_a_target.asp -->
 
+        <a target="_self" href="<?= $this->Url->build('/booking/add') ?>">Make a Booking</a>
         <a target="_self" href="<?= $this->Url->build('/') ?>">To Home Page!</a>
 
         <!-- <a target="_self" rel="next" href="<?php /*= $this->Url->build('/staff') */?>>staffexpertise</a>  hide this for now because it breaks-->
