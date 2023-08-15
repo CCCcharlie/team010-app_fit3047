@@ -54,7 +54,7 @@ $this->disableAutoLayout();
 
 
 
-    <?= $this->Html->css(['cake','normalize.min', 'milligram.min', 'bootstrap','home']) ?>
+        <?= $this->Html->css(['cake','normalize.min', 'milligram.min', 'bootstrap','home']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
